@@ -1,0 +1,1 @@
+console.log("Byte$ 4273 iniciado com sucesso.");
