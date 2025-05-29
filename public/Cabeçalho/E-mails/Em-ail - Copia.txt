@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Block-chain - Investimentos Descentralizados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap');
+        
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #9600ff;
+            --neon-pink: #ff00c8;
+            --dark-bg: #0a0a1a;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue), 0 0 15px var(--neon-purple);
+            color: white;
+        }
+        
+        .neon-border {
+            box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-purple), inset 0 0 10px var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+        }
+        
+        .neon-button {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+            box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-purple);
+            transition: all 0.3s ease;
+        }
+        
+        .neon-button:hover {
+            box-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-purple);
+            transform: translateY(-2px);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .glow {
+            filter: drop-shadow(0 0 8px var(--neon-blue));
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="max-w-3xl mx-auto p-6">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <div class="flex justify-center mb-4">
+                <div class="neon-border rounded-full p-2 glow">
+                    <i class="fas fa-link text-4xl text-white"></i>
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-2 neon-text orbitron">MEGA BLOCK-CHAIN</h1>
+            <p class="text-lg text-gray-300">Bem vindo a nova revolução dos investimentos decentralizados </p>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="neon-border rounded-xl p-6 mb-8 bg-gray-900 bg-opacity-50">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 neon-text orbitron">Convite - Inscrição Shark Vision  </h2>
+            <p class="mb-6 text-gray-300 leading-relaxed">
+                - Caro Investidor.
+            </p>
+            
+            <p class="mb-6 text-gray-300 leading-relaxed">
+                Com base na grande demanda de contratos ativos, nossa produção de NFTS tem uma estimativa de produção media de 24hs para programar seus dados e armazenar junto ao Mega Block-chain.  A criptografia Block-chain garante  que sua  Propriedade Privada seja armazenada e enviada de forma segura e com integridade. Toda e qualquer Propriedade produzida em simetria com a Byte$ tem sua identidade única, escríta e escolhida especialmente por você, nosso Contribuinte . "ATENÇÃO"
+            </p>
+        
+            <p class="mb-6 text-gray-300 leading-relaxed">
+                Nossa tecnologia de <span class="font-bold text-white">Block-chain Híbrida</span> combina a segurança das redes privadas com a transparência dos ledgers públicos, oferecendo oportunidades únicas de valorização dencentralizadas e Premiuns que trabalham suas <span class="font-bold text-whit-400">Emoções,</span> amenizando sua <span class="font-bold text-pink-400">Expectativa</span> e aprimorando sua <span class="font-bold text-blue-400">Perspectiva</span> para te proporcionar objetivos alcancaveis onde você se sinta bem consigo mesmo e com os resultados que alcançar. Nosso Mega Block-chain e muito mais que um investimento, e uma escolha ! Obrigado por escolher fazer parte dessa Hístoria com a revolução financeira com a Blue Fund, nosso objetivo são as realizações do seu secesso . Essa e nossa Marca!  - <span class="font-bold text-blue-400">🦈 Byte$ </span>
+            </p>
+            
+            <div class="mb-8 benefits-grid">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white orbitron">Dados Coletados </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span class="text-gray-300">Nome</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span class="text-gray-300">Whatsapp </span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span class="text-gray-300">Instagram</span>                    </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span class="text-gray-300">Dados Bancarios</span>
+                                          <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span class="text-gray-300">E-mail</span>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white orbitron">Beneficios Exclusivos</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-blue-400 mt-1 mr-2"></i>
+                            <span class="text-gray-300">NFT - Shark Vision </span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-blue-400 mt-1 mr-2"></i>
+                            <span class="text-gray-300">NFT - GIF </span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-blue-400 mt-1 mr-2"></i>
+                            <span class="text-gray-300">+Byte$</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-blue-400 mt-1 mr-2"></i>
+                            <span class="text-gray-300">Dividendos Byte$ </span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-blue-400 mt-1 mr-2"></i>
+                            <span class="text-gray-300">Mega Block-chain 3%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center my-8">
+                <a href="#" class="neon-button text-white font-bold py-3 px-8 rounded-full inline-block orbitron pulse">
+                    Token - 21456789
+                </a>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6">
+                <h3 class="text-xl font-bold mb-4 text-white orbitron">Atenção!!</h3>
+                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4 neon-border">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">Admin - Byte$.</div>
+                            <div class="text-xs text-gray-400">Plataforma desde 2022</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        Se você acabou de contruir para a Blue Fund aguarde o retorno dentro de 24hs para receber sua prorpiedade privada virtual, se ainda nao contribuiu clicke no lo botão a cima para se inscrever . 
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="text-center text-sm text-gray-500">
+            <p class="mb-2">© Byte$ World Business - Mega Block-chain 2025.</p>
+            <p class="mb-4">Todos os direitos reservados com o INPI - Protocolo N°  <span class="font-bold text-pink-400">937640395.</span>	</p>
+            <p class="mb-4">Este é um e-mail informativo. Não é uma solicitação de investimento.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-discord"></i></a>
+            </div>
+            <p class="mt-4">
+                <a href="#" class="text-gray-400 hover:text-white transition">Política de Privacidade</a> | 
+                <a href="#" class="text-gray-400 hover:text-white transition">Termos de Uso</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Efeito de digitação no título
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.neon-text, .neon-border, .neon-button');
+            
+            // Efeito de brilho aleatório
+            setInterval(() => {
+                elements.forEach(el => {
+                    const random = Math.random();
+                    if(random > 0.7) {
+                        el.style.opacity = '0.8';
+                        setTimeout(() => {
+                            el.style.opacity = '1';
+                        }, 200);
+                    }
+                });
+            }, 3000);
+            
+            // Efeito de hover nos cards
+            const cards = document.querySelectorAll('.neon-border');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.boxShadow = `0 0 15px var(--neon-blue), 0 0 30px var(--neon-purple), inset 0 0 15px var(--neon-blue)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.boxShadow = `0 0 10px var(--neon-blue), 0 0 20px var(--neon-purple), inset 0 0 10px var(--neon-blue)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
