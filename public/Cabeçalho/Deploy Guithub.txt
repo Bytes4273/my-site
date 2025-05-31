@@ -1,0 +1,16 @@
+
+
+cd D:\Byte$.App\My-site
+
+D:
+
+git add public/index.html
+
+
+git add .
+
+
+git commit -m "Atualização no index.html"
+
+
+git push

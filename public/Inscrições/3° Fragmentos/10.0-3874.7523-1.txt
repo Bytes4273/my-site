@@ -1,0 +1,21 @@
+	
+                             
+
+     >>>>>>>> Fragmentos de adesivos NFT 
+
+1° 
+
+>>> {Premium > [3F3C.829]: "Shark Gaze" { F9AE/167920 - 917D.90089 }
+
+         Timestamp = 03/03/2025 > 18:20
+	 Byte$ = Fragmento [42]
+         Solicitar > 5.0-3874.7523-42
+
+         Unidade = 347C.30225
+	 Proprietario = 70BC.4273
+ 	 Valor = 5,00 r$
+         Venda = -0,25 r$
+         Valorização = 0.55 Bt$
+         Pontos = 0.25
+	 Operação = 5,75 r$ 
+	 Dados = Byte$ = Premium.fragmento[347C.30225]:70BC.4273:C>03/03/2025<>18:20-Byte$[71E7.80891]-42
