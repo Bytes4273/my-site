@@ -1,0 +1,77 @@
+
+Dados/Cadastro : Loja > 1:{A806.177091}      <<<<<  3°
+   
+  Perfil = Empreendedor >(1)<D>[3]   
+
+  IP.Loja (ADFF.4112)   
+
+  Propriedade = [3F3C.829]                   <<<<<  1°
+  Nome.Empresarial = Open Criativa         
+  Network = @cvdicasbrasil
+  E-mail = (open)-96CA-24159    
+  Contato = (+556298193)447C-6187
+  Razão social = 19.958.199/0001-93          <<<<<  2°
+  ID.Loja = 3F3C.829-F9AE/167920 
+  Nome.Civil = Jackeline
+  Responsavel = Marksuel Carlos                                           
+                    
+  Cadastro = Byte$ = Loja:[3F3C.829]unidade[1/3]:[2EF7/21732]:lja>[A806.177091]                <<<<<  4°        
+  Complemento= -(62)447C-8851:{DCE7.62298}>@Open-Criativa<DT<Skbyt>[ ??????????? ]bt$                <<<<<  6°
+  IP.Propriedade = [ADFF.4112/3F3C.829]
+
+  Chave.Aleatoria = F9AE/167920                                  
+
+  Timestap = Data:22/03/25 / Hora:17:03                                                         <<<<<  5°
+
+  Protocolo = 3F3C.8851:[]                                                                      <<<<<<<<<  10°
+
+      > Operação : 3F3C.21732>[ADFF.4112]:[1]-[3]                                               <<<<<<<<<  8°
+
+               {Bloco[1/120]:3600un
+ 
+               Premiun (5):[0/600]un	
+	       Tickets (30):[0/3600]un 
+	       Level-1 (30):[0/120]un
+
+      > Loja :120.000un - A cada 30 recebe :
+
+                          2,00 = 240,00     lvl-1
+                          3,00 = 360,00     lvl-2
+                          10,0 = 1200,00    lvl-3
+                          15,0 = 1800,00    lvl-4
+                          20,0 = 2400,00    lvl-5
+
+      > Cliente :120.00un - A cada 30 recebe : 
+                        
+                            0,10 = 12,00   lvl-1
+                            0,50 = 60,00   lvl-2
+                            1,0  = 120,00  lvl-3
+                            2,0  = 240,00  lvl-4
+                            3,0  = 360,00  lvl-5
+
+  
+      > Premiuns =  Bloco>[36A8.35385]>[LVL-1]                                               <<<<<<<<<  7°
+          
+         Tickets    :> +Byte$ + Premiun                                                      <<<<<<<<<  9°
+                                      
+         +155E/0894     22303
+         +1A20/09F9     94701	
+         +7AB2/BFDE     74896
+         +6E6F/7CFC     35164
+         +DE13/907E     20846
+
+	 Minério    :> +Byte$ + Minerador
+                                                      
+         155E/0000-    -     0000/0000-    -      0000/0000-
+         0000/0000-    -     0000/0000-    -      0000/0000-
+         0000/0000-    -     0000/0000-    -      0000/0000-
+         0000/0000-    -     0000/0000-    -      0000/0000-
+	 1A20/0000-    -     0000/0000-    -      7AB2/0000-
+
+         0000/0000-    -     0000/0000-    -      0000/0000-
+         0000/0000-    -     0000/0000-    -      0000/0000-
+         0000/0000-    -     0000/0000-    -      0000/0000-
+         0000/0000-    -     0000/0000-    -      0000/0000-
+	 0000/0000-    -     6E6F/0000-    -      DE13/0000-
+
+-E>(Ass:(G.357.4273)Italo Moyses Ribeiro Ferreira.Byte$/:)<3.BT$

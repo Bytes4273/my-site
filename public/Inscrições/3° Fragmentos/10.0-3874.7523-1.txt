@@ -1,21 +1,36 @@
 	
                              
 
-     >>>>>>>> Fragmentos de adesivos NFT 
+     >>>>>>>> Fragmento / Consumidor 
 
 1° 
 
->>> {Premium > [3F3C.829]: "Shark Gaze" { F9AE/167920 - 917D.90089 }
+>>> {Premium > [3F3C.829]: "Shark Vision" { F9AE/167920 - 2EF7/21732 }
 
          Timestamp = 03/03/2025 > 18:20
-	 Byte$ = Fragmento [42]
-         Solicitar > 5.0-3874.7523-42
+	 Byte$ = Fragmento [1]
+         Comprovante > 10.0-1459.113448-1
 
          Unidade = 347C.30225
-	 Proprietario = 70BC.4273
- 	 Valor = 5,00 r$
+	 Proprietario = 1753.3526
+	 Perfil = Consumidor
+ 	 lvl = 2 
+	 Voucher = 4
+	 Tempo Operacional = 120 dias
+
+         Contrato = NFT - Shark Vision / Mega Byte$
+ 	 Valor = 10,00 r$
+	 Mega Byte$  = 1,5 Bt$ / [08]
+
          Venda = -0,25 r$
-         Valorização = 0.55 Bt$
-         Pontos = 0.25
-	 Operação = 5,75 r$ 
-	 Dados = Byte$ = Premium.fragmento[347C.30225]:70BC.4273:C>03/03/2025<>18:20-Byte$[71E7.80891]-42
+         Sobre venda = 0.50 Bt$
+         Pontos = 0.75
+	 Operação = 10,75 r$
+	 Compra = 09,25 r$
+	 Produto = 7,00 r$
+	 Volume = 2,25
+	 Byte$ = 0.225 bt$
+	 lvl = 2 
+         Mega Byte$ = 2.0 Bt$ 
+	 Dados = Byte$ = Premium.fragmento[347C.30225]:1753.3526:Contrato>31/05/2025<>19:35-Byte$[9471-51252]-1
+	 Protocolo = 2C14.2650

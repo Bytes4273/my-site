@@ -1,0 +1,135 @@
+
+ 
+Bloco - [39C3-173913] lvl 1
+
+     >>>>>>>> Tickets Operação Ativos [3F3C.829]-(36A8.35385)-{A806.177091}
+1°/1
+>>> {Operação.Ativo > [lvl-1]: 0.2 bt$ { para a Unidade °1
+	 Un = Byte$ = Loja>1
+         Protocolo = 36A8.35385
+	 ID= 7675.16332
+	 Dados = Byte$ = Loja:[3F3C.829]unidade[1/3]:+0.2:bt$/+5562981938851:36A8.35385>[A806.177091]
+	 Unidade = Byte$ = Un [1] 
+	 Ativo = +Byte$ = Loja:[3F3C-829]:7675.16332/+5562981938851[lvl-1]:+0.2-bt$/[C18A.41648]
+	 
+         Ticket = 155E/32220 }}   <<<<<<<<<
+
+                                 >>>>>>>  Tickets Passivos 
+1°/1
+>>> {Operação.+Byte$ > [lvl-1]: 0.01 bt$ { para o Usr °1
+	 Un = Byte$ = Loja>1
+         Protocolo = 155E/32220
+	 ID= AC58.32173
+	 Dados = Byte$ = Loja:[3F3C.829]unidade[1/3]:+0.01:bt$/+5562981938851:155E/32220>[A806.177091]
+	 Un2 = Byte$ = Usr [1]
+         Passivo = +Byte$ = Loja:[3F3C-829]:358E.229311/+5562981938851[lvl-1]:+0.01-bt$/[C18A.41648]
+
+	 Ticket = 0894/22303 }}   <<<<<<<<<
+
+_______________________________________________________________________
+   
+2°/5
+>>> {Operação.Ativo > [lvl-1]: 0.3 bt$ { para o Usr °5
+	 Un = Byte$ = Loja>1
+         Protocolo = 0894/22303
+	 ID= 6B89.170092
+	 Dados = Byte$ = Loja:[3F3C.829]unidade[1/3]:+0.3:bt$/+5562981938851:0894/22303>[A806.177091]
+	 Un2 = Byte$ = Usr [5]
+	 Ativo = +Byte$ = Loja:[3F3C-829]:6B89.170092/+5562981938851[lvl-1]:+0.3-bt$/[D869.8816]
+	
+         Ticket = 1A20/156722 }}   <<<<<<<<<
+
+                                 >>>>>>>  Tickets Passivos 
+2°/5
+>>> {Operação.+Byte$ > [lvl-1]: 0.05 bt$ { para o Usr °5
+	 Un = Byte$ = Loja>1
+         Protocolo = 1A20/156722
+	 ID= 54DC.42208
+	 Dados = Byte$ = Loja:[3F3C.829]unidade[1/3]:+0.05:bt$/+5562981938851:1A20/156722>[A806.177091]
+	 Un2 = Byte$ = Usr [5]
+         Passivo= +Byte$ = Loja:[3F3C-829]:54DC.42208/+5562981938851[lvl-1]:+0.05-bt$/[D869.8816]
+	
+         Ticket = 09F9/94701 }}   <<<<<<<<<
+
+__________________________________________________________________________
+
+3°/15
+>>> {Operação.Ativo > [lvl-1]: 1.0 bt$ { para o Usr °15
+	 Un = Byte$ = Loja>1
+         Protocolo = 09F9/94701
+	 ID= 8D8F.56134
+	 Dados = Byte$ = Loja:[3F3C.829]unidade[1/3]:+1.0:bt$/+5562981938851:09F9/94701>[A806.177091]
+	 Un2 = Byte$ = Usr [15]
+         Ativo = +Byte$ = Loja:[3F3C-829]:8D8F.56134/+5562981938851[lvl-1]:+1.0-bt$/[8979.37657]
+
+	 Ticket = 7AB2/12572 }}   <<<<<<<<<
+                                 >>>>>>>  Tickets Passivos 
+3°/15
+>>> {Operação.+Byte$ > [lvl-1]: 0.1 bt$ { para o Usr °15
+	 Un = Byte$ = Loja>1
+         Protocolo = 7AB2/12572
+	 ID= 45AF.8325
+	 Dados = Byte$ = Loja:[3F3C.829]unidade[1/3]:+0.1:bt$/+5562981938851:7AB2/12572>[A806.177091]
+	 Un2 = Byte$ = Usr [15]
+         Passivo = +Byte$ = Loja:[3F3C-829]:45AF.8325/+5562981938851[lvl-1]:+0.1-bt$/[8979.37657]
+
+	 Ticket = BFDE/74896 }}   <<<<<<<<<
+
+
+______________________________________________________________________
+
+4°/25
+>>> {Operação.Ativo > [lvl-1]: 1.5 bt$ { para o Usr °25
+	 Un = Byte$ = Loja>1
+         Protocolo = BFDE/74896
+	 ID= 4E85.51929
+	 Dados = Byte$ = Loja:[3F3C.829]unidade[1/3]:+1.5:bt$/+5562981938851:BFDE/74896>[A806.177091]
+	 Un2 = Byte$ = Usr [25]
+         Ativo = +Byte$ = Loja:[3F3C-829]:4E85.51929/+5562981938851[lvl-1]:+1.5-bt$/[F5AC.52269]
+
+	 Ticket = 6E6F/43906 }}   <<<<<<<<<
+
+                                 >>>>>>>  Tickets Passivos 
+4°/25
+>>> {Operação.+Byte$ > [lvl-1]: 0.2 bt$ { para o Usr °25
+	 Un = Byte$ = Loja>1
+         Protocolo = 6E6F/43906
+	 ID= 414C.153597
+	 Dados = Byte$ = Loja:[3F3C.829]unidade[1/3]:+0.2:bt$/+5562981938851:6E6F/43906>[A806.177091]
+	 Un2 = Byte$ = Usr [25]
+         Passivo = +Byte$ = Loja:[3F3C-829]:414C.153597/+5562981938851[lvl-1]:+0.2-bt$/[F5AC.52269]
+
+	 Ticket = 7CFC/35164 }}   <<<<<<<<<
+
+_________________________________________________________________________
+
+5°/30
+>>> {Operação.Ativo > [lvl-1]: 2.0 bt$ { para o Usr °30
+	 Un = Byte$ = Loja>1
+         Protocolo = 7CFC/35164
+	 ID= 6550.17640
+	 Dados = Byte$ = Loja:[3F3C.829]unidade[1/3]:+2.0:bt$/+5562981938851:7CFC/35164>[A806.177091]
+	 Un2 = Byte$ = Usr [30]
+         Ativo = +Byte$ = Loja:[3F3C-829]:6550.17640/+55981938851[lvl-1]:+2.0-bt$/F7B1.100428]
+
+	 Ticket = DE13/12526 }}   <<<<<<<<<
+
+                                 >>>>>>>  Tickets Passivos 
+5°/30
+>>> {Operação.+Byte$ > [lvl-1]: 0.3 bt$ { para o Usr °30
+	 Un = Byte$ = Loja>1
+         Protocolo = DE13/12526
+	 ID= D54E.1724
+	 Dados = Byte$ = Loja:[3F3C.829]unidade[1/3]:+0.3:bt$/+5562981938851:DE13/12526>[A806.177091]
+	 Un2 = Byte$ = Usr [30]
+         Passivo = +Byte$ = Loja:[3F3C-829]:D54E.1724/+5562981938851[lvl-1]:+0.3-bt$/[F7B1.100428]
+
+	 Ticket = 907E/20846 }}   <<<<<<<<<
+
+
+Total.Ativo : 50.00 R$ / 10.0 bt$ por usuário 
+Total.Passivo : 6.60 R$ / 1.32 bt$ por usuário
+
+Protocolo Operação : CFE60.1593
+-E>(Ass:(G.357.4273)Italo Moyses Ribeiro Ferreira.Byte$/:)<3.BT$
+_______________________________________________________________________
