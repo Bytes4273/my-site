@@ -1,9 +1,0 @@
- 		Byte$ = Fragmento [1]
-
-		10.0-347C.30225-1
-
-		Proprietario = 1753.3526
-
-Byte$ = Premium.fragmento[347C.30225]:1753.3526:Contrato>31/05/2025<>19:35-Byte$[9471-51252]-1
-
-		10.0-1459.113448-1

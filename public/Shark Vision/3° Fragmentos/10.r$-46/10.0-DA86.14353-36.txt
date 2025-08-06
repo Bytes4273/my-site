@@ -1,0 +1,28 @@
+     >>>>>>>> Fragmento / Consumidor 
+
+     1° 
+
+>>> {Premium > [3F3C.829]: "Shark Vision" { DCE7.62298 - 3D54-268277 }
+
+	 Byte$ = Fragmento [36]
+
+         Comprovante > 10.0-DA86.14353-36 
+
+         Unidade = DA86.24217
+	 Contrato = 3D54-268277
+	 Perfil = Consumidor
+ 	 lvl = 1 
+	 Voucher = 4
+	 Tempo Operacional = 120 dias
+
+	 Mega Byte$  = 1,5 Bt$ / D- [08]
+
+         		   Vantagens > Framento
+                           1° Shark Vision.NFT
+	                   2° Mega Byte$
+ 	 Valor = 10,00 r$
+
+         Timestamp = 22/06/2025 > 19:07
+ 
+	 Dados = Byte$ = Premium.fragmento[DA86.24217]:3D54-268277>Contrato:22/06/2025<>19:07>ttp.c:[CC02-136863]-36
+	 Protocolo = 7EC2.14353

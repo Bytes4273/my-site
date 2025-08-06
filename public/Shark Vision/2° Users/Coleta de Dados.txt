@@ -1,0 +1,72 @@
+
+
+Estrutura de Dados > Iscrição
+
+Passivo > Nome Completo :
+Chave Pix : 
+
+Ativo > Nome Responsavel :
+Chave Pix : 
+
+Whatsapp :
+Instagram : 
+Email- :
+_____________________________________
+
+
+Estrutura de Dados > Fragmentos
+
+ID+Byte$ : 
+
+Passivo > Nome Completo :
+Chave Pix : 
+
+Ativo > Nome Responsavel :
+Chave Pix : 
+
+Whatsapp :
+Instagram : 
+Email- :
+
+___________________________________
+
+
+Estrutura de Dados > Ativo 
+
+Nome Completo :
+
+Chave Pix : 
+
+Whatsapp : 
+
+___________________________________
+
+
+Estrutura de Dados > Passivo 
+
+Whatsapp : 
+
+___________________________________
+
+
+Estrutura de Dados > Assinatura
+
+Convite :
+
+Nome Completo :
+
+Chave Pix :
+
+Whatsapp : 
+
+Instagram :
+
+Email- :
+
+Wallet Meta :  
+
+
+
+
+
+ 
