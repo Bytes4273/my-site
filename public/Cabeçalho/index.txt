@@ -2,8 +2,13 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Byte$ 4273 - Ecossistema que une tecnologia blockchain, educação financeira e impacto social em um modelo revolucionário de valor compartilhado">
+    <meta name="keywords" content="Byte$, criptomoeda, blockchain, economia digital, finanças">
+    <meta name="theme-color" content="#0a0a0a">
     <title>Byte$ 4273 | A Nova Dimensão da Economia Digital Consciente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -95,8 +100,15 @@
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100vw); }
         }
-        
-        /* Crypto Grid Animation */
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
         .crypto-grid {
             position: absolute;
             width: 100%;
@@ -218,33 +230,6 @@
             transition: max-height 0.5s ease-in;
         }
 
-        /* INÍCIO MINERADOR SHA256 - ESTILO */
-        #minerador-section {
-            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-            color: #00ffe7;
-            font-family: 'Orbitron', sans-serif;
-            padding: 4rem 1rem;
-            text-align: center;
-        }
-        #minerador-section input, #minerador-section button {
-            padding: 0.6rem;
-            border-radius: 0.5rem;
-            margin: 0.5rem 0;
-            width: 100%;
-            background-color: #03131a;
-            border: 1px solid #00bfff;
-            color: #fff;
-        }
-        #minerador-section .minerador-result {
-            margin-top: 1.5rem;
-            background-color: #00000066;
-            padding: 1rem;
-            border-radius: 1rem;
-            word-break: break-word;
-            font-size: 0.9rem;
-        }
-        /* FIM MINERADOR SHA256 - ESTILO */
-
         /* Product card styles */
         .product-card {
             transition: all 0.3s ease;
@@ -325,9 +310,15 @@
                     </div>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#about" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sobre</a>
+                    <nav aria-label="Main navigation">
+                        <div class="ml-10 flex items-baseline space-x-8">
+                            <a href="#about" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Sobre</a>
+                        <a href="#future" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Visão</a>
                         <a href="#ecosystem" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ecossistema</a>
+                        <a href="#pillars" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Pilares</a>
+                        <a href="#use-cases" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Casos de Uso</a>
+                        <a href="#value-proposition" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Valor</a>
+                        <a href="#strategy" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Roadmap</a>
                         <a href="#store" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Loja</a>
                         <a href="#benefits" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Benefícios</a>
                         <a href="#case" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Estudo de Caso</a>
@@ -347,7 +338,10 @@
         <div id="mobile-menu" class="mobile-menu md:hidden bg-black bg-opacity-90">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#about" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
+                <a href="#future" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Visão</a>
                 <a href="#ecosystem" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Ecossistema</a>
+                <a href="#pillars" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Pilares</a>
+                <a href="#strategy" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Roadmap</a>
                 <a href="#store" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Loja</a>
                 <a href="#benefits" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Benefícios</a>
                 <a href="#case" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Estudo de Caso</a>
@@ -484,6 +478,57 @@
         </div>
     </div>
 
+    <!-- Future Section -->
+    <div id="future" class="py-16 bg-black overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Visão 2035</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="Byte$ – O Futuro das Suas Finanças">Byte$ – O Futuro das Suas Finanças</span>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Uma infraestrutura socioeconômica global para inclusão, liberdade e prosperidade financeira.</p> A Byte$ é mais do que uma moeda digital — é um ecossistema econômico, social e tecnológico baseado em blockchain, com o objetivo de oferecer liberdade financeira, inclusão social e segurança patrimonial para todos.
+                    Nossa meta é transformar a Byte$ na moeda de referência global para transações digitais, integrando governança descentralizada, economia sustentável e identidade financeira universal. 
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <h3 class="text-xl font-bold text-white mb-4">Missão</h3>
+                        <p class="text-gray-300">
+                            Construir a infraestrutura financeira descentralizada mais inclusiva do mundo, conectando indivíduos, empresas e governos a uma rede segura, sem barreiras e livre de taxas abusivas.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">DAO</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <h3 class="text-xl font-bold text-white mb-4">Visão 2035</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                <span>Byte$ como padrão monetário digital global</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                <span>500 milhões de usuários ativos no mundo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                <span>20% do comércio digital brasileiro em Byte$</span>
+                            </li>
+                        </ul>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">2035</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Ecosystem Section -->
     <div id="ecosystem" class="py-16 bg-black overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -508,7 +553,7 @@
                             Seu token de valor e reputação dentro do ecossistema. Quanto mais você aprende e compartilha, mais Byte$ acumula.
                         </p>
                         <div class="flex items-center text-cyan-400">
-                            <span>1,5 á 3% de retorno mensal</span>
+                            <span>0,8 á 1,5% de retorno mensal</span>
                             <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                         <div class="absolute bottom-4 right-4 flex items-center">
@@ -525,7 +570,7 @@
                             Estrutura que garante segurança e autonomia com integridade. Todas as transações são registradas de forma imutável e transparente.
                         </p>
                         <div class="flex items-center text-cyan-400">
-                            <span>100% descentralizado</span>
+                            <span> Descentralizado</span>
                             <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                         <div class="absolute bottom-4 right-4 flex items-center">
@@ -548,6 +593,232 @@
                         <div class="absolute bottom-4 right-4 flex items-center">
                             <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">DAO</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pillars Section -->
+    <div id="pillars" class="py-16 bg-gray-900 overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Pilares Estratégicos</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="A Fundação do Nosso Ecossistema">A Fundação do Nosso Ecossistema</span>
+                </p>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Governança Imutável</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>DAO global com representatividade proporcional</li>
+                        <li>Legislação própria reconhecida</li>
+                        <li>Transparência total nas decisões</li>
+                    </ul>
+                </div>
+
+                <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white mb-6">
+                        <i class="fas fa-recycle text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Economia Cíclica</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>Zero tributação sobre renda</li>
+                        <li>Taxas mínimas para infraestrutura</li>
+                        <li>Staking social para redistribuição</li>
+                    </ul>
+                </div>
+
+                <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-green-600 text-white mb-6">
+                        <i class="fas fa-user-astronaut text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Integração Total</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>Avatares Byte$ como identidade</li>
+                        <li>Contratos inteligentes para serviços</li>
+                        <li>Moeda para os invisiveis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Use Cases Section -->
+    <div id="use-cases" class="py-16 bg-gray-900 overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Casos de Uso</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="Onde você pode usar a Byte$">Onde você pode usar a Byte$</span>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Aplicações práticas que transformam sua experiência financeira no dia a dia.
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Transferências P2P</h3>
+                        <p class="text-gray-300">
+                            Envie e receba valores sem taxas, instantaneamente, mesmo sem conexão com a internet.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">0% taxas</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Pagamentos</h3>
+                        <p class="text-gray-300">
+                            Compre produtos e serviços em estabelecimentos físicos e online em qualquer lugar do mundo.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Global</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Identificação Digital</h3>
+                        <p class="text-gray-300">
+                            Registre e comprove propriedade de ativos digitais e físicos de forma imutável.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">NFT</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-vote-yea"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Governança DAO</h3>
+                        <p class="text-gray-300">
+                            Participe ativamente das decisões do ecossistema através do sistema de votação descentralizado.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Voto</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Projetos Sociais</h3>
+                        <p class="text-gray-300">
+                            Capte recursos e gerencie fundos de forma transparente para iniciativas de impacto social.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Impacto</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Poupança Digital</h3>
+                        <p class="text-gray-300">
+                            Proteja seu dinheiro da inflação com rendimentos reais em criptomoedas estáveis.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">+1.5%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Value Proposition Section -->
+    <div id="value-proposition" class="py-16 bg-black overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Proposta de Valor</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="O que a Byte$ oferece">O que a Byte$ oferece</span>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Benefícios exclusivos que tornam nossa solução única no mercado financeiro digital.
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Transações gratuitas e instantâneas</h3>
+                        <p class="text-gray-300">
+                            Realize pagamentos e transferências sem taxas e com confirmação em segundos, em qualquer lugar do mundo.
+                        </p>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Identidade financeira universal</h3>
+                        <p class="text-gray-300">
+                            Seu ID.social único que conecta todas as suas atividades financeiras de forma segura e verificável.
+                        </p>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Proteção contra inflação</h3>
+                        <p class="text-gray-300">
+                            Mecanismos econômicos inteligentes que protegem seu patrimônio da desvalorização e crises.
+                        </p>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">NFTs fracionados</h3>
+                        <p class="text-gray-300">
+                            Acesso democratizado a investimentos de alto valor através da propriedade fracionada de ativos digitais.
+                        </p>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Renda passiva</h3>
+                        <p class="text-gray-300">
+                            Gere renda adicional participando do staking social e apoiando projetos comunitários.
+                        </p>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Acesso global</h3>
+                        <p class="text-gray-300">
+                            Plataforma inclusiva que funciona em qualquer lugar, mesmo sem conexão com a internet.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -697,23 +968,57 @@
         </div>
     </div>
 
-    <!-- Miner Section -->
-    <!-- INÍCIO MINERADOR SHA256 -->
-    <section id="minerador-section">
-      <h2 class="text-3xl font-bold mb-2">⛏️ Sharkbit SHA-256</h2>
-      <h3 class="text-xl font-medium mb-4 text-gray-300">Mega Block-chain</h3>
-      <input type="text" id="tokenInput" placeholder="+Byte$">
-      <input type="number" id="difficultyInput" value="4" min="1" max="6" placeholder="Dificuldade (zeros)">
-      <button id="mineBtn">🔍 Iniciar Mineração</button>
-      <div class="minerador-result hidden" id="resultBox">
-        <p><strong>Hash encontrado:</strong> <span id="hashResult"></span></p>
-        <p><strong>Nonce:</strong> <span id="nonceResult"></span></p>
-        <p><strong>Tempo:</strong> <span id="timeResult"></span></p>
-        <p><strong>Velocidade (H/s):</strong> <span id="speedResult"></span></p>
-        <p><strong>Hashes calculados:</strong> <span id="countResult"></span></p>
-      </div>
-    </section>
-    <!-- FIM MINERADOR SHA256 -->
+    <!-- Strategy Section -->
+    <div id="strategy" class="py-16 bg-black overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Estratégia de Crescimento</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="Nosso Roadmap para o Futuro">Nosso Roadmap para o Futuro</span>
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-cyan-400 to-blue-600"></div>
+                    
+                    <!-- Timeline items -->
+                    <div class="space-y-16">
+                        <div class="relative flex items-center">
+                            <div class="absolute left-1/2 transform -translate-x-1/2 h-6 w-6 rounded-full bg-cyan-400 border-4 border-gray-900"></div>
+                            <div class="ml-auto w-5/12 glow-card bg-gray-800 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-white">2025-2026</h3>
+                                <p class="text-gray-300 mt-2">
+                                    Prova de Conceito: Pilotos em 2 cidades brasileiras, parcerias com prefeituras e comerciantes locais.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center">
+                            <div class="absolute left-1/2 transform -translate-x-1/2 h-6 w-6 rounded-full bg-blue-500 border-4 border-gray-900"></div>
+                            <div class="mr-auto w-5/12 glow-card bg-gray-800 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-white">2027-2030</h3>
+                                <p class="text-gray-300 mt-2">
+                                    Escala Nacional: Integração com PIX, expansão para 10 países, adoção em e-commerce.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center">
+                            <div class="absolute left-1/2 transform -translate-x-1/2 h-6 w-6 rounded-full bg-purple-500 border-4 border-gray-900"></div>
+                            <div class="ml-auto w-5/12 glow-card bg-gray-800 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-white">2030-2035</h3>
+                                <p class="text-gray-300 mt-2">
+                                    Escala Global: Padrão monetário em países emergentes, aplicações espaciais, uso institucional.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Benefits Section -->
     <div id="benefits" class="py-16 bg-black overflow-hidden relative content-wrapper">
@@ -757,14 +1062,14 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <h3 class="text-lg font-medium text-white">Indicar = Mega3%</h3>
+                                <h3 class="text-lg font-medium text-white">Indicar = Mega Byt </h3>
                                 <p class="mt-2 text-gray-300">
                                     Traga novos membros para o ecossistema e receba uma porcentagem de todas as transações que eles realizarem.
                                 </p>
                             </div>
                         </div>
                         <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">1,5 á 3%</span>
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">0,8 á 1,5%</span>
                         </div>
                     </div>
 
@@ -802,7 +1107,7 @@
                             </div>
                         </div>
                         <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Mestre</span>
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Contribuir</span>
                         </div>
                     </div>
                 </div>
@@ -1076,13 +1381,19 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // Enhanced mobile menu toggle with ARIA
+        function setupMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('open');
-        });
+            mobileMenuButton.addEventListener('click', function() {
+                const isOpen = mobileMenu.classList.toggle('open');
+                this.setAttribute('aria-expanded', isOpen);
+                mobileMenu.setAttribute('aria-hidden', !isOpen);
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', setupMobileMenu);
 
         // Close mobile menu when clicking on a link
         document.querySelectorAll('#mobile-menu a').forEach(link => {
@@ -1122,30 +1433,35 @@
             observer.observe(card);
         });
 
-        // Create animated crypto icons
-        const cryptoIcons = [
-            'fab fa-bitcoin', 'fab fa-ethereum', 'fab fa-monero', 
-            'fas fa-link', 'fas fa-coins', 'fab fa-btc',
-            'fas fa-wallet', 'fas fa-key', 'fas fa-shield-alt'
-        ];
-        
-        const cryptoContainer = document.getElementById('animated-crypto-icons');
-        
-        for (let i = 0; i < 15; i++) {
-            const icon = document.createElement('i');
-            icon.className = `${cryptoIcons[Math.floor(Math.random() * cryptoIcons.length)]} animated-crypto`;
+        // Optimized crypto icons generation
+        function createCryptoIcons() {
+            const cryptoIcons = [
+                'fab fa-bitcoin', 'fab fa-ethereum', 'fab fa-monero', 
+                'fas fa-link', 'fas fa-coins', 'fab fa-btc',
+                'fas fa-wallet', 'fas fa-key', 'fas fa-shield-alt'
+            ];
             
-            // Random positioning
-            const left = Math.random() * 100;
-            const delay = Math.random() * 15;
-            const duration = 10 + Math.random() * 20;
+            const cryptoContainer = document.getElementById('animated-crypto-icons');
+            const fragment = document.createDocumentFragment();
             
-            icon.style.left = `${left}%`;
-            icon.style.animationDuration = `${duration}s`;
-            icon.style.animationDelay = `${delay}s`;
+            for (let i = 0; i < 12; i++) { // Reduced from 15 to 12 for performance
+                const icon = document.createElement('i');
+                const randomIcon = cryptoIcons[Math.floor(Math.random() * cryptoIcons.length)];
+                
+                icon.className = `${randomIcon} animated-crypto`;
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.animationDuration = `${10 + Math.random() * 20}s`;
+                icon.style.animationDelay = `${Math.random() * 15}s`;
+                icon.setAttribute('aria-hidden', 'true');
+                
+                fragment.appendChild(icon);
+            }
             
-            cryptoContainer.appendChild(icon);
+            cryptoContainer.appendChild(fragment);
         }
+        
+        // Load after DOM is ready
+        document.addEventListener('DOMContentLoaded', createCryptoIcons);
         
         // Create blockchain nodes
         const nodesContainer = document.getElementById('blockchain-nodes');
@@ -1199,61 +1515,5 @@
             });
         });
     </script>
-
-    <!-- INÍCIO MINERADOR SHA256 - SCRIPT -->
-    <script>
-      async function sha256(text) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(text);
-        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-      }
-
-      document.getElementById("mineBtn").addEventListener("click", async () => {
-        const token = document.getElementById("tokenInput").value || "+Byte$";
-        const difficulty = parseInt(document.getElementById("difficultyInput").value);
-        const prefix = "0".repeat(difficulty);
-
-        let nonce = 0;
-        let hash = "";
-        let hashes = 0;
-        const startTime = performance.now();
-
-        while (true) {
-          const data = token + nonce;
-          hash = await sha256(data);
-          hashes++;
-          if (hash.startsWith(prefix)) break;
-          nonce++;
-          if (nonce % 1000 === 0) await new Promise(r => setTimeout(r, 0)); // mantém UI viva
-        }
-
-        const endTime = performance.now();
-        const totalTime = ((endTime - startTime) / 1000).toFixed(2);
-        const hashRate = Math.round(hashes / (endTime - startTime) * 1000);
-
-        document.getElementById("hashResult").textContent = hash;
-        document.getElementById("nonceResult").textContent = nonce;
-        document.getElementById("timeResult").textContent = `${totalTime}s`;
-        document.getElementById("speedResult").textContent = `${hashRate} H/s`;
-        document.getElementById("countResult").textContent = hashes;
-        document.getElementById("resultBox").classList.remove("hidden");
-
-        const block = {
-          uid: `uid_${Math.random().toString(36).substring(2)}`,
-          hash: hash,
-          token: token,
-          nonce: nonce,
-          difficulty: difficulty,
-          hashes: hashes,
-          hashRate: hashRate,
-          timestamp: new Date().toISOString()
-        };
-
-        localStorage.setItem(`block_${block.uid}`, JSON.stringify(block));
-      });
-    </script>
-    <!-- FIM MINERADOR SHA256 - SCRIPT -->
 </body>
 </html>
