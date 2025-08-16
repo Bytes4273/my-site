@@ -2,8 +2,13 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Byte$ 4273 | A Nova Dimensão da Economia Digital Consciente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Byt3s 4273 - Ecossistema que une tecnologia blockchain, educação financeira e impacto social em um modelo revolucionário de valor compartilhado">
+    <meta name="keywords" content="Byt3s, criptomoeda, blockchain, economia digital, finanças">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>Byt3s 4273 | A Nova Dimensão da Economia Digital Consciente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -95,8 +100,15 @@
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100vw); }
         }
-        
-        /* Crypto Grid Animation */
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
         .crypto-grid {
             position: absolute;
             width: 100%;
@@ -292,15 +304,21 @@
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
                         <div class="hexagon w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
-                            <span class="text-black font-bold">B$</span>
+                            <span class="text-black font-bold">B3S</span>
                         </div>
-                        <span class="ml-3 text-xl font-bold gradient-text">Byte$.4273</span>
+                        <span class="ml-3 text-xl font-bold gradient-text">Byt3s</span>
                     </div>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#about" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sobre</a>
+                    <nav aria-label="Main navigation">
+                        <div class="ml-10 flex items-baseline space-x-8">
+                            <a href="#about" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Sobre</a>
+                        <a href="#future" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Visão</a>
                         <a href="#ecosystem" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ecossistema</a>
+                        <a href="#pillars" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Pilares</a>
+                        <a href="#use-cases" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Casos de Uso</a>
+                        <a href="#value-proposition" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Valor</a>
+                        <a href="#strategy" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Roadmap</a>
                         <a href="#store" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Loja</a>
                         <a href="#benefits" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Benefícios</a>
                         <a href="#case" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Estudo de Caso</a>
@@ -319,12 +337,17 @@
         <!-- Mobile menu -->
         <div id="mobile-menu" class="mobile-menu md:hidden bg-black bg-opacity-90">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
-                <a href="#ecosystem" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Ecossistema</a>
-                <a href="#store" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Loja</a>
-                <a href="#benefits" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Benefícios</a>
-                <a href="#case" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Estudo de Caso</a>
-                <a href="#contact" class="text-gray-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contato</a>
+                <a href="#about" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
+                <a href="#store" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Loja</a>
+                <a href="#future" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Visão</a>
+                <a href="#ecosystem" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Ecossistema</a>
+                <a href="#pillars" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Pilares</a>
+                <a href="#use-cases" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Casos de Uso</a>
+                <a href="#value-proposition" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Valor</a>
+                <a href="#strategy" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Roadmap</a>
+                <a href="#benefits" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Benefícios</a>
+                <a href="#case" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Estudo de Caso</a>
+                <a href="#contact" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contato</a>
             </div>
         </div>
     </nav>
@@ -399,7 +422,7 @@
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Para quem é este projeto</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    A Byte$ é pra você que quer <span class="gradient-text binary-trigger" data-original="transformar conhecimento em valor">transformar conhecimento em valor</span>
+                    A Byt3s é pra você que quer <span class="gradient-text binary-trigger" data-original="transformar conhecimento em valor">transformar conhecimento em valor</span>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                     Para quem acredita que tecnologia blockchain e justiça social podem andar juntas. Para quem quer ganhar mais, entender mais e ajudar mais.
@@ -457,13 +480,64 @@
         </div>
     </div>
 
+    <!-- Future Section -->
+    <div id="future" class="py-16 bg-black overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Visão 2035</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="Byt3s – O Futuro das Suas Finanças">Byt3s – O Futuro das Suas Finanças</span>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Uma infraestrutura socioeconômica global para inclusão, liberdade e prosperidade financeira.</p> A Byt3s é mais do que uma moeda digital — é um ecossistema econômico, social e tecnológico baseado em blockchain, com o objetivo de oferecer liberdade financeira, inclusão social e segurança patrimonial para todos.
+                    Nossa meta é transformar a Byt3s na moeda de referência global para transações digitais, integrando governança descentralizada, economia sustentável e identidade financeira universal. 
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <h3 class="text-xl font-bold text-white mb-4">Missão</h3>
+                        <p class="text-gray-300">
+                            Construir a infraestrutura financeira descentralizada mais inclusiva do mundo, conectando indivíduos, empresas e governos a uma rede segura, sem barreiras e livre de taxas abusivas.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">DAO</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <h3 class="text-xl font-bold text-white mb-4">Visão 2035</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                <span>Byt3s como padrão monetário digital global</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                <span>500 milhões de usuários ativos no mundo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                <span>20% do comércio digital brasileiro em Byt3s</span>
+                            </li>
+                        </ul>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">2035</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Ecosystem Section -->
     <div id="ecosystem" class="py-16 bg-black overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Ecossistema</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    Como funciona a <span class="gradient-text binary-trigger" data-original="Byte$">Byte$</span>
+                    Como funciona a <span class="gradient-text binary-trigger" data-original="Byt3s">Byt3s</span>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                     Um painel visual onde cada decisão gera impacto em tempo real. Simples, transparente e transformador.
@@ -478,10 +552,10 @@
                         </div>
                         <h3 class="text-xl font-bold text-white mb-4">Mega Block-chain</h3>
                         <p class="text-gray-300 mb-4">
-                            Seu token de valor e reputação dentro do ecossistema. Quanto mais você aprende e compartilha, mais Byte$ acumula.
+                            Seu token de valor e reputação dentro do ecossistema. Quanto mais você aprende e compartilha, mais Byt3s acumula.
                         </p>
                         <div class="flex items-center text-cyan-400">
-                            <span>1,5 á 3% de retorno mensal</span>
+                            <span>0,8 á 1,5% de retorno mensal</span>
                             <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                         <div class="absolute bottom-4 right-4 flex items-center">
@@ -493,12 +567,12 @@
                         <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-800 text-white mb-6">
                             <i class="fas fa-link text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Byte$</h3>
+                        <h3 class="text-xl font-bold text-white mb-4">Byt3s</h3>
                         <p class="text-gray-300 mb-4">
                             Estrutura que garante segurança e autonomia com integridade. Todas as transações são registradas de forma imutável e transparente.
                         </p>
                         <div class="flex items-center text-cyan-400">
-                            <span>100% descentralizado</span>
+                            <span> Descentralizado</span>
                             <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                         <div class="absolute bottom-4 right-4 flex items-center">
@@ -527,17 +601,246 @@
         </div>
     </div>
 
+    <!-- Pillars Section -->
+    <div id="pillars" class="py-16 bg-gray-900 overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Pilares Estratégicos</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="A Fundação do Nosso Ecossistema">A Fundação do Nosso Ecossistema</span>
+                </p>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Governança Imutável</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>DAO global com representatividade proporcional</li>
+                        <li>Legislação própria reconhecida</li>
+                        <li>Transparência total nas decisões</li>
+                    </ul>
+                </div>
+
+                <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white mb-6">
+                        <i class="fas fa-recycle text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Economia Cíclica</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>Zero tributação sobre renda</li>
+                        <li>Taxas mínimas para infraestrutura</li>
+                        <li>Staking social para redistribuição</li>
+                    </ul>
+                </div>
+
+                <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-green-600 text-white mb-6">
+                        <i class="fas fa-user-astronaut text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Integração Total</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>Avatares Byt3s como identidade</li>
+                        <li>Contratos inteligentes para serviços</li>
+                        <li>Moeda para os invisiveis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Use Cases Section -->
+    <div id="use-cases" class="py-16 bg-gray-900 overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Casos de Uso</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="Onde você pode usar a Byte$">Onde você pode usar a Byt3s</span>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Aplicações práticas que transformam sua experiência financeira no dia a dia.
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Transferências P2P</h3>
+                        <p class="text-gray-300">
+                            Envie e receba valores sem taxas, instantaneamente, mesmo sem conexão com a internet.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">0% taxas</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Pagamentos</h3>
+                        <p class="text-gray-300">
+                            Compre produtos e serviços em estabelecimentos físicos e online em qualquer lugar do mundo.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Global</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Identificação Digital</h3>
+                        <p class="text-gray-300">
+                            Registre e comprove propriedade de ativos digitais e físicos de forma imutável.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">NFT</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-vote-yea"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Governança DAO</h3>
+                        <p class="text-gray-300">
+                            Participe ativamente das decisões do ecossistema através do sistema de votação descentralizado.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Voto</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Projetos Sociais</h3>
+                        <p class="text-gray-300">
+                            Capte recursos e gerencie fundos de forma transparente para iniciativas de impacto social.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Impacto</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Poupança Digital</h3>
+                        <p class="text-gray-300">
+                            Proteja seu dinheiro da inflação com rendimentos reais em criptomoedas estáveis.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">+1.5%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Value Proposition Section -->
+    <div id="value-proposition" class="py-16 bg-black overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Proposta de Valor</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="O que a Byt3s oferece">O que a Byt3s oferece</span>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Benefícios exclusivos que tornam nossa solução única no mercado financeiro digital.
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Transações gratuitas e instantâneas</h3>
+                        <p class="text-gray-300">
+                            Realize pagamentos e transferências sem taxas e com confirmação em segundos, em qualquer lugar do mundo.
+                        </p>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Identidade financeira universal</h3>
+                        <p class="text-gray-300">
+                            Seu ID.social único que conecta todas as suas atividades financeiras de forma segura e verificável.
+                        </p>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Proteção contra inflação</h3>
+                        <p class="text-gray-300">
+                            Mecanismos econômicos inteligentes que protegem seu patrimônio da desvalorização e crises.
+                        </p>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">NFTs fracionados</h3>
+                        <p class="text-gray-300">
+                            Acesso democratizado a investimentos de alto valor através da propriedade fracionada de ativos digitais.
+                        </p>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Renda passiva</h3>
+                        <p class="text-gray-300">
+                            Gere renda adicional participando do staking social e apoiando projetos comunitários.
+                        </p>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Acesso global</h3>
+                        <p class="text-gray-300">
+                            Plataforma inclusiva que funciona em qualquer lugar, mesmo sem conexão com a internet.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Store Section -->
     <div id="store" class="py-16 bg-gray-900 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Ofertas Exclusivas</h2>
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">loja Online</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    <span class="gradient-text binary-trigger" data-original="Loja Byte$">Inscrição - Shark Vision</span>
+                    <span class="gradient-text binary-trigger" data-original="Loja Byt3s">Mega Inscrição</span>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Adquira nossos produtos e serviços premium para potencializar sua jornada na economia digital.
+                    Adquira nossos produtos e serviços para potencializar sua jornada na economia digital.
                 </p>
+                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    https://bytes4273.com
+                </p>               
             </div>
 
             <!-- PRODUCTS GRID -->
@@ -548,7 +851,7 @@
                          alt="NFT Shark Vision" 
                          class="product-image">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">NFT Shark Vision</h3>
+                        <h3 class="text-xl font-bold text-white mb-2">Shark Vision</h3>
                         <p class="text-gray-300 mb-4">
                             Colecionável digital exclusivo que concede acesso a benefícios premium no ecossistema.
                         </p>
@@ -638,7 +941,7 @@
                          alt="Workshop Presencial" 
                          class="product-image">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Workshop Presencial</h3>
+                        <h3 class="text-xl font-bold text-white mb-2">Mega Block-chain</h3>
                         <p class="text-gray-300 mb-4">
                             Evento exclusivo com os maiores especialistas em economia digital e blockchain.
                         </p>
@@ -665,6 +968,58 @@
                     <i class="fab fa-cc-amex text-2xl text-gray-400 mx-2"></i>
                     <i class="fab fa-bitcoin text-2xl text-gray-400 mx-2"></i>
                     <i class="fab fa-ethereum text-2xl text-gray-400 mx-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Strategy Section -->
+    <div id="strategy" class="py-16 bg-black overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Estratégia de Crescimento</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="Nosso Roadmap para o Futuro">Nosso Roadmap para o Futuro</span>
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-cyan-400 to-blue-600"></div>
+                    
+                    <!-- Timeline items -->
+                    <div class="space-y-16">
+                        <div class="relative flex items-center">
+                            <div class="absolute left-1/2 transform -translate-x-1/2 h-6 w-6 rounded-full bg-cyan-400 border-4 border-gray-900"></div>
+                            <div class="ml-auto w-5/12 glow-card bg-gray-800 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-white">2025-2026</h3>
+                                <p class="text-gray-300 mt-2">
+                                    Prova de Conceito: Pilotos em 2 cidades brasileiras, parcerias com prefeituras e comerciantes locais.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center">
+                            <div class="absolute left-1/2 transform -translate-x-1/2 h-6 w-6 rounded-full bg-blue-500 border-4 border-gray-900"></div>
+                            <div class="mr-auto w-5/12 glow-card bg-gray-800 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-white">2027-2030</h3>
+                                <p class="text-gray-300 mt-2">
+                                    Escala Nacional: Integração com PIX, expansão para 10 países, adoção em e-commerce.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center">
+                            <div class="absolute left-1/2 transform -translate-x-1/2 h-6 w-6 rounded-full bg-purple-500 border-4 border-gray-900"></div>
+                            <div class="ml-auto w-5/12 glow-card bg-gray-800 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-white">2030-2035</h3>
+                                <p class="text-gray-300 mt-2">
+                                    Escala Global: Padrão monetário em países emergentes, aplicações espaciais, uso institucional.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -700,7 +1055,7 @@
                             </div>
                         </div>
                         <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">+1,5 BT$</span>
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">+1,5 B3S</span>
                         </div>
                     </div>
 
@@ -712,14 +1067,14 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <h3 class="text-lg font-medium text-white">Indicar = Mega3%</h3>
+                                <h3 class="text-lg font-medium text-white">Indicar = Mega Byt </h3>
                                 <p class="mt-2 text-gray-300">
                                     Traga novos membros para o ecossistema e receba uma porcentagem de todas as transações que eles realizarem.
                                 </p>
                             </div>
                         </div>
                         <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">1,5 á 3%</span>
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">0,8 á 1,5%</span>
                         </div>
                     </div>
 
@@ -757,7 +1112,7 @@
                             </div>
                         </div>
                         <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Mestre</span>
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Contribuir</span>
                         </div>
                     </div>
                 </div>
@@ -774,7 +1129,7 @@
                     <span class="gradient-text binary-trigger" data-original="De Estagiária a Investidora">De Estagiária a Investidora</span>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Conheça a história da Leticia e como os Byte$ transformaram sua vida financeira.
+                    Conheça a história da Leticia e como os Byt3s transformaram sua vida financeira.
                 </p>
             </div>
 
@@ -788,7 +1143,7 @@
                             <div class="uppercase tracking-wide text-sm text-cyan-400 font-semibold">Estudo de Caso</div>
                             <h3 class="mt-2 text-2xl font-semibold text-white">Leticia Rav, 24 anos</h3>
                             <p class="mt-3 text-gray-300">
-                                Começou na Byte$ como curiosa. Baixou o painel, leu os termos e fez uma indicação. Ganhou 5 BT$. Participou de um desafio de educação financeira e ganhou 15 BT$.
+                                Começou na Byt3s como curiosa. Baixou o painel, leu os termos e fez uma indicação. Ganhou 5 B3S. Participou de um desafio de educação financeira e ganhou 15 BT$.
                             </p>
                             <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div class="bg-gray-700 p-4 rounded-lg">
@@ -806,12 +1161,12 @@
                             </div>
                             <div class="mt-8">
                                 <blockquote class="text-white italic">
-                                    "O Byte$ me mostrou que é possível aprender sobre finanças de forma prática e ainda ser recompensada por isso. Hoje lidero meus estudos na faculdade de psicologia em Goiânia e  transformando nossa realidade em ações de valor."
+                                    "O Byt3s me mostrou que é possível aprender sobre finanças de forma prática e ainda ser recompensada por isso. Hoje lidero meus estudos na faculdade de psicologia em Goiânia e  transformando nossa realidade em ações de valor."
                                 </blockquote>
                             </div>
                             <div class="mt-6 flex items-center">
                                 <i class="fas fa-wallet text-cyan-400 mr-2"></i>
-                                <span class="text-sm text-cyan-400">Carteira Blockchain: 0x9C9fE6405b4FE92E9405b691922FCe3bB4523B63</span>
+                                <span class="text-sm text-cyan-400">Carteira Metamask: 0x9C9fE6405b4FE92E9405b691922FCe3bB4523B63</span>
                             </div>
                         </div>
                     </div>
@@ -855,7 +1210,7 @@
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Contato</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    Fale com a <span class="gradient-text binary-trigger" data-original="Equipe Byte$">Equipe Byte$</span>
+                    Fale com a <span class="gradient-text binary-trigger" data-original="Equipe Byt3s">Equipe Byt3s</span>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                     Tem dúvidas ou quer saber mais sobre o projeto? Entre em contato conosco.
@@ -893,7 +1248,7 @@
                             <i class="fas fa-id-card text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-4">Registro - INPI</h3>
-                        <p class="text-gray-300">937640395 - Byte$</p>
+                        <p class="text-gray-300">937640395 - Bytes</p>
                         <div class="mt-4 flex items-center">
                             <i class="fas fa-fingerprint text-cyan-400 mr-2"></i>
                             <span class="text-xs text-gray-400">Smart Contract Auditado</span>
@@ -912,9 +1267,9 @@
                     <div class="flex items-center">
                         <div class="flex-shrink-0 flex items-center">
                             <div class="hexagon w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
-                                <span class="text-black font-bold">B$</span>
+                                <span class="text-black font-bold">B3S</span>
                             </div>
-                            <span class="ml-3 text-xl font-bold gradient-text">Byte$.4273</span>
+                            <span class="ml-3 text-xl font-bold gradient-text">Byt3s</span>
                         </div>
                     </div>
                     <p class="text-gray-300 text-base">
@@ -1018,7 +1373,7 @@
                     O foturo só depende de você.
                 </p>
                   <p class="text-base text-gray-400 text-center">
-                    &copy; 2023 Byte$.4273 / Todos os direitos reservados no INPI.
+                    &copy; 2025 Byt3s / Todos os direitos reservados no INPI.
                 </p>
                 <div class="mt-4 flex justify-center space-x-4">
                     <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">ERC-20</span>
@@ -1031,13 +1386,19 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // Enhanced mobile menu toggle with ARIA
+        function setupMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('open');
-        });
+            mobileMenuButton.addEventListener('click', function() {
+                const isOpen = mobileMenu.classList.toggle('open');
+                this.setAttribute('aria-expanded', isOpen);
+                mobileMenu.setAttribute('aria-hidden', !isOpen);
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', setupMobileMenu);
 
         // Close mobile menu when clicking on a link
         document.querySelectorAll('#mobile-menu a').forEach(link => {
@@ -1077,30 +1438,35 @@
             observer.observe(card);
         });
 
-        // Create animated crypto icons
-        const cryptoIcons = [
-            'fab fa-bitcoin', 'fab fa-ethereum', 'fab fa-monero', 
-            'fas fa-link', 'fas fa-coins', 'fab fa-btc',
-            'fas fa-wallet', 'fas fa-key', 'fas fa-shield-alt'
-        ];
-        
-        const cryptoContainer = document.getElementById('animated-crypto-icons');
-        
-        for (let i = 0; i < 15; i++) {
-            const icon = document.createElement('i');
-            icon.className = `${cryptoIcons[Math.floor(Math.random() * cryptoIcons.length)]} animated-crypto`;
+        // Optimized crypto icons generation
+        function createCryptoIcons() {
+            const cryptoIcons = [
+                'fab fa-bitcoin', 'fab fa-ethereum', 'fab fa-monero', 
+                'fas fa-link', 'fas fa-coins', 'fab fa-btc',
+                'fas fa-wallet', 'fas fa-key', 'fas fa-shield-alt'
+            ];
             
-            // Random positioning
-            const left = Math.random() * 100;
-            const delay = Math.random() * 15;
-            const duration = 10 + Math.random() * 20;
+            const cryptoContainer = document.getElementById('animated-crypto-icons');
+            const fragment = document.createDocumentFragment();
             
-            icon.style.left = `${left}%`;
-            icon.style.animationDuration = `${duration}s`;
-            icon.style.animationDelay = `${delay}s`;
+            for (let i = 0; i < 12; i++) { // Reduced from 15 to 12 for performance
+                const icon = document.createElement('i');
+                const randomIcon = cryptoIcons[Math.floor(Math.random() * cryptoIcons.length)];
+                
+                icon.className = `${randomIcon} animated-crypto`;
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.animationDuration = `${10 + Math.random() * 20}s`;
+                icon.style.animationDelay = `${Math.random() * 15}s`;
+                icon.setAttribute('aria-hidden', 'true');
+                
+                fragment.appendChild(icon);
+            }
             
-            cryptoContainer.appendChild(icon);
+            cryptoContainer.appendChild(fragment);
         }
+        
+        // Load after DOM is ready
+        document.addEventListener('DOMContentLoaded', createCryptoIcons);
         
         // Create blockchain nodes
         const nodesContainer = document.getElementById('blockchain-nodes');

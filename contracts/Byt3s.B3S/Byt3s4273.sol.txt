@@ -1,96 +1,380 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-contract Byte$ {
-    // Armazenamento de saldos e aprovações
-    mapping(address => uint256) private _balances;
-    mapping(address => mapping(address => uint256)) private _allowances;
+/**
+ * Byt3s (B3S) — Polygon Mainnet ready
+ * Recursos:
+ * - ERC20 + ERC20Snapshot
+ * - UUPS Upgradeable (proxy)
+ * - Mint anual 5% (a cada 365 dias) para multisig de governança
+ * - Blacklist + Freeze (compliance)
+ * - Relayer de vouchers com taxa fixa de 0,5% 100% para Blue Fund
+ * - Limites de voucher em BRL (R$500/voucher, R$2.500/dia/endereço) via Oracle configurável (B3S<->BRL)
+ * - Pausable
+ * - Distribuição inicial conforme tokenomics
+ * - Vesting linear de 3 anos para equipe
+ *
+ * IMPORTANTE:
+ * - O Oracle é um contrato externo (ou adaptador) que retorna conversões B3S<->BRL.
+ *   O multisig pode trocar o Oracle quando necessário (ex.: atualizar fonte de preço).
+ * - O contrato suporta manter saldo próprio para operar vouchers via relayer. Abasteça-o conforme a operação.
+ */
 
-    // Dados do token
-    uint256 private _totalSupply;
-    string private _name;
-    string private _symbol;
-    uint8 private _decimals;
+import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import {ERC20Upgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
+import {ERC20SnapshotUpgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20SnapshotUpgradeable.sol";
+import {PausableUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
+import {AccessControlUpgradeable} from "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
+import {ReentrancyGuardUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
 
-    // Eventos padrão ERC-20
-    event Transfer(address indexed from, address indexed to, uint256 value);
-    event Approval(address indexed owner, address indexed spender, uint256 value);
+/** Oracle de preço B3S<->BRL (8 casas decimais no retorno é recomendado, mas livre). */
+interface IByt3sOracle {
+    /** Converte quantidade de B3S (18 decimais) para BRL (8 decimais recomendadas). */
+    function b3sToBRL(uint256 amountB3S) external view returns (uint256 brlAmount);
+    /** Converte quantidade de BRL (8 decimais) para B3S (18 decimais). */
+    function brlToB3S(uint256 amountBRL) external view returns (uint256 b3sAmount);
+}
 
-    // Construtor
-    constructor() {
-        _name = "Byte$";
-        _symbol = "BT$";
-        _decimals = 8;
-        _totalSupply = 21500000000 * 10 ** _decimals; // Total Supply definido
-        _balances[msg.sender] = _totalSupply; // Alocar todo o supply para o criador do contrato
+/** Vesting linear simples para equipe (3 anos). */
+contract TeamVesting is Initializable, AccessControlUpgradeable, ReentrancyGuardUpgradeable {
+    bytes32 public constant GOVERNANCE_ROLE = keccak256("GOVERNANCE_ROLE");
 
-        emit Transfer(address(0), msg.sender, _totalSupply); // Emissão inicial
+    address public token;
+    address public beneficiary;
+    uint64 public start;         // timestamp de início
+    uint64 public duration;      // duração total (ex.: 3 anos)
+    uint256 public released;     // total já liberado
+
+    event TokensReleased(uint256 amount);
+    event BeneficiaryChanged(address indexed newBeneficiary);
+
+    function initialize(
+        address _token,
+        address _beneficiary,
+        uint64 _start,
+        uint64 _duration,
+        address admin
+    ) public initializer {
+        require(_token != address(0) && _beneficiary != address(0) && admin != address(0), "invalid addr");
+        token = _token;
+        beneficiary = _beneficiary;
+        start = _start;
+        duration = _duration;
+
+        __AccessControl_init();
+        __ReentrancyGuard_init();
+        _grantRole(DEFAULT_ADMIN_ROLE, admin);
+        _grantRole(GOVERNANCE_ROLE, admin);
     }
 
-    // Nome do token
-    function name() public view returns (string memory) {
-        return _name;
+    function setBeneficiary(address newBeneficiary) external onlyRole(GOVERNANCE_ROLE) {
+        require(newBeneficiary != address(0), "zero");
+        beneficiary = newBeneficiary;
+        emit BeneficiaryChanged(newBeneficiary);
     }
 
-    // Símbolo do token
-    function symbol() public view returns (string memory) {
-        return _symbol;
+    function vestedAmount(uint64 timestamp) public view returns (uint256) {
+        uint256 bal = IERC20Upgradeable(token).balanceOf(address(this));
+        uint256 total = bal + released;
+        if (timestamp < start) return 0;
+        if (timestamp >= start + duration) return total;
+        return (total * (timestamp - start)) / duration;
     }
 
-    // Casas decimais
-    function decimals() public view returns (uint8) {
-        return _decimals;
+    function releasable() public view returns (uint256) {
+        return vestedAmount(uint64(block.timestamp)) - released;
     }
 
-    // Total supply do token
-    function totalSupply() public view returns (uint256) {
-        return _totalSupply;
+    function release() external nonReentrant {
+        uint256 amount = releasable();
+        require(amount > 0, "nothing");
+        released += amount;
+        IERC20Upgradeable(token).transfer(beneficiary, amount);
+        emit TokensReleased(amount);
+    }
+}
+
+/** Interface mínima para checar saldo no vesting. */
+interface IERC20Upgradeable {
+    function balanceOf(address account) external view returns (uint256);
+    function transfer(address to, uint256 value) external returns (bool);
+}
+
+contract Byt3sToken is
+    Initializable,
+    ERC20Upgradeable,
+    ERC20SnapshotUpgradeable,
+    PausableUpgradeable,
+    AccessControlUpgradeable,
+    UUPSUpgradeable,
+    ReentrancyGuardUpgradeable
+{
+    // ====== Constantes de Identidade ======
+    string private constant _TOKEN_NAME = "Byt3s";
+    string private constant _TOKEN_SYMBOL = "B3S";
+
+    // ====== Roles ======
+    bytes32 public constant GOVERNANCE_ROLE    = keccak256("GOVERNANCE_ROLE");    // multisig (conselho)
+    bytes32 public constant COMPLIANCE_ROLE    = keccak256("COMPLIANCE_ROLE");    // blacklist/freeze
+    bytes32 public constant RELAYER_ROLE       = keccak256("RELAYER_ROLE");       // vouchers
+    bytes32 public constant ORACLE_MANAGER_ROLE= keccak256("ORACLE_MANAGER_ROLE"); // trocar/configurar oracle
+    bytes32 public constant SNAPSHOT_ROLE      = keccak256("SNAPSHOT_ROLE");      // criar snapshots
+    bytes32 public constant PAUSER_ROLE        = keccak256("PAUSER_ROLE");        // pausar/despausar
+    bytes32 public constant UPGRADER_ROLE      = keccak256("UPGRADER_ROLE");      // upgrade UUPS
+
+    // ====== Endereços-Chave ======
+    address public governanceMultisig;  // recebe mint anual
+    address public blueFund;            // recebe fee de 0,5% dos vouchers
+    address public marketWallet;        // venda pública e liquidez (50%)
+    address public marketingWallet;     // marketing (10%)
+    address public reserveWallet;       // reserva técnica (5%)
+    TeamVesting public teamVesting;     // contrato de vesting (15%)
+
+    // ====== Oracle ======
+    IByt3sOracle public priceOracle;    // retorna conversões B3S<->BRL
+
+    // ====== Mint anual ======
+    uint256 public constant ANNUAL_MINT_BPS = 500; // 5% = 500 basis points
+    uint64  public lastMintTimestamp;              // último mint anual (epoch)
+    uint64  public constant MINT_INTERVAL = 365 days;
+
+    // ====== Compliance ======
+    mapping(address => bool) public blacklisted; // bloqueia total (in/out)
+    mapping(address => bool) public frozen;      // impede saídas (pode receber)
+
+    // ====== Vouchers & Relayer ======
+    // Limites em BRL (8 decimais recomendadas no oracle)
+    uint256 public constant VOUCHER_LIMIT_BRL = 500 * 1e8;   // R$ 500,00
+    uint256 public constant DAILY_LIMIT_BRL   = 2500 * 1e8;  // R$ 2.500,00
+    uint16  public constant RELAYER_FEE_BPS   = 50;          // 0,5% = 50 basis points
+
+    // Controle de consumo diário em BRL por destinatário
+    mapping(address => mapping(uint32 => uint256)) public dailySpentBRL; // addr => dayIndex => brlAmount(8d)
+
+    event BlacklistUpdated(address indexed account, bool status);
+    event FreezeUpdated(address indexed account, bool status);
+    event OracleUpdated(address indexed oracle);
+    event GovernanceMultisigUpdated(address indexed newMultisig);
+    event BlueFundUpdated(address indexed newBlueFund);
+    event RelayedVoucher(address indexed relayer, address indexed to, uint256 amountB3S, uint256 feeB3S, uint256 brlValue, uint32 dayIndex);
+    event AnnualMint(uint256 amount, uint64 timestamp);
+    event SnapshotCreated(uint256 id);
+
+    // ====== Inicializador (Proxy) ======
+    /**
+     * @param _governanceMultisig multisig de governança (recebe mint anual)
+     * @param _blueFund carteira do Blue Fund
+     * @param _marketWallet carteira mercado/liquidez (50%)
+     * @param _marketingWallet carteira marketing (10%)
+     * @param _reserveWallet carteira reserva técnica (5%)
+     * @param teamBeneficiary beneficiário do vesting (equipe, 15%)
+     * @param oracle endereço do Oracle B3S<->BRL
+     */
+    function initialize(
+        address _governanceMultisig,
+        address _blueFund,
+        address _marketWallet,
+        address _marketingWallet,
+        address _reserveWallet,
+        address teamBeneficiary,
+        address oracle
+    ) public initializer {
+        require(
+            _governanceMultisig != address(0) &&
+            _blueFund            != address(0) &&
+            _marketWallet        != address(0) &&
+            _marketingWallet     != address(0) &&
+            _reserveWallet       != address(0) &&
+            teamBeneficiary      != address(0) &&
+            oracle               != address(0),
+            "zero addr"
+        );
+
+        __ERC20_init(_TOKEN_NAME, _TOKEN_SYMBOL);
+        __ERC20Snapshot_init();
+        __Pausable_init();
+        __AccessControl_init();
+        __UUPSUpgradeable_init();
+        __ReentrancyGuard_init();
+
+        // Admin inicial: o deployer. Recomenda-se transferir para o multisig após testes.
+        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        _grantRole(GOVERNANCE_ROLE, _governanceMultisig);
+        _grantRole(COMPLIANCE_ROLE, _governanceMultisig);
+        _grantRole(PAUSER_ROLE, _governanceMultisig);
+        _grantRole(UPGRADER_ROLE, _governanceMultisig);
+        _grantRole(SNAPSHOT_ROLE, _governanceMultisig);
+        _grantRole(RELAYER_ROLE, _governanceMultisig);
+        _grantRole(ORACLE_MANAGER_ROLE, _governanceMultisig);
+
+        governanceMultisig = _governanceMultisig;
+        blueFund           = _blueFund;
+        marketWallet       = _marketWallet;
+        marketingWallet    = _marketingWallet;
+        reserveWallet      = _reserveWallet;
+
+        // Oracle configurável
+        priceOracle = IByt3sOracle(oracle);
+        emit OracleUpdated(oracle);
+
+        // Supply inicial: 100.000.000 B3S (18 decimais)
+        uint256 initialSupply = 100_000_000 * 1e18;
+
+        // Distribuição conforme tokenomics:
+        // 50% mercado, 20% Blue Fund, 15% equipe(vesting), 10% marketing, 5% reserva técnica
+        uint256 marketAmt   = (initialSupply * 50) / 100;
+        uint256 blueAmt     = (initialSupply * 20) / 100;
+        uint256 teamAmt     = (initialSupply * 15) / 100;
+        uint256 mktAmt      = (initialSupply * 10) / 100;
+        uint256 reserveAmt  = (initialSupply *  5) / 100;
+
+        // Mint total para o próprio contrato e, em seguida, distribuir (clareza contábil)
+        _mint(address(this), initialSupply);
+
+        // Criar vesting 3 anos (linear)
+        TeamVesting vest = new TeamVesting();
+        vest.initialize(
+            address(this),
+            teamBeneficiary,
+            uint64(block.timestamp),        // início agora (pode alterar via governança se quiser TGE + cliff)
+            uint64(3 * 365 days),
+            address(this)                   // admin inicial: o próprio token (governança via roles daqui)
+        );
+        teamVesting = vest;
+
+        // Transferências para as carteiras
+        _transfer(address(this), marketWallet,  marketAmt);
+        _transfer(address(this), blueFund,      blueAmt);
+        _transfer(address(this), address(vest), teamAmt);
+        _transfer(address(this), marketingWallet, mktAmt);
+        _transfer(address(this), reserveWallet, reserveAmt);
+
+        // Mint anual controlado
+        lastMintTimestamp = uint64(block.timestamp);
     }
 
-    // Saldo de um endereço
-    function balanceOf(address owner) public view returns (uint256) {
-        return _balances[owner];
+    // ====== Decimals (18) ======
+    function decimals() public pure override returns (uint8) {
+        return 18;
     }
 
-    // Transferência de tokens
-    function transfer(address to, uint256 amount) public returns (bool) {
-        require(to != address(0), "Byte$: Transfer to the zero address");
-        require(_balances[msg.sender] >= amount, "Byte$: Insufficient balance");
-
-        _balances[msg.sender] -= amount;
-        _balances[to] += amount;
-
-        emit Transfer(msg.sender, to, amount);
-        return true;
+    // ====== Governança e Configurações ======
+    function setGovernanceMultisig(address newGov) external onlyRole(GOVERNANCE_ROLE) {
+        require(newGov != address(0), "zero");
+        governanceMultisig = newGov;
+        _grantRole(GOVERNANCE_ROLE, newGov);
+        emit GovernanceMultisigUpdated(newGov);
     }
 
-    // Transferência em nome de outro endereço
-    function transferFrom(address from, address to, uint256 amount) public returns (bool) {
-        require(from != address(0), "Byte$: Transfer from the zero address");
-        require(to != address(0), "Byte$: Transfer to the zero address");
-        require(_balances[from] >= amount, "Byte$: Insufficient balance");
-        require(_allowances[from][msg.sender] >= amount, "Byte$: Transfer amount exceeds allowance");
-
-        _balances[from] -= amount;
-        _balances[to] += amount;
-        _allowances[from][msg.sender] -= amount;
-
-        emit Transfer(from, to, amount);
-        return true;
+    function setBlueFund(address newBlue) external onlyRole(GOVERNANCE_ROLE) {
+        require(newBlue != address(0), "zero");
+        blueFund = newBlue;
+        emit BlueFundUpdated(newBlue);
     }
 
-    // Aprovar um endereço para gastar em nome do dono
-    function approve(address spender, uint256 amount) public returns (bool) {
-        require(spender != address(0), "Byte$: Approve to the zero address");
-
-        _allowances[msg.sender][spender] = amount;
-
-        emit Approval(msg.sender, spender, amount);
-        return true;
+    function setOracle(address newOracle) external onlyRole(ORACLE_MANAGER_ROLE) {
+        require(newOracle != address(0), "zero");
+        priceOracle = IByt3sOracle(newOracle);
+        emit OracleUpdated(newOracle);
     }
 
-    // Retornar a quantidade aprovada para gasto
-    function allowance(address owner, address spender) public view returns (uint256) {
-        return _allowances[owner][spender];
+    // ====== Snapshot ======
+    function snapshot() external onlyRole(SNAPSHOT_ROLE) returns (uint256) {
+        uint256 id = _snapshot();
+        emit SnapshotCreated(id);
+        return id;
+    }
+
+    // ====== Pausable ======
+    function pause() external onlyRole(PAUSER_ROLE) { _pause(); }
+    function unpause() external onlyRole(PAUSER_ROLE) { _unpause(); }
+
+    // ====== Compliance: Blacklist & Freeze ======
+    function setBlacklist(address account, bool status) external onlyRole(COMPLIANCE_ROLE) {
+        blacklisted[account] = status;
+        emit BlacklistUpdated(account, status);
+    }
+
+    function setFreeze(address account, bool status) external onlyRole(COMPLIANCE_ROLE) {
+        frozen[account] = status;
+        emit FreezeUpdated(account, status);
+    }
+
+    // ====== Mint anual (5% a cada 365 dias) ======
+    function mintAnnual() external onlyRole(GOVERNANCE_ROLE) whenNotPaused {
+        require(uint64(block.timestamp) >= lastMintTimestamp + MINT_INTERVAL, "mint too early");
+        uint256 amount = (totalSupply() * ANNUAL_MINT_BPS) / 10_000; // 5%
+        lastMintTimestamp += MINT_INTERVAL; // trava janela (sem acumular janelas extras)
+        _mint(governanceMultisig, amount);
+        emit AnnualMint(amount, lastMintTimestamp);
+    }
+
+    // ====== Vouchers (Relayer) ======
+    /**
+     * Fluxo operacional:
+     * 1) O contrato mantém saldo (abastecido pela governança/mercado).
+     * 2) Relayer autorizado chama relayedVoucherTransfer para enviar B3S a um destinatário.
+     * 3) O contrato cobra 0,5% de taxa (fee) e envia ao Blue Fund.
+     * 4) Checa limites em BRL por voucher (R$500) e por dia/endereço (R$2.500).
+     *
+     * Observação: valor BRL é obtido via Oracle configurável (que pode se basear em Chainlink
+     * e/ou preço administrado pelo conselho — decisão de governança).
+     */
+    function relayedVoucherTransfer(address to, uint256 amountB3S)
+        external
+        nonReentrant
+        onlyRole(RELAYER_ROLE)
+        whenNotPaused
+    {
+        require(to != address(0), "zero to");
+        require(!blacklisted[to], "to blacklisted");
+        require(!blacklisted[msg.sender], "relayer blacklisted");
+        require(!frozen[to], "to frozen"); // não permitirá gastar depois até descongelar
+
+        // Limites em BRL
+        uint256 brlValue = priceOracle.b3sToBRL(amountB3S);
+        require(brlValue <= VOUCHER_LIMIT_BRL, "voucher > R$500");
+
+        uint32 dayIndex = uint32(block.timestamp / 1 days);
+        uint256 newDaily = dailySpentBRL[to][dayIndex] + brlValue;
+        require(newDaily <= DAILY_LIMIT_BRL, "excede R$2.500/dia");
+        dailySpentBRL[to][dayIndex] = newDaily;
+
+        // Calcula taxa 0,5% e envia
+        uint256 fee = (amountB3S * RELAYER_FEE_BPS) / 10_000; // 0.5%
+        uint256 toSend = amountB3S - fee;
+
+        // O contrato precisa ter saldo suficiente (abastecido previamente)
+        require(balanceOf(address(this)) >= amountB3S, "insufficient contract balance");
+
+        _transfer(address(this), to, toSend);
+        _transfer(address(this), blueFund, fee);
+
+        emit RelayedVoucher(msg.sender, to, toSend, fee, brlValue, dayIndex);
+    }
+
+    // ====== Regras internas de transferência ======
+    function _update(address from, address to, uint256 value)
+        internal
+        override(ERC20Upgradeable, ERC20SnapshotUpgradeable)
+    {
+        if (from != address(0)) { // não checa no mint
+            require(!blacklisted[from], "from blacklisted");
+            require(!frozen[from], "from frozen");
+        }
+        if (to != address(0)) { // não checa no burn
+            require(!blacklisted[to], "to blacklisted");
+        }
+        require(!paused(), "paused");
+        super._update(from, to, value);
+    }
+
+    // ====== Autorização de upgrade ======
+    function _authorizeUpgrade(address newImplementation) internal override onlyRole(UPGRADER_ROLE) {}
+
+    // ====== Funções utilitárias ======
+    function currentDayIndex() external view returns (uint32) {
+        return uint32(block.timestamp / 1 days);
     }
 }
