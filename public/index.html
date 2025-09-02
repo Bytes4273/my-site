@@ -314,44 +314,18 @@
                         <span class="ml-3 text-xl font-bold gradient-text">Byt3s</span>
                     </div>
                 </div>
-                <div class="hidden md:block">
-                    <nav aria-label="Main navigation">
-                        <div class="ml-10 flex items-baseline space-x-8">
-                            <!-- Sobre com submenu -->
-                            <div class="relative group">
-                                <button class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium flex items-center">
-                                    Sobre <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                                </button>
-                                <div class="absolute left-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
-                                    <a href="#future" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Visão</a>
-                                    <a href="#ecosystem" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Ecossistema</a>
-                                    <a href="#pillars" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Pilares</a>
-                                    <a href="#use-cases" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Casos de Uso</a>
-                                    <a href="#value-proposition" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Valor</a>
-                                    <a href="#strategy" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Roadmap</a>
-                                    <a href="#benefits" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Benefícios</a>
-                                </div>
-                            </div>
-                            
-                            <!-- Loja -->
-                            <a href="#store" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Loja</a>
-                            
-                            <!-- Outros links -->
-                            <a href="#case" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Estudo de Caso</a>
-                            <a href="#contact" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contato</a>
-                        </div>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="p-2 rounded-md text-gray-400 hover:text-white focus:outline-none">
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div>
+                    <button id="mobile-menu-button" class="p-2 rounded-md text-gray-400 hover:text-white focus:outline-none block">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
+                        <span class="sr-only">Abrir menu</span>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-black bg-opacity-90">
+        <!-- Menu mobile/desktop -->
+        <div id="mobile-menu" class="mobile-menu bg-black bg-opacity-90">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Início</a>
                 <a href="#" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Login</a>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guia de Mapas IA — Futurista 3D com Editor</title>
+
+  <!-- MapLibre GL JS -->
+  <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+
+  <!-- UI -->
+  <style>
+    :root{
+      --bg:#070d1c; --panel:#0a142b; --card:#0f1f3f; --text:#d7e4ff; --muted:#8aa0c8; --neon:#00ffc6; --neon2:#63c6ff;
+    }
+    html,body,#app{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
+    #map{position:absolute;inset:0}
+    .topbar{position:absolute;z-index:5;left:16px;top:16px;display:flex;gap:8px;align-items:center}
+    .search{display:flex;gap:8px;align-items:center;background:rgba(7,14,32,.6);border:1px solid #1b2e5d;padding:8px 10px;border-radius:12px;backdrop-filter: blur(8px)}
+    .search input{width:280px;max-width:50vw;border:none;outline:none;background:transparent;color:var(--text);font-size:14px}
+    .btn{border:none;border-radius:10px;padding:8px 10px;font-weight:700;cursor:pointer;background:linear-gradient(90deg,var(--neon),var(--neon2));color:#04141e}
+    .btn.ghost{background:transparent;border:1px solid #27417c;color:var(--text)}
+    .legend{position:absolute;right:16px;bottom:16px;z-index:5;display:flex;gap:8px}
+    .pill{padding:8px 12px;border-radius:999px;background:rgba(6,12,26,.6);border:1px solid #213463}
+    .credit{position:absolute;left:16px;bottom:16px;z-index:5;color:var(--muted);font-size:12px;background:rgba(6,12,26,.5);border:1px solid #1c2f62;padding:6px 10px;border-radius:10px}
+    .popup{font-size:13px;color:#0f1420}
+    .editor{position:absolute;z-index:10;top:80px;left:16px;background:var(--card);border:1px solid #203260;padding:14px;border-radius:12px;width:280px;display:none}
+    .editor label{font-size:13px;color:var(--muted)}
+    .editor input{width:100%;margin-bottom:8px;padding:6px;border-radius:8px;border:1px solid #2a3c75;background:#0a142b;color:var(--text)}
+  </style>
+</head>
+<body>
+<div id="app">
+  <div id="map"></div>
+
+  <div class="topbar">
+    <div class="search">
+      <input id="q" placeholder="Pesquisar endereço ou local" />
+      <button id="btnSearch" class="btn">Buscar</button>
+      <button id="btnClear" class="btn ghost">Limpar</button>
+    </div>
+    <button id="btnMode" class="btn ghost">Modo: Futurista 3D</button>
+    <button id="btnEditor" class="btn ghost">Editor de Imóvel</button>
+  </div>
+
+  <div class="legend">
+    <div class="pill">Ruas Neon</div>
+    <div class="pill">Prédios 3D</div>
+    <div class="pill">Tráfego</div>
+    <div class="pill">POIs</div>
+  </div>
+
+  <div class="credit">MapLibre GL + OpenStreetMap | Editor Virtual</div>
+
+  <div id="editor" class="editor">
+    <label>Altura (m)</label>
+    <input type="number" id="altura" value="30" min="5" max="200" />
+    <label>Cor Neon</label>
+    <input type="color" id="cor" value="#00ffc6" />
+    <button id="aplicar" class="btn">Aplicar</button>
+  </div>
+</div>
+
+<script>
+  const MAPTILER_KEY = 'MCCHRjp9pSzpII2Ls7TZ';
+
+  const futuristicStyle = {
+    version: 8,
+    sources: {
+      openmaptiles: {
+        type: 'vector',
+        url: `https://api.maptiler.com/tiles/v3/tiles.json?key=${MAPTILER_KEY}`
+      }
+    },
+    layers: [
+      { id:'background', type:'background', paint:{ 'background-color':'#070d1c' } },
+      { id:'water', type:'fill', source:'openmaptiles','source-layer':'water', paint:{ 'fill-color':'#091a33' } },
+      { id:'roads-all', type:'line', source:'openmaptiles','source-layer':'transportation', paint:{ 'line-color':'#00ffc6','line-width':2 } },
+      { id:'3d-buildings', type:'fill-extrusion', source:'openmaptiles','source-layer':'building', minzoom:14,
+        paint:{ 'fill-extrusion-color':'#0b1e40','fill-extrusion-height':['coalesce',['to-number',['get','height']],20],'fill-extrusion-opacity':0.92 } }
+    ]
+  };
+
+  const nightStyle = JSON.parse(JSON.stringify(futuristicStyle));
+  nightStyle.layers[0].paint['background-color'] = '#000';
+  nightStyle.layers[2].paint['line-color'] = '#ff9d00';
+
+  const map = new maplibregl.Map({
+    container:'map',
+    style:futuristicStyle,
+    center:[-46.6623,-23.5576],
+    zoom:16,
+    pitch:60,
+    bearing:28,
+    projection: 'globe' // Adiciona projeção de globo
+  });
+
+  map.on('style.load', () => {
+    map.setFog({
+      'range': [0.8, 8],
+      'color': '#070d1c',
+      'horizon-blend': 0.1,
+      'high-color': '#070d1c',
+      'space-color': '#070d1c',
+      'star-intensity': 0.15
+    });
+  });
+
+  map.addControl(new maplibregl.NavigationControl({ visualizePitch:true }), 'top-right');
+  map.addControl(new maplibregl.GeolocateControl({ trackUserLocation:true }), 'top-right');
+
+  const btnMode=document.getElementById('btnMode');
+  let modo='futurista';
+  btnMode.onclick=()=>{
+    if(modo==='futurista'){
+      map.setStyle(nightStyle);
+      btnMode.textContent='Modo: Noite';
+      modo='noite';
+    } else {
+      map.setStyle(futuristicStyle);
+      btnMode.textContent='Modo: Futurista 3D';
+      modo='futurista';
+    }
+  };
+
+  // Editor de Imóveis
+  const editor=document.getElementById('editor');
+  document.getElementById('btnEditor').onclick=()=>{
+    editor.style.display= editor.style.display==='none'?'block':'none';
+  };
+
+  document.getElementById('aplicar').onclick=()=>{
+    const h=Number(document.getElementById('altura').value);
+    const c=document.getElementById('cor').value;
+    map.setPaintProperty('3d-buildings','fill-extrusion-height',h);
+    map.setPaintProperty('3d-buildings','fill-extrusion-color',c);
+  };
+
+  // POIs e tráfego (mock: pontos e linhas extras)
+  map.on('load', () => {
+    // Adiciona efeito de atmosfera ao globo
+    map.setFog({
+      'range': [0.8, 8],
+      'color': '#070d1c',
+      'horizon-blend': 0.1,
+      'high-color': '#070d1c',
+      'space-color': '#070d1c',
+      'star-intensity': 0.15
+    });
+    map.addSource('traffic',{ type:'geojson', data:{ type:'FeatureCollection', features:[{ type:'Feature', geometry:{ type:'LineString', coordinates:[[-46.6625,-23.5577],[-46.6620,-23.5573]] } }] } });
+    map.addLayer({ id:'traffic-layer', type:'line', source:'traffic', paint:{ 'line-color':'#ff005e','line-width':4,'line-opacity':0.7 } });
+
+    map.addSource('pois',{ type:'geojson', data:{ type:'FeatureCollection', features:[{ type:'Feature', geometry:{ type:'Point', coordinates:[-46.6623,-23.5576] }, properties:{ name:'POI Demo' } }] } });
+    map.addLayer({ id:'poi-layer', type:'circle', source:'pois', paint:{ 'circle-color':'#ff9d00','circle-radius':6 } });
+  });
+</script>
+</body>
+</html>
