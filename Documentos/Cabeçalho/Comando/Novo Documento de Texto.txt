@@ -516,6 +516,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
                 <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
                     <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/8-27b58fd.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 

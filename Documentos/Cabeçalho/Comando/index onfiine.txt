@@ -21,6 +21,34 @@
             overflow-x: hidden;
         }
         
+        /* Canvas for animated crypto icons */
+        #cryptoIconsCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Make all container backgrounds transparent */
+        .glow-card,
+        .data-panel,
+        .bg-gray-800,
+        .bg-gray-900,
+        .bg-black,
+        .bg-gradient-to-b,
+        .bg-gradient-to-r {
+            background: transparent !important;
+        }
+        
+        /* Content wrapper to ensure proper layering */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+        
         .gradient-text {
             background: linear-gradient(90deg, #00f0ff, #0085ff, #8a2be2);
             -webkit-background-clip: text;
@@ -274,33 +302,38 @@
         }
     </style>
 </head>
-<body>
-    <!-- Crypto Background Elements -->
-    <div id="crypto-bg-elements">
-        <!-- Floating crypto icons -->
-        <i class="fab fa-bitcoin bitcoin-icon" style="top: 10%; left: 5%; font-size: 8rem;"></i>
-        <i class="fab fa-ethereum ethereum-icon" style="top: 30%; right: 8%; font-size: 6rem;"></i>
-        <i class="fas fa-link bitcoin-icon" style="bottom: 15%; left: 15%; font-size: 5rem;"></i>
-        <i class="fas fa-coins ethereum-icon" style="top: 70%; right: 20%; font-size: 7rem;"></i>
-        
-        <!-- Blockchain lines -->
-        <div class="blockchain-line" style="top: 20%; width: 120%;"></div>
-        <div class="blockchain-line" style="top: 50%; width: 150%; animation-delay: 3s;"></div>
-        <div class="blockchain-line" style="top: 80%; width: 100%; animation-delay: 6s;"></div>
-        
-        <!-- Crypto grid -->
-        <div class="crypto-grid"></div>
-        
-        <!-- Animated small crypto icons -->
-        <div id="animated-crypto-icons">
-            <!-- These will be added via JavaScript -->
+<body class="relative overflow-hidden">
+    <!-- Fundo animado -->
+    <canvas id="cryptoIconsCanvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+
+    <!-- Conteúdo do site -->
+    <div class="relative z-10">
+        <!-- Crypto Background Elements -->
+        <div id="crypto-bg-elements">
+            <!-- Floating crypto icons -->
+            <i class="fab fa-bitcoin bitcoin-icon" style="top: 10%; left: 5%; font-size: 8rem;"></i>
+            <i class="fab fa-ethereum ethereum-icon" style="top: 30%; right: 8%; font-size: 6rem;"></i>
+            <i class="fas fa-link bitcoin-icon" style="bottom: 15%; left: 15%; font-size: 5rem;"></i>
+            <i class="fas fa-coins ethereum-icon" style="top: 70%; right: 20%; font-size: 7rem;"></i>
+            
+            <!-- Blockchain lines -->
+            <div class="blockchain-line" style="top: 20%; width: 120%;"></div>
+            <div class="blockchain-line" style="top: 50%; width: 150%; animation-delay: 3s;"></div>
+            <div class="blockchain-line" style="top: 80%; width: 100%; animation-delay: 6s;"></div>
+            
+            <!-- Crypto grid -->
+            <div class="crypto-grid"></div>
+            
+            <!-- Animated small crypto icons -->
+            <div id="animated-crypto-icons">
+                <!-- These will be added via JavaScript -->
+            </div>
+            
+            <!-- Blockchain nodes -->
+            <div id="blockchain-nodes">
+                <!-- These will be added via JavaScript -->
+            </div>
         </div>
-        
-        <!-- Blockchain nodes -->
-        <div id="blockchain-nodes">
-            <!-- These will be added via JavaScript -->
-        </div>
-    </div>
 
     <!-- Navigation -->
     <nav class="fixed w-full bg-black bg-opacity-80 backdrop-filter backdrop-blur-lg z-50 border-b border-cyan-500 border-opacity-20 content-wrapper">
@@ -338,7 +371,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="relative pt-24 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900 content-wrapper">
+    <div class="relative pt-24 pb-32 px-4 sm:px-6 lg:px-8 content-wrapper">
         <div class="max-w-7xl mx-auto">
             <div class="lg:grid lg:grid-cols-12 lg:gap-8">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
@@ -402,7 +435,7 @@
     </div>
 
     <!-- About Section -->
-    <div id="about" class="py-16 bg-gray-900 overflow-hidden relative content-wrapper">
+    <div id="about" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Para quem é este projeto</h2>
@@ -466,7 +499,7 @@
     </div>
 
     <!-- Future Section -->
-    <div id="future" class="py-16 bg-black overflow-hidden relative content-wrapper">
+    <div id="future" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Visão 2035</h2>
@@ -517,7 +550,7 @@
     </div>
 
     <!-- Ecosystem Section -->
-    <div id="ecosystem" class="py-16 bg-black overflow-hidden relative content-wrapper">
+    <div id="ecosystem" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Ecossistema</h2>
@@ -587,7 +620,7 @@
     </div>
 
     <!-- Pillars Section -->
-    <div id="pillars" class="py-16 bg-gray-900 overflow-hidden relative content-wrapper">
+    <div id="pillars" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Pilares Estratégicos</h2>
@@ -637,7 +670,7 @@
     </div>
 
     <!-- Use Cases Section -->
-    <div id="use-cases" class="py-16 bg-gray-900 overflow-hidden relative content-wrapper">
+    <div id="use-cases" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Casos de Uso</h2>
@@ -734,7 +767,7 @@
     </div>
 
     <!-- Value Proposition Section -->
-    <div id="value-proposition" class="py-16 bg-black overflow-hidden relative content-wrapper">
+    <div id="value-proposition" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Proposta de Valor</h2>
@@ -813,8 +846,11 @@
     </div>
 
     <!-- Miner Section -->
-    <div id="miner" class="py-16 bg-black overflow-hidden relative content-wrapper">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div id="miner" class="py-16 overflow-hidden relative">
+        <!-- Blockchain nodes background for miner section -->
+        <div id="miner-blockchain-nodes" class="absolute inset-0 z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Minerador</h2>
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Clique [2x] em</h2>
@@ -825,69 +861,81 @@
                     Você verá um codigo com 13 Digitos parecido como : <span class="gradient-text">"1010111100011"</span>.
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Copie esse codigo que foi gerado por você e cole no "Token +Byt3$" do seu Minerador, após identificar seu token, inclua todos os dados solicitados no minerador como:
+                    Copie esse Ticket.codigo que foi gerado por você e cole no "Ticket +Byt3$" do seu Minerador, após identificar seu "Ticket", inclua todos os dados solicitados no minerador como:
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                     <span class="gradient-text">Identidade:</span> "Nome do responsavel"<br>
                     <span class="gradient-text">Convite:</span> "2366"<br>
                     <span class="gradient-text">Telefone:</span> "Whatsapp"<br>
-                    <span class="gradient-text">Rede:</span> "Instagram"
+                    <span class="gradient-text">Rede:</span> "Instagram"<br>
+                    <span class="gradient-text">E-mail:</span> "Correspodência"
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                     <span style="color: gold;">!!ATENÇÃO!!</span> </p>"Por Padrão - Todo Protocolo de Mineração deve ser registrado no "Nivel 4", para certificar a validação do seu Token +Byt3$"<br>
                 </p>
-                    Você verá o convite "NOCE" como também o codigo 
-                    "Hash" da sua Carteira. Cada carteira contém uma quantidade: [X]=B3S.
+                    você verá o convite "NONCE" como também o codigo 
+                    "Hash" da sua Carteira. Cada carteira contém uma quantidade: [X]=<span class="gradient-text">B3S</span>. Caso o codigo "NONCE" não seja igual ao <span class="gradient-text">" Convite: lvl-4 "</span>, Será apenas mais uma carteira "Vazia".
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                     <span class="gradient-text">Byt3$:</span> "20.00B3S"<br>
+                </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                     <span class="gradient-text">Hash:</span> "a50b"<br>
+                </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                     <span class="gradient-text">Carteira:</span> "a50bfaf5d11407a1e02d68d51236"<br>
+                </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    <span class="gradient-text">Ticket:</span> "a50b.68d51236"<br>
+                    <span class="gradient-text">Token:</span> "a50b.68d51236"<br>
+                </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Participe da rede e seja recompensado por contribuir com a segurança da blockchain. Seu Ticket +Byt3$ Premium deve conter 12 digitos como : "a50b.68d51236"
-                    </p>Para Coletar seus Byt3$, bastar aplicar seu Ticket em nosso site oficial ou um de nossos produtos planejados especialmente para você. 
+                    Participe da rede e seja recompensado por contribuir com a segurança da blockchain. Seu Token +Byt3$ Premium deve conter 13 combinação de caracteres como <span class="gradient-text">" a50b.68d51236 "</span> .
+                    </p>Para coletar seus <span class="gradient-text">Byt3$</span>, bastar aplicar seu Token em nosso site oficial.
+                    </p>
+                    <span class="gradient-text">Clicando AQUI - RESGATAR</span> 
                 </p>
             </div>
 
             <div class="mt-12">
                 <div class="glow-card bg-gray-900 p-8 rounded-lg relative">
-                    <div class="flex flex-col md:flex-row gap-8">
-                        <div class="md:w-1/2">
-                            <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
-                                <i class="fas fa-microchip text-2xl"></i>
+                    <div class="grid grid-cols-1 gap-8">
+                        <div>
+                            <div class="glow-card bg-gray-900 p-8 rounded-lg relative w-full">
+                                <div class="flex flex-col gap-8">
+                                    <div>
+                                        <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-ef6a875.png/:/" 
+                                             alt="Ícone de Minerador"
+                                             class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-full mx-auto mb-6">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white mb-4">Minerador SharkByt</h3>
+                                        <p class="text-gray-300 mb-6">
+                                            Nosso minerador utiliza o algoritmo SHA-256, o mesmo do Bitcoin, garantindo segurança e descentralização.
+                                        </p>
+                                        <ul class="text-gray-300 space-y-3">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                                <span>Baixo consumo de energia</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                                <span>Recompensas em Byte$</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                                <span>Contribuição Social</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                                <span>Integração com carteira</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 class="text-xl font-bold text-white mb-4">Minerador SharkByt</h3>
-                            <p class="text-gray-300 mb-6">
-                                Nosso minerador utiliza o algoritmo SHA-256, o mesmo do Bitcoin, garantindo segurança e descentralização.
-                            </p>
-                            <ul class="text-gray-300 space-y-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
-                                    <span>Baixo consumo de energia</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
-                                    <span>Recompensas em Byte$</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
-                                    <span>Contribuição Social</span>
-                                </li>
-                            <ul class="text-gray-300 space-y-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
-                                    <span>Integração com carteira</span>
-                                </li>
-                            </ul>
                         </div>
-
-                        <div class="md:w-1/2">
-                            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 glow-box">
-                                <div id="minerApp">
+                        <div>
+                            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 glow-box w-full">
+                                <div id="minerApp" class="w-full">
                                     <!-- Progress bar -->
                                     <div id="minerProgress" class="h-1 bg-gray-700 rounded-full mb-4">
                                         <div class="h-full bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full" style="width: 0%"></div>
@@ -908,7 +956,7 @@
                                         <div>
                                             <label class="block text-sm text-cyan-400 mb-2">Telefone</label>
                                             <input type="text" id="phone" placeholder="(00) 00000-0000" 
-                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500" maxlength="15">
                                         </div>
                                         <div>
                                             <label class="block text-sm text-cyan-400 mb-2">Rede</label>
@@ -916,8 +964,13 @@
                                                 class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
                                         </div>
                                         <div>
-                                            <label class="block text-sm text-cyan-400 mb-2">Token</label>
-                                            <input type="text" id="data" placeholder="+Byt3$" value="+Byt3$" 
+                                            <label class="block text-sm text-cyan-400 mb-2">E-mail</label>
+                                            <input type="text" id="email" placeholder="seu@email.com" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Ticket</label>
+                                            <input type="text" id="data" placeholder="+Byt3$" 
                                                 class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
                                         </div>
                                         <div>
@@ -992,7 +1045,7 @@
     </div>
 
     <!-- Store Section -->
-    <div id="store" class="py-16 bg-gray-900 overflow-hidden relative content-wrapper">
+    <div id="store" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">loja Online</h2>
@@ -1133,238 +1186,272 @@
             </div>
         </div>
     </div>
+</div>
+    </div>
 
     <!-- Miner Script -->
     <script>
         // SHA-256 implementation
-        async function sha256(message) {
+        const sha256 = async (message) => {
             const msgBuffer = new TextEncoder().encode(message);
             const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
             const hashArray = Array.from(new Uint8Array(hashBuffer));
             return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        }
+        };
 
-        // Miner variables
-        let isMining = false;
-        let shouldCancel = false;
-        let startTime;
-        let lastHashesCount = 0;
-        let lastHashRateTime = Date.now();
-        let hashRateInterval;
-        
-        // DOM Elements
-        const startBtn = document.getElementById('startMining');
-        const stopBtn = document.getElementById('stopMining');
-        const progressBar = document.getElementById('minerProgress').firstElementChild;
-        const statsContainer = document.getElementById('statsContainer');
-        const resultContainer = document.getElementById('resultContainer');
-        const errorContainer = document.getElementById('errorContainer');
-        const copyBtn = document.getElementById('copyResults');
-        
-        // Stats elements
-        const hashesCountEl = document.getElementById('hashesCount');
-        const currentNonceEl = document.getElementById('currentNonce');
-        const hashRateEl = document.getElementById('hashRate');
-        const timeElapsedEl = document.getElementById('timeElapsed');
-        const errorMessageEl = document.getElementById('errorMessage');
-        const resultContentEl = document.getElementById('resultContent');
-        
-        // Start Mining
-        startBtn.addEventListener('click', startMining);
-        
-        // Stop Mining
-        stopBtn.addEventListener('click', stopMining);
-        
-        // Copy Results
-        copyBtn.addEventListener('click', copyResults);
-        
-        // Start mining function
-        async function startMining() {
-            // Reset UI
-            resultContainer.classList.add('hidden');
-            errorContainer.classList.add('hidden');
-            statsContainer.classList.remove('hidden');
-            progressBar.style.width = '0%';
-            shouldCancel = false;
+        // Miner module
+        const Miner = (() => {
+            // Private variables
+            let isMining = false;
+            let shouldCancel = false;
+            let startTime;
+            let lastHashesCount = 0;
+            let lastHashRateTime = Date.now();
+            let hashRateInterval;
             
-            // Get input values
-            const identity = document.getElementById('identity').value.trim() || "Anônimo";
-            const invite = document.getElementById('invite').value.trim() || "Sem convite";
-            const phone = document.getElementById('phone').value.trim() || "Não informado";
-            const network = document.getElementById('network').value.trim() || "Rede principal";
-            const dataInput = document.getElementById('data').value.trim() || "+Byte$";
-            const leadingZeros = parseInt(document.getElementById('leadingZeros').value) || 4;
+            // DOM Elements cache
+            const elements = {
+                startBtn: document.getElementById('startMining'),
+                stopBtn: document.getElementById('stopMining'),
+                progressBar: document.getElementById('minerProgress').firstElementChild,
+                statsContainer: document.getElementById('statsContainer'),
+                resultContainer: document.getElementById('resultContainer'),
+                errorContainer: document.getElementById('errorContainer'),
+                copyBtn: document.getElementById('copyResults'),
+                hashesCount: document.getElementById('hashesCount'),
+                currentNonce: document.getElementById('currentNonce'),
+                hashRate: document.getElementById('hashRate'),
+                timeElapsed: document.getElementById('timeElapsed'),
+                errorMessage: document.getElementById('errorMessage'),
+                resultContent: document.getElementById('resultContent')
+            };
             
-            // Validate inputs
-            if (isNaN(leadingZeros) || leadingZeros < 1 || leadingZeros > 6) {
-                showError('O nível de mineração deve estar entre 1 e 6');
-                return;
-            }
+            // Utility functions
+            const sanitizeInput = (input) => input.replace(/[<>{}[\]"'&]/g, '');
             
-            // Update UI for mining state
-            isMining = true;
-            startBtn.classList.add('hidden');
-            stopBtn.classList.remove('hidden');
-            
-            // Initialize stats
-            startTime = Date.now();
-            lastHashesCount = 0;
-            lastHashRateTime = startTime;
-            let hashesCount = 0;
-            let nonce = 0;
-            
-            // Start hash rate updates
-            hashRateInterval = setInterval(() => updateStats(nonce, hashesCount), 100);
-            
-            // Target for hash
-            const target = '0'.repeat(leadingZeros);
-            let foundHash = '';
-            
-            try {
-                // Batch processing for better performance
-                const batchSize = 1000;
-                while (!shouldCancel) {
-                    let batchPromises = [];
-                    
-                    // Create a batch of hash calculations
-                    for (let i = 0; i < batchSize; i++) {
-                        const currentNonce = nonce + i;
-                        batchPromises.push(sha256(dataInput + currentNonce).then(hash => {
-                            if (hash.startsWith(target)) {
-                                return { hash, nonce: currentNonce };
-                            }
-                            return null;
-                        }));
-                    }
-                    
-                    // Wait for the batch to complete
-                    const results = await Promise.all(batchPromises);
-                    hashesCount += batchSize;
-                    
-                    // Check if any hash in the batch matched
-                    for (const result of results) {
-                        if (result) {
-                            foundHash = result.hash;
-                            nonce = result.nonce;
-                            break;
-                        }
-                    }
-                    
-                    if (foundHash || shouldCancel) break;
-                    nonce += batchSize;
+            const validateInputs = (data) => {
+                const errors = [];
+                
+                // Validate level
+                if (isNaN(data.level) || data.level < 1 || data.level > 6) {
+                    errors.push('O nível de mineração deve estar entre 1 e 6');
                 }
                 
-                if (shouldCancel) {
-                    showError('Mineração interrompida pelo usuário');
-                } else if (foundHash) {
-                    // Success - display results
-                    showResults({
-                        identity,
-                        invite,
-                        phone,
-                        network,
-                        token: dataInput,
-                        level: leadingZeros,
-                        hash: foundHash,
-                        nonce: nonce
+                // Validate phone (Brazilian format)
+                if (data.phone !== "Não informado" && !/^\(\d{2}\) \d{4,5}-\d{4}$/.test(data.phone)) {
+                    errors.push('Formato de telefone inválido. Use: (00) 00000-0000');
+                }
+                
+                // Validate email
+                if (data.email !== "Não informado" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+                    errors.push('Formato de e-mail inválido');
+                }
+                
+                
+                return errors;
+            };
+            
+            const updateUI = {
+                reset: () => {
+                    elements.resultContainer.classList.add('hidden');
+                    elements.errorContainer.classList.add('hidden');
+                    elements.statsContainer.classList.remove('hidden');
+                    elements.progressBar.style.width = '0%';
+                },
+                
+                startMining: () => {
+                    isMining = true;
+                    elements.startBtn.classList.add('hidden');
+                    elements.stopBtn.classList.remove('hidden');
+                },
+                
+                stopMining: () => {
+                    isMining = false;
+                    elements.startBtn.classList.remove('hidden');
+                    elements.stopBtn.classList.add('hidden');
+                    elements.stopBtn.innerHTML = '<i class="fas fa-stop mr-2"></i> Parar Mineração';
+                },
+                
+                updateStats: (nonce, hashesCount) => {
+                    elements.hashesCount.textContent = hashesCount.toLocaleString();
+                    elements.currentNonce.textContent = nonce.toLocaleString();
+                    
+                    const now = Date.now();
+                    if (now - lastHashRateTime >= 1000) {
+                        const hashRate = Math.floor((hashesCount - lastHashesCount) / ((now - lastHashRateTime) / 1000));
+                        elements.hashRate.textContent = `${hashRate.toLocaleString()} H/s`;
+                        lastHashesCount = hashesCount;
+                        lastHashRateTime = now;
+                    }
+                    
+                    const elapsedSeconds = Math.floor((now - startTime) / 1000);
+                    elements.timeElapsed.textContent = `${elapsedSeconds}s`;
+                    
+                    const progressPercent = Math.min(100, (now - startTime) / 1000 % 100);
+                    elements.progressBar.style.width = `${progressPercent}%`;
+                },
+                
+                showError: (message) => {
+                    elements.errorMessage.textContent = message;
+                    elements.errorContainer.classList.remove('hidden');
+                },
+                
+                showResults: (data) => {
+                    const resultHTML = `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div><span class="text-cyan-400">Identidade:</span> ${data.identity}</div>
+                            <div><span class="text-cyan-400">Convite:</span> ${data.invite}</div>
+                            <div><span class="text-cyan-400">Telefone:</span> ${data.phone}</div>
+                            <div><span class="text-cyan-400">Rede:</span> ${data.network}</div>
+                            <div><span class="text-cyan-400">E-mail:</span> ${data.email}</div>
+                            <div><span class="text-cyan-400">Ticket:</span> ${data.token}</div>
+                            <div><span class="text-cyan-400">Nível:</span> ${data.level}</div>
+                            <div class="md:col-span-2"><span class="text-cyan-400">Hash:</span> <span class="text-green-400 font-mono">${data.hash.substring(0, 32)}</span></div>
+                            <div class="md:col-span-2"><span class="text-cyan-400">Nonce:</span> ${data.nonce}</div>
+                        </div>
+                    `;
+                    
+                    elements.resultContent.innerHTML = resultHTML;
+                    elements.resultContainer.classList.remove('hidden');
+                }
+            };
+            
+            // Public methods
+            return {
+                init: () => {
+                    elements.startBtn.addEventListener('click', Miner.start);
+                    elements.stopBtn.addEventListener('click', Miner.stop);
+                    elements.copyBtn.addEventListener('click', Miner.copyResults);
+                },
+                
+                start: async () => {
+                    shouldCancel = false;
+                    updateUI.reset();
+                    
+                    // Get input values
+                    const data = {
+                        identity: document.getElementById('identity').value.trim() || "Anônimo",
+                        invite: document.getElementById('invite').value.trim() || "Sem convite",
+                        phone: document.getElementById('phone').value.trim() || "Não informado",
+                        network: document.getElementById('network').value.trim() || "Rede principal",
+                        email: document.getElementById('email').value.trim() || "Não informado",
+                        ticket: document.getElementById('data').value.trim() || "+Byt3$",
+                        level: parseInt(document.getElementById('leadingZeros').value) || 4
+                    };
+                    
+                    // Validate inputs
+                    const errors = validateInputs(data);
+                    if (errors.length > 0) {
+                        updateUI.showError(errors[0]);
+                        return;
+                    }
+                    
+                    // Sanitize inputs
+                    const sanitizedData = {
+                        identity: sanitizeInput(data.identity),
+                        invite: sanitizeInput(data.invite),
+                        phone: sanitizeInput(data.phone),
+                        network: sanitizeInput(data.network),
+                        email: sanitizeInput(data.email),
+                        token: data.ticket,
+                        level: data.level
+                    };
+                    
+                    updateUI.startMining();
+                    
+                    // Initialize stats
+                    startTime = Date.now();
+                    lastHashesCount = 0;
+                    lastHashRateTime = startTime;
+                    let hashesCount = 0;
+                    let nonce = 0;
+                    
+                    // Start hash rate updates
+                    hashRateInterval = setInterval(() => updateUI.updateStats(nonce, hashesCount), 100);
+                    
+                    // Target for hash
+                    const target = '0'.repeat(sanitizedData.level);
+                    let foundHash = '';
+                    
+                    try {
+                        // Batch processing for better performance
+                        const batchSize = 1000;
+                        while (!shouldCancel) {
+                            let batchPromises = [];
+                            
+                            // Create a batch of hash calculations
+                            for (let i = 0; i < batchSize; i++) {
+                                const currentNonce = nonce + i;
+                                batchPromises.push(sha256(sanitizedData.token + currentNonce).then(hash => {
+                                    if (hash.startsWith(target)) {
+                                        return { hash, nonce: currentNonce };
+                                    }
+                                    return null;
+                                }));
+                            }
+                            
+                            // Wait for the batch to complete
+                            const results = await Promise.all(batchPromises);
+                            hashesCount += batchSize;
+                            
+                            // Check if any hash in the batch matched
+                            for (const result of results) {
+                                if (result) {
+                                    foundHash = result.hash;
+                                    nonce = result.nonce;
+                                    break;
+                                }
+                            }
+                            
+                            if (foundHash || shouldCancel) break;
+                            nonce += batchSize;
+                        }
+                        
+                        if (shouldCancel) {
+                            updateUI.showError('Mineração interrompida pelo usuário');
+                        } else if (foundHash) {
+                            updateUI.showResults({
+                                ...sanitizedData,
+                                hash: foundHash,
+                                nonce: nonce
+                            });
+                        }
+                        
+                    } catch (error) {
+                        console.error('Erro:', error);
+                        updateUI.showError('Ocorreu um erro durante a mineração');
+                    } finally {
+                        clearInterval(hashRateInterval);
+                        updateUI.stopMining();
+                        elements.progressBar.style.width = '0%';
+                    }
+                },
+                
+                stop: () => {
+                    shouldCancel = true;
+                    elements.stopBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> PARANDO...';
+                },
+                
+                copyResults: () => {
+                    const resultContent = elements.resultContent.innerText;
+                    navigator.clipboard.writeText(resultContent).then(() => {
+                        const originalHtml = elements.copyBtn.innerHTML;
+                        elements.copyBtn.innerHTML = '<i class="fas fa-check mr-1"></i> Copiado!';
+                        
+                        setTimeout(() => {
+                            elements.copyBtn.innerHTML = originalHtml;
+                        }, 2000);
                     });
                 }
-                
-            } catch (error) {
-                console.error('Erro:', error);
-                showError('Ocorreu um erro durante a mineração');
-            } finally {
-                resetMiningState();
-            }
-        }
+            };
+        })();
         
-        // Stop mining function
-        function stopMining() {
-            shouldCancel = true;
-            stopBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> PARANDO...';
-        }
-        
-        // Reset mining state
-        function resetMiningState() {
-            // Clear intervals
-            clearInterval(hashRateInterval);
-            
-            // Reset mining state
-            isMining = false;
-            startBtn.classList.remove('hidden');
-            stopBtn.classList.add('hidden');
-            stopBtn.innerHTML = '<i class="fas fa-stop mr-2"></i> Parar Mineração';
-            
-            // Reset progress bar
-            progressBar.style.width = '0%';
-        }
-        
-        // Update stats display
-        function updateStats(nonce, hashesCount) {
-            // Update stats elements
-            hashesCountEl.textContent = hashesCount.toLocaleString();
-            currentNonceEl.textContent = nonce.toLocaleString();
-            
-            // Calculate hash rate every second
-            const now = Date.now();
-            if (now - lastHashRateTime >= 1000) {
-                const hashRate = Math.floor((hashesCount - lastHashesCount) / ((now - lastHashRateTime) / 1000));
-                hashRateEl.textContent = `${hashRate.toLocaleString()} H/s`;
-                lastHashesCount = hashesCount;
-                lastHashRateTime = now;
-            }
-            
-            // Update time elapsed
-            const elapsedSeconds = Math.floor((now - startTime) / 1000);
-            timeElapsedEl.textContent = `${elapsedSeconds}s`;
-            
-            // Update progress bar (shows activity but not completion)
-            const progressPercent = Math.min(100, (now - startTime) / 1000 % 100);
-            progressBar.style.width = `${progressPercent}%`;
-        }
-        
-        // Show error message
-        function showError(message) {
-            errorMessageEl.textContent = message;
-            errorContainer.classList.remove('hidden');
-        }
-        
-        // Show results
-        function showResults(data) {
-            const resultHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    <div><span class="text-cyan-400">Identidade:</span> ${data.identity}</div>
-                    <div><span class="text-cyan-400">Convite:</span> ${data.invite}</div>
-                    <div><span class="text-cyan-400">Telefone:</span> ${data.phone}</div>
-                    <div><span class="text-cyan-400">Rede:</span> ${data.network}</div>
-                    <div><span class="text-cyan-400">Token:</span> ${data.token}</div>
-                    <div><span class="text-cyan-400">Nível:</span> ${data.level}</div>
-                    <div class="md:col-span-2"><span class="text-cyan-400">Hash:</span> <span class="text-green-400 font-mono">${data.hash.substring(0, 32)}</span></div>
-                    <div class="md:col-span-2"><span class="text-cyan-400">Nonce:</span> ${data.nonce}</div>
-                </div>
-            `;
-            
-            resultContentEl.innerHTML = resultHTML;
-            resultContainer.classList.remove('hidden');
-        }
-        
-        // Copy results to clipboard
-        function copyResults() {
-            const resultContent = resultContentEl.innerText;
-            navigator.clipboard.writeText(resultContent).then(() => {
-                // Show temporary feedback
-                const originalHtml = copyBtn.innerHTML;
-                copyBtn.innerHTML = '<i class="fas fa-check mr-1"></i> Copiado!';
-                
-                setTimeout(() => {
-                    copyBtn.innerHTML = originalHtml;
-                }, 2000);
-            });
-        }
+        // Initialize miner when DOM is loaded
+        document.addEventListener('DOMContentLoaded', Miner.init);
     </script>
 
     <!-- Strategy Section -->
-    <div id="strategy" class="py-16 bg-black overflow-hidden relative content-wrapper">
+    <div id="strategy" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Estratégia de Crescimento</h2>
@@ -1416,7 +1503,7 @@
     </div>
 
     <!-- Benefits Section -->
-    <div id="benefits" class="py-16 bg-black overflow-hidden relative content-wrapper">
+    <div id="benefits" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Benefícios</h2>
@@ -1511,7 +1598,7 @@
     </div>
 
     <!-- Case Study Section -->
-    <div id="case" class="py-16 bg-gray-900 overflow-hidden relative content-wrapper">
+    <div id="case" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Transformação Real</h2>
@@ -1566,7 +1653,7 @@
     </div>
 
     <!-- Start Now Section -->
-    <div id="start" class="py-16 bg-gradient-to-b from-gray-900 to-black relative content-wrapper">
+    <div id="start" class="py-16 relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -1595,7 +1682,7 @@
     </div>
 
     <!-- Contact Section -->
-    <div id="contact" class="py-16 bg-black overflow-hidden relative content-wrapper">
+    <div id="contact" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Contato</h2>
@@ -1650,7 +1737,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800 content-wrapper">
+    <footer class="border-t border-gray-800 content-wrapper">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div class="xl:grid xl:grid-cols-3 xl:gap-8">
                 <div class="space-y-8 xl:col-span-1">
@@ -1776,138 +1863,152 @@
     </footer>
 
     <script>
-        // Enhanced mobile menu toggle with ARIA
-        function setupMobileMenu() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
+        // Utility functions module
+        const Utils = {
+            // Mobile menu toggle
+            toggleMobileMenu: () => {
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
 
-            mobileMenuButton.addEventListener('click', function() {
-                const isOpen = mobileMenu.classList.toggle('open');
-                this.setAttribute('aria-expanded', isOpen);
-                mobileMenu.setAttribute('aria-hidden', !isOpen);
-            });
-        }
-        
-        document.addEventListener('DOMContentLoaded', setupMobileMenu);
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
+                mobileMenuButton.addEventListener('click', function() {
+                    const isOpen = mobileMenu.classList.toggle('open');
+                    this.setAttribute('aria-expanded', isOpen);
+                    mobileMenu.setAttribute('aria-hidden', !isOpen);
+                });
+            },
+            
+            // Close mobile menu on link click
+            closeMobileMenuOnLinkClick: () => {
+                document.querySelectorAll('#mobile-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        document.getElementById('mobile-menu').classList.remove('open');
                     });
-                }
-            });
-        });
-
-        // Animate elements when they come into view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fadeIn');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        document.querySelectorAll('.glow-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Optimized crypto icons generation
-        function createCryptoIcons() {
-            const cryptoIcons = [
-                'fab fa-bitcoin', 'fab fa-ethereum', 'fab fa-monero', 
-                'fas fa-link', 'fas fa-coins', 'fab fa-btc',
-                'fas fa-wallet', 'fas fa-key', 'fas fa-shield-alt'
-            ];
+                });
+            },
             
-            const cryptoContainer = document.getElementById('animated-crypto-icons');
-            const fragment = document.createDocumentFragment();
-            
-            for (let i = 0; i < 12; i++) { // Reduced from 15 to 12 for performance
-                const icon = document.createElement('i');
-                const randomIcon = cryptoIcons[Math.floor(Math.random() * cryptoIcons.length)];
-                
-                icon.className = `${randomIcon} animated-crypto`;
-                icon.style.left = `${Math.random() * 100}%`;
-                icon.style.animationDuration = `${10 + Math.random() * 20}s`;
-                icon.style.animationDelay = `${Math.random() * 15}s`;
-                icon.setAttribute('aria-hidden', 'true');
-                
-                fragment.appendChild(icon);
-            }
-            
-            cryptoContainer.appendChild(fragment);
-        }
-        
-        // Load after DOM is ready
-        document.addEventListener('DOMContentLoaded', createCryptoIcons);
-        
-        // Create blockchain nodes
-        const nodesContainer = document.getElementById('blockchain-nodes');
-        
-        for (let i = 0; i < 20; i++) {
-            const node = document.createElement('div');
-            node.className = 'blockchain-node';
-            
-            // Random positioning
-            const left = Math.random() * 100;
-            const top = Math.random() * 100;
-            const delay = Math.random() * 5;
-            
-            node.style.left = `${left}%`;
-            node.style.top = `${top}%`;
-            node.style.animationDelay = `${delay}s`;
-            
-            nodesContainer.appendChild(node);
-        }
-        
-        // Binary effect on click for titles
-        document.querySelectorAll('.binary-trigger').forEach(el => {
-            el.addEventListener('click', function() {
-                const originalText = this.textContent;
-                const originalHTML = this.innerHTML;
-                const originalLength = originalText.length;
-                
-                // Store original text if not already stored
-                if (!this.dataset.original) {
-                    this.dataset.original = originalText;
-                }
-                
-                // Start animation
-                let counter = 0;
-                const steps = 10;
-                const interval = setInterval(() => {
-                    if (counter < steps) {
-                        // Generate random binary-like text
-                        let binaryText = '';
-                        for (let i = 0; i < originalLength; i++) {
-                            binaryText += Math.random() > 0.5 ? '0' : '1';
+            // Smooth scrolling for anchor links
+            smoothScroll: () => {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
                         }
-                        this.textContent = binaryText;
-                        counter++;
-                    } else {
-                        // Restore original text
-                        this.innerHTML = originalHTML;
-                        clearInterval(interval);
-                    }
-                }, 50);
-            });
+                    });
+                });
+            },
+            
+            // Animate elements when they come into view
+            animateOnScroll: () => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-fadeIn');
+                        }
+                    });
+                }, {
+                    threshold: 0.1
+                });
+
+                document.querySelectorAll('.glow-card').forEach(card => {
+                    observer.observe(card);
+                });
+            },
+            
+            // Create crypto icons
+            createCryptoIcons: () => {
+                const cryptoIcons = [
+                    'fab fa-bitcoin', 'fab fa-ethereum', 'fab fa-monero', 
+                    'fas fa-link', 'fas fa-coins', 'fab fa-btc',
+                    'fas fa-wallet', 'fas fa-key', 'fas fa-shield-alt'
+                ];
+                
+                const cryptoContainer = document.getElementById('animated-crypto-icons');
+                const fragment = document.createDocumentFragment();
+                
+                for (let i = 0; i < 12; i++) {
+                    const icon = document.createElement('i');
+                    const randomIcon = cryptoIcons[Math.floor(Math.random() * cryptoIcons.length)];
+                    
+                    icon.className = `${randomIcon} animated-crypto`;
+                    icon.style.left = `${Math.random() * 100}%`;
+                    icon.style.animationDuration = `${10 + Math.random() * 20}s`;
+                    icon.style.animationDelay = `${Math.random() * 15}s`;
+                    icon.setAttribute('aria-hidden', 'true');
+                    
+                    fragment.appendChild(icon);
+                }
+                
+                cryptoContainer.appendChild(fragment);
+            },
+            
+            // Create blockchain nodes
+            createBlockchainNodes: () => {
+                const nodesContainer = document.getElementById('blockchain-nodes');
+                
+                for (let i = 0; i < 20; i++) {
+                    const node = document.createElement('div');
+                    node.className = 'blockchain-node';
+                    
+                    const left = Math.random() * 100;
+                    const top = Math.random() * 100;
+                    const delay = Math.random() * 5;
+                    
+                    node.style.left = `${left}%`;
+                    node.style.top = `${top}%`;
+                    node.style.animationDelay = `${delay}s`;
+                    
+                    nodesContainer.appendChild(node);
+                }
+            },
+            
+            // Binary effect on click for titles
+            binaryEffect: () => {
+                document.querySelectorAll('.binary-trigger').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const originalText = this.textContent;
+                        const originalHTML = this.innerHTML;
+                        const originalLength = originalText.length;
+                        
+                        if (!this.dataset.original) {
+                            this.dataset.original = originalText;
+                        }
+                        
+                        let counter = 0;
+                        const steps = 10;
+                        const interval = setInterval(() => {
+                            if (counter < steps) {
+                                let binaryText = '';
+                                for (let i = 0; i < originalLength; i++) {
+                                    binaryText += Math.random() > 0.5 ? '0' : '1';
+                                }
+                                this.textContent = binaryText;
+                                counter++;
+                            } else {
+                                this.innerHTML = originalHTML;
+                                clearInterval(interval);
+                            }
+                        }, 50);
+                    });
+                });
+            }
+        };
+        
+        // Initialize all utilities when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            Utils.toggleMobileMenu();
+            Utils.closeMobileMenuOnLinkClick();
+            Utils.smoothScroll();
+            Utils.animateOnScroll();
+            Utils.createCryptoIcons();
+            Utils.createBlockchainNodes();
+            Utils.binaryEffect();
         });
     </script>
 </body>
