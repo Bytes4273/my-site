@@ -859,16 +859,16 @@
 
             <div class="mt-12">
                 <div class="glow-card bg-gray-900 p-8 rounded-lg relative">
-                    <div class="flex flex-col md:flex-row gap-8">
-                        <div class="md:w-1/2">
+                    <div class="grid grid-cols-1 gap-8">
+                        <div>
                             <div class="glow-card bg-gray-900 p-8 rounded-lg relative w-full">
-                                <div class="flex flex-col md:flex-row gap-8">
-                                    <div class="md:w-1/2">
+                                <div class="flex flex-col gap-8">
+                                    <div>
                                         <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-ef6a875.png/:/" 
                                              alt="Ícone de Minerador"
                                              class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-full mx-auto mb-6">
                                     </div>
-                                    <div class="md:w-1/2">
+                                    <div>
                                         <h3 class="text-xl font-bold text-white mb-4">Minerador SharkByt</h3>
                                         <p class="text-gray-300 mb-6">
                                             Nosso minerador utiliza o algoritmo SHA-256, o mesmo do Bitcoin, garantindo segurança e descentralização.
@@ -895,141 +895,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="md:w-1/2">
+                        <div>
                             <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 glow-box w-full">
                                 <div id="minerApp" class="w-full">
-                                    <!-- Progress bar -->
-                                    <div id="minerProgress" class="h-1 bg-gray-700 rounded-full mb-4">
-                                        <div class="h-full bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full" style="width: 0%"></div>
-                                    </div>
-                                    
-                                    <!-- Input Section -->
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                                        <div>
-                                            <label class="block text-sm text-cyan-400 mb-2">Identidade</label>
-                                            <input type="text" id="identity" placeholder="Seu nome ou ID" 
-                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm text-cyan-400 mb-2">Convite</label>
-                                            <input type="text" id="invite" placeholder="Código de convite" 
-                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm text-cyan-400 mb-2">Telefone</label>
-                                            <input type="text" id="phone" placeholder="(00) 00000-0000" 
-                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500" maxlength="15">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm text-cyan-400 mb-2">Rede</label>
-                                            <input type="text" id="network" placeholder="Nome da rede" 
-                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm text-cyan-400 mb-2">E-mail</label>
-                                            <input type="text" id="email" placeholder="seu@email.com" 
-                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm text-cyan-400 mb-2">Ticket</label>
-                                            <input type="text" id="data" placeholder="+Byt3$" 
-                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm text-cyan-400 mb-2">Nível de Dificuldade</label>
-                                            <select id="leadingZeros" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                                                <option value="1">Nível 1 (Fácil)</option>
-                                                <option value="2">Nível 2 (Médio)</option>
-                                                <option value="3">Nível 3 (Difícil)</option>
-                                                <option value="4" selected>Nível 4 (Muito Difícil)</option>
-                                                <option value="5">Nível 5 (Extremo)</option>
-                                                <option value="6">Nível 6 (Impossível)</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Mining Controls -->
-                                    <div class="flex flex-col space-y-4">
-                                        <button id="startMining" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:opacity-90 transition-all">
-                                            <i class="fas fa-play mr-2"></i> Iniciar Mineração
-                                        </button>
-                                        <button id="stopMining" class="hidden bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:opacity-90 transition-all">
-                                            <i class="fas fa-stop mr-2"></i> Parar Mineração
-                                        </button>
-                                    </div>
-                                    
-                                    <!-- Stats -->
-                                    <div id="statsContainer" class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 hidden">
-                                        <div class="bg-gray-800 p-3 rounded-lg">
-                                            <p class="text-xs text-cyan-400">Hashes Calculados</p>
-                                            <p id="hashesCount" class="text-lg font-bold">0</p>
-                                        </div>
-                                        <div class="bg-gray-800 p-3 rounded-lg">
-                                            <p class="text-xs text-cyan-400">Nonce Atual</p>
-                                            <p id="currentNonce" class="text-lg font-bold">0</p>
-                                        </div>
-                                        <div class="bg-gray-800 p-3 rounded-lg">
-                                            <p class="text-xs text-cyan-400">Taxa</p>
-                                            <p id="hashRate" class="text-lg font-bold">0 H/s</p>
-                                        </div>
-                                        <div class="bg-gray-800 p-3 rounded-lg">
-                                            <p class="text-xs text-cyan-400">Tempo</p>
-                                            <p id="timeElapsed" class="text-lg font-bold">0s</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Results -->
-                                    <div id="resultContainer" class="mt-6 hidden">
-                                        <div class="bg-gray-800 rounded-lg p-4">
-                                            <div class="flex justify-between items-center mb-3">
-                                                <h4 class="text-lg font-bold text-green-400">Mineração Bem-Sucedida!</h4>
-                                                <button id="copyResults" class="text-cyan-400 hover:text-cyan-300">
-                                                    <i class="fas fa-copy"></i> Copiar
-                                                </button>
-                                            </div>
-                                            <div id="resultContent" class="text-gray-300 text-sm"></div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Error -->
-                                    <div id="errorContainer" class="mt-4 hidden">
-                                        <div class="bg-red-900 border border-red-700 rounded-lg p-3">
-                                            <p id="errorMessage" class="text-red-300 text-sm"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-                            </p>
-                            <ul class="text-gray-300 space-y-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
-                                    <span>Baixo consumo de energia</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
-                                    <span>Recompensas em Byte$</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
-                                    <span>Contribuição Social</span>
-                                </li>
-                            <ul class="text-gray-300 space-y-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
-                                    <span>Integração com carteira</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="md:w-1/2">
-                            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 glow-box">
-                                <div id="minerApp">
                                     <!-- Progress bar -->
                                     <div id="minerProgress" class="h-1 bg-gray-700 rounded-full mb-4">
                                         <div class="h-full bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full" style="width: 0%"></div>
