@@ -314,48 +314,23 @@
                         <span class="ml-3 text-xl font-bold gradient-text">Byt3s</span>
                     </div>
                 </div>
-                <div class="hidden md:block">
-                    <nav aria-label="Main navigation">
-                        <div class="ml-10 flex items-baseline space-x-8">
-                            <!-- Sobre com submenu -->
-                            <div class="relative group">
-                                <button class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium flex items-center">
-                                    Sobre <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                                </button>
-                                <div class="absolute left-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
-                                    <a href="#future" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Visão</a>
-                                    <a href="#ecosystem" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Ecossistema</a>
-                                    <a href="#pillars" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Pilares</a>
-                                    <a href="#use-cases" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Casos de Uso</a>
-                                    <a href="#value-proposition" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Valor</a>
-                                    <a href="#strategy" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Roadmap</a>
-                                    <a href="#benefits" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Benefícios</a>
-                                </div>
-                            </div>
-                            
-                            <!-- Loja -->
-                            <a href="#store" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Loja</a>
-                            
-                            <!-- Outros links -->
-                            <a href="#case" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Estudo de Caso</a>
-                            <a href="#contact" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contato</a>
-                        </div>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="p-2 rounded-md text-gray-400 hover:text-white focus:outline-none">
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div>
+                    <button id="mobile-menu-button" class="p-2 rounded-md text-gray-400 hover:text-white focus:outline-none block">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
+                        <span class="sr-only">Abrir menu</span>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-black bg-opacity-90">
+        <!-- Menu mobile/desktop -->
+        <div id="mobile-menu" class="mobile-menu bg-black bg-opacity-90">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Início</a>
                 <a href="#" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Login</a>
                 <a href="#" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Cadastro</a>
+                <a href="#miner" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Minerador</a>
                 <a href="#store" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Loja</a>
                 <a href="#about" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
             </div>
@@ -837,6 +812,332 @@
         </div>
     </div>
 
+    <!-- Miner Section -->
+    <div id="miner" class="py-16 bg-black overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Minerador</h2>
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Clique [2x] em</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="Mine seus Byte$">[Gerar Byt3$]</span>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Você verá um codigo com 13 Digitos parecido como : <span class="gradient-text">"1010111100011"</span>.
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Copie esse Ticket.codigo que foi gerado por você e cole no "Ticket +Byt3$" do seu Minerador, após identificar seu "Ticket", inclua todos os dados solicitados no minerador como:
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    <span class="gradient-text">Identidade:</span> "Nome do responsavel"<br>
+                    <span class="gradient-text">Convite:</span> "2366"<br>
+                    <span class="gradient-text">Telefone:</span> "Whatsapp"<br>
+                    <span class="gradient-text">Rede:</span> "Instagram"<br>
+                    <span class="gradient-text">E-mail:</span> "Correspodência"
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    <span style="color: gold;">!!ATENÇÃO!!</span> </p>"Por Padrão - Todo Protocolo de Mineração deve ser registrado no "Nivel 4", para certificar a validação do seu Token +Byt3$"<br>
+                </p>
+                    Você verá o convite "NOCE" como também o codigo 
+                    "Hash" da sua Carteira. Cada carteira contém uma quantidade: [X]=B3S.
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    <span class="gradient-text">Byt3$:</span> "20.00B3S"<br>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    <span class="gradient-text">Hash:</span> "a50b"<br>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    <span class="gradient-text">Carteira:</span> "a50bfaf5d11407a1e02d68d51236"<br>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    <span class="gradient-text">Ticket:</span> "a50b.68d51236"<br>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Participe da rede e seja recompensado por contribuir com a segurança da blockchain. Seu Ticket +Byt3$ Premium pode conter qualquer combinação de caracteres.
+                    </p>Para coletar seus Byt3$, bastar aplicar seu Ticket em nosso site oficial ou um de nossos produtos planejados especialmente para você. 
+                </p>
+            </div>
+
+            <div class="mt-12">
+                <div class="glow-card bg-gray-900 p-8 rounded-lg relative">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="md:w-1/2">
+                            <div class="glow-card bg-gray-900 p-8 rounded-lg relative w-full">
+                                <div class="flex flex-col md:flex-row gap-8">
+                                    <div class="md:w-1/2">
+                                        <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-ef6a875.png/:/" 
+                                             alt="Ícone de Minerador"
+                                             class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-full mx-auto mb-6">
+                                    </div>
+                                    <div class="md:w-1/2">
+                                        <h3 class="text-xl font-bold text-white mb-4">Minerador SharkByt</h3>
+                                        <p class="text-gray-300 mb-6">
+                                            Nosso minerador utiliza o algoritmo SHA-256, o mesmo do Bitcoin, garantindo segurança e descentralização.
+                                        </p>
+                                        <ul class="text-gray-300 space-y-3">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                                <span>Baixo consumo de energia</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                                <span>Recompensas em Byte$</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                                <span>Contribuição Social</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                                <span>Integração com carteira</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2">
+                            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 glow-box w-full">
+                                <div id="minerApp" class="w-full">
+                                    <!-- Progress bar -->
+                                    <div id="minerProgress" class="h-1 bg-gray-700 rounded-full mb-4">
+                                        <div class="h-full bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full" style="width: 0%"></div>
+                                    </div>
+                                    
+                                    <!-- Input Section -->
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Identidade</label>
+                                            <input type="text" id="identity" placeholder="Seu nome ou ID" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Convite</label>
+                                            <input type="text" id="invite" placeholder="Código de convite" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Telefone</label>
+                                            <input type="text" id="phone" placeholder="(00) 00000-0000" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500" maxlength="15">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Rede</label>
+                                            <input type="text" id="network" placeholder="Nome da rede" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">E-mail</label>
+                                            <input type="text" id="email" placeholder="seu@email.com" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Ticket</label>
+                                            <input type="text" id="data" placeholder="+Byt3$" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Nível de Dificuldade</label>
+                                            <select id="leadingZeros" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                                <option value="1">Nível 1 (Fácil)</option>
+                                                <option value="2">Nível 2 (Médio)</option>
+                                                <option value="3">Nível 3 (Difícil)</option>
+                                                <option value="4" selected>Nível 4 (Muito Difícil)</option>
+                                                <option value="5">Nível 5 (Extremo)</option>
+                                                <option value="6">Nível 6 (Impossível)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Mining Controls -->
+                                    <div class="flex flex-col space-y-4">
+                                        <button id="startMining" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:opacity-90 transition-all">
+                                            <i class="fas fa-play mr-2"></i> Iniciar Mineração
+                                        </button>
+                                        <button id="stopMining" class="hidden bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:opacity-90 transition-all">
+                                            <i class="fas fa-stop mr-2"></i> Parar Mineração
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Stats -->
+                                    <div id="statsContainer" class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 hidden">
+                                        <div class="bg-gray-800 p-3 rounded-lg">
+                                            <p class="text-xs text-cyan-400">Hashes Calculados</p>
+                                            <p id="hashesCount" class="text-lg font-bold">0</p>
+                                        </div>
+                                        <div class="bg-gray-800 p-3 rounded-lg">
+                                            <p class="text-xs text-cyan-400">Nonce Atual</p>
+                                            <p id="currentNonce" class="text-lg font-bold">0</p>
+                                        </div>
+                                        <div class="bg-gray-800 p-3 rounded-lg">
+                                            <p class="text-xs text-cyan-400">Taxa</p>
+                                            <p id="hashRate" class="text-lg font-bold">0 H/s</p>
+                                        </div>
+                                        <div class="bg-gray-800 p-3 rounded-lg">
+                                            <p class="text-xs text-cyan-400">Tempo</p>
+                                            <p id="timeElapsed" class="text-lg font-bold">0s</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Results -->
+                                    <div id="resultContainer" class="mt-6 hidden">
+                                        <div class="bg-gray-800 rounded-lg p-4">
+                                            <div class="flex justify-between items-center mb-3">
+                                                <h4 class="text-lg font-bold text-green-400">Mineração Bem-Sucedida!</h4>
+                                                <button id="copyResults" class="text-cyan-400 hover:text-cyan-300">
+                                                    <i class="fas fa-copy"></i> Copiar
+                                                </button>
+                                            </div>
+                                            <div id="resultContent" class="text-gray-300 text-sm"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Error -->
+                                    <div id="errorContainer" class="mt-4 hidden">
+                                        <div class="bg-red-900 border border-red-700 rounded-lg p-3">
+                                            <p id="errorMessage" class="text-red-300 text-sm"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                            </p>
+                            <ul class="text-gray-300 space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                    <span>Baixo consumo de energia</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                    <span>Recompensas em Byte$</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                    <span>Contribuição Social</span>
+                                </li>
+                            <ul class="text-gray-300 space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                    <span>Integração com carteira</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="md:w-1/2">
+                            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 glow-box">
+                                <div id="minerApp">
+                                    <!-- Progress bar -->
+                                    <div id="minerProgress" class="h-1 bg-gray-700 rounded-full mb-4">
+                                        <div class="h-full bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full" style="width: 0%"></div>
+                                    </div>
+                                    
+                                    <!-- Input Section -->
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Identidade</label>
+                                            <input type="text" id="identity" placeholder="Seu nome ou ID" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Convite</label>
+                                            <input type="text" id="invite" placeholder="Código de convite" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Telefone</label>
+                                            <input type="text" id="phone" placeholder="(00) 00000-0000" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500" maxlength="15">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Rede</label>
+                                            <input type="text" id="network" placeholder="Nome da rede" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">E-mail</label>
+                                            <input type="text" id="email" placeholder="seu@email.com" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Ticket</label>
+                                            <input type="text" id="data" placeholder="+Byt3$" 
+                                                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-cyan-400 mb-2">Nível de Dificuldade</label>
+                                            <select id="leadingZeros" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                                <option value="1">Nível 1 (Fácil)</option>
+                                                <option value="2">Nível 2 (Médio)</option>
+                                                <option value="3">Nível 3 (Difícil)</option>
+                                                <option value="4" selected>Nível 4 (Muito Difícil)</option>
+                                                <option value="5">Nível 5 (Extremo)</option>
+                                                <option value="6">Nível 6 (Impossível)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Mining Controls -->
+                                    <div class="flex flex-col space-y-4">
+                                        <button id="startMining" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:opacity-90 transition-all">
+                                            <i class="fas fa-play mr-2"></i> Iniciar Mineração
+                                        </button>
+                                        <button id="stopMining" class="hidden bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:opacity-90 transition-all">
+                                            <i class="fas fa-stop mr-2"></i> Parar Mineração
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Stats -->
+                                    <div id="statsContainer" class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 hidden">
+                                        <div class="bg-gray-800 p-3 rounded-lg">
+                                            <p class="text-xs text-cyan-400">Hashes Calculados</p>
+                                            <p id="hashesCount" class="text-lg font-bold">0</p>
+                                        </div>
+                                        <div class="bg-gray-800 p-3 rounded-lg">
+                                            <p class="text-xs text-cyan-400">Nonce Atual</p>
+                                            <p id="currentNonce" class="text-lg font-bold">0</p>
+                                        </div>
+                                        <div class="bg-gray-800 p-3 rounded-lg">
+                                            <p class="text-xs text-cyan-400">Taxa</p>
+                                            <p id="hashRate" class="text-lg font-bold">0 H/s</p>
+                                        </div>
+                                        <div class="bg-gray-800 p-3 rounded-lg">
+                                            <p class="text-xs text-cyan-400">Tempo</p>
+                                            <p id="timeElapsed" class="text-lg font-bold">0s</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Results -->
+                                    <div id="resultContainer" class="mt-6 hidden">
+                                        <div class="bg-gray-800 rounded-lg p-4">
+                                            <div class="flex justify-between items-center mb-3">
+                                                <h4 class="text-lg font-bold text-green-400">Mineração Bem-Sucedida!</h4>
+                                                <button id="copyResults" class="text-cyan-400 hover:text-cyan-300">
+                                                    <i class="fas fa-copy"></i> Copiar
+                                                </button>
+                                            </div>
+                                            <div id="resultContent" class="text-gray-300 text-sm"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Error -->
+                                    <div id="errorContainer" class="mt-4 hidden">
+                                        <div class="bg-red-900 border border-red-700 rounded-lg p-3">
+                                            <p id="errorMessage" class="text-red-300 text-sm"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Store Section -->
     <div id="store" class="py-16 bg-gray-900 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -979,6 +1280,268 @@
             </div>
         </div>
     </div>
+</div>
+
+    <!-- Miner Script -->
+    <script>
+        // SHA-256 implementation
+        const sha256 = async (message) => {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        };
+
+        // Miner module
+        const Miner = (() => {
+            // Private variables
+            let isMining = false;
+            let shouldCancel = false;
+            let startTime;
+            let lastHashesCount = 0;
+            let lastHashRateTime = Date.now();
+            let hashRateInterval;
+            
+            // DOM Elements cache
+            const elements = {
+                startBtn: document.getElementById('startMining'),
+                stopBtn: document.getElementById('stopMining'),
+                progressBar: document.getElementById('minerProgress').firstElementChild,
+                statsContainer: document.getElementById('statsContainer'),
+                resultContainer: document.getElementById('resultContainer'),
+                errorContainer: document.getElementById('errorContainer'),
+                copyBtn: document.getElementById('copyResults'),
+                hashesCount: document.getElementById('hashesCount'),
+                currentNonce: document.getElementById('currentNonce'),
+                hashRate: document.getElementById('hashRate'),
+                timeElapsed: document.getElementById('timeElapsed'),
+                errorMessage: document.getElementById('errorMessage'),
+                resultContent: document.getElementById('resultContent')
+            };
+            
+            // Utility functions
+            const sanitizeInput = (input) => input.replace(/[<>{}[\]"'&]/g, '');
+            
+            const validateInputs = (data) => {
+                const errors = [];
+                
+                // Validate level
+                if (isNaN(data.level) || data.level < 1 || data.level > 6) {
+                    errors.push('O nível de mineração deve estar entre 1 e 6');
+                }
+                
+                // Validate phone (Brazilian format)
+                if (data.phone !== "Não informado" && !/^\(\d{2}\) \d{4,5}-\d{4}$/.test(data.phone)) {
+                    errors.push('Formato de telefone inválido. Use: (00) 00000-0000');
+                }
+                
+                // Validate email
+                if (data.email !== "Não informado" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+                    errors.push('Formato de e-mail inválido');
+                }
+                
+                
+                return errors;
+            };
+            
+            const updateUI = {
+                reset: () => {
+                    elements.resultContainer.classList.add('hidden');
+                    elements.errorContainer.classList.add('hidden');
+                    elements.statsContainer.classList.remove('hidden');
+                    elements.progressBar.style.width = '0%';
+                },
+                
+                startMining: () => {
+                    isMining = true;
+                    elements.startBtn.classList.add('hidden');
+                    elements.stopBtn.classList.remove('hidden');
+                },
+                
+                stopMining: () => {
+                    isMining = false;
+                    elements.startBtn.classList.remove('hidden');
+                    elements.stopBtn.classList.add('hidden');
+                    elements.stopBtn.innerHTML = '<i class="fas fa-stop mr-2"></i> Parar Mineração';
+                },
+                
+                updateStats: (nonce, hashesCount) => {
+                    elements.hashesCount.textContent = hashesCount.toLocaleString();
+                    elements.currentNonce.textContent = nonce.toLocaleString();
+                    
+                    const now = Date.now();
+                    if (now - lastHashRateTime >= 1000) {
+                        const hashRate = Math.floor((hashesCount - lastHashesCount) / ((now - lastHashRateTime) / 1000));
+                        elements.hashRate.textContent = `${hashRate.toLocaleString()} H/s`;
+                        lastHashesCount = hashesCount;
+                        lastHashRateTime = now;
+                    }
+                    
+                    const elapsedSeconds = Math.floor((now - startTime) / 1000);
+                    elements.timeElapsed.textContent = `${elapsedSeconds}s`;
+                    
+                    const progressPercent = Math.min(100, (now - startTime) / 1000 % 100);
+                    elements.progressBar.style.width = `${progressPercent}%`;
+                },
+                
+                showError: (message) => {
+                    elements.errorMessage.textContent = message;
+                    elements.errorContainer.classList.remove('hidden');
+                },
+                
+                showResults: (data) => {
+                    const resultHTML = `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div><span class="text-cyan-400">Identidade:</span> ${data.identity}</div>
+                            <div><span class="text-cyan-400">Convite:</span> ${data.invite}</div>
+                            <div><span class="text-cyan-400">Telefone:</span> ${data.phone}</div>
+                            <div><span class="text-cyan-400">Rede:</span> ${data.network}</div>
+                            <div><span class="text-cyan-400">E-mail:</span> ${data.email}</div>
+                            <div><span class="text-cyan-400">Ticket:</span> ${data.token}</div>
+                            <div><span class="text-cyan-400">Nível:</span> ${data.level}</div>
+                            <div class="md:col-span-2"><span class="text-cyan-400">Hash:</span> <span class="text-green-400 font-mono">${data.hash.substring(0, 32)}</span></div>
+                            <div class="md:col-span-2"><span class="text-cyan-400">Nonce:</span> ${data.nonce}</div>
+                        </div>
+                    `;
+                    
+                    elements.resultContent.innerHTML = resultHTML;
+                    elements.resultContainer.classList.remove('hidden');
+                }
+            };
+            
+            // Public methods
+            return {
+                init: () => {
+                    elements.startBtn.addEventListener('click', Miner.start);
+                    elements.stopBtn.addEventListener('click', Miner.stop);
+                    elements.copyBtn.addEventListener('click', Miner.copyResults);
+                },
+                
+                start: async () => {
+                    shouldCancel = false;
+                    updateUI.reset();
+                    
+                    // Get input values
+                    const data = {
+                        identity: document.getElementById('identity').value.trim() || "Anônimo",
+                        invite: document.getElementById('invite').value.trim() || "Sem convite",
+                        phone: document.getElementById('phone').value.trim() || "Não informado",
+                        network: document.getElementById('network').value.trim() || "Rede principal",
+                        email: document.getElementById('email').value.trim() || "Não informado",
+                        ticket: document.getElementById('data').value.trim() || "+Byt3$",
+                        level: parseInt(document.getElementById('leadingZeros').value) || 4
+                    };
+                    
+                    // Validate inputs
+                    const errors = validateInputs(data);
+                    if (errors.length > 0) {
+                        updateUI.showError(errors[0]);
+                        return;
+                    }
+                    
+                    // Sanitize inputs
+                    const sanitizedData = {
+                        identity: sanitizeInput(data.identity),
+                        invite: sanitizeInput(data.invite),
+                        phone: sanitizeInput(data.phone),
+                        network: sanitizeInput(data.network),
+                        email: sanitizeInput(data.email),
+                        token: data.ticket,
+                        level: data.level
+                    };
+                    
+                    updateUI.startMining();
+                    
+                    // Initialize stats
+                    startTime = Date.now();
+                    lastHashesCount = 0;
+                    lastHashRateTime = startTime;
+                    let hashesCount = 0;
+                    let nonce = 0;
+                    
+                    // Start hash rate updates
+                    hashRateInterval = setInterval(() => updateUI.updateStats(nonce, hashesCount), 100);
+                    
+                    // Target for hash
+                    const target = '0'.repeat(sanitizedData.level);
+                    let foundHash = '';
+                    
+                    try {
+                        // Batch processing for better performance
+                        const batchSize = 1000;
+                        while (!shouldCancel) {
+                            let batchPromises = [];
+                            
+                            // Create a batch of hash calculations
+                            for (let i = 0; i < batchSize; i++) {
+                                const currentNonce = nonce + i;
+                                batchPromises.push(sha256(sanitizedData.token + currentNonce).then(hash => {
+                                    if (hash.startsWith(target)) {
+                                        return { hash, nonce: currentNonce };
+                                    }
+                                    return null;
+                                }));
+                            }
+                            
+                            // Wait for the batch to complete
+                            const results = await Promise.all(batchPromises);
+                            hashesCount += batchSize;
+                            
+                            // Check if any hash in the batch matched
+                            for (const result of results) {
+                                if (result) {
+                                    foundHash = result.hash;
+                                    nonce = result.nonce;
+                                    break;
+                                }
+                            }
+                            
+                            if (foundHash || shouldCancel) break;
+                            nonce += batchSize;
+                        }
+                        
+                        if (shouldCancel) {
+                            updateUI.showError('Mineração interrompida pelo usuário');
+                        } else if (foundHash) {
+                            updateUI.showResults({
+                                ...sanitizedData,
+                                hash: foundHash,
+                                nonce: nonce
+                            });
+                        }
+                        
+                    } catch (error) {
+                        console.error('Erro:', error);
+                        updateUI.showError('Ocorreu um erro durante a mineração');
+                    } finally {
+                        clearInterval(hashRateInterval);
+                        updateUI.stopMining();
+                        elements.progressBar.style.width = '0%';
+                    }
+                },
+                
+                stop: () => {
+                    shouldCancel = true;
+                    elements.stopBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> PARANDO...';
+                },
+                
+                copyResults: () => {
+                    const resultContent = elements.resultContent.innerText;
+                    navigator.clipboard.writeText(resultContent).then(() => {
+                        const originalHtml = elements.copyBtn.innerHTML;
+                        elements.copyBtn.innerHTML = '<i class="fas fa-check mr-1"></i> Copiado!';
+                        
+                        setTimeout(() => {
+                            elements.copyBtn.innerHTML = originalHtml;
+                        }, 2000);
+                    });
+                }
+            };
+        })();
+        
+        // Initialize miner when DOM is loaded
+        document.addEventListener('DOMContentLoaded', Miner.init);
+    </script>
 
     <!-- Strategy Section -->
     <div id="strategy" class="py-16 bg-black overflow-hidden relative content-wrapper">
@@ -1393,138 +1956,152 @@
     </footer>
 
     <script>
-        // Enhanced mobile menu toggle with ARIA
-        function setupMobileMenu() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
+        // Utility functions module
+        const Utils = {
+            // Mobile menu toggle
+            toggleMobileMenu: () => {
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
 
-            mobileMenuButton.addEventListener('click', function() {
-                const isOpen = mobileMenu.classList.toggle('open');
-                this.setAttribute('aria-expanded', isOpen);
-                mobileMenu.setAttribute('aria-hidden', !isOpen);
-            });
-        }
-        
-        document.addEventListener('DOMContentLoaded', setupMobileMenu);
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
+                mobileMenuButton.addEventListener('click', function() {
+                    const isOpen = mobileMenu.classList.toggle('open');
+                    this.setAttribute('aria-expanded', isOpen);
+                    mobileMenu.setAttribute('aria-hidden', !isOpen);
+                });
+            },
+            
+            // Close mobile menu on link click
+            closeMobileMenuOnLinkClick: () => {
+                document.querySelectorAll('#mobile-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        document.getElementById('mobile-menu').classList.remove('open');
                     });
-                }
-            });
-        });
-
-        // Animate elements when they come into view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fadeIn');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        document.querySelectorAll('.glow-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Optimized crypto icons generation
-        function createCryptoIcons() {
-            const cryptoIcons = [
-                'fab fa-bitcoin', 'fab fa-ethereum', 'fab fa-monero', 
-                'fas fa-link', 'fas fa-coins', 'fab fa-btc',
-                'fas fa-wallet', 'fas fa-key', 'fas fa-shield-alt'
-            ];
+                });
+            },
             
-            const cryptoContainer = document.getElementById('animated-crypto-icons');
-            const fragment = document.createDocumentFragment();
-            
-            for (let i = 0; i < 12; i++) { // Reduced from 15 to 12 for performance
-                const icon = document.createElement('i');
-                const randomIcon = cryptoIcons[Math.floor(Math.random() * cryptoIcons.length)];
-                
-                icon.className = `${randomIcon} animated-crypto`;
-                icon.style.left = `${Math.random() * 100}%`;
-                icon.style.animationDuration = `${10 + Math.random() * 20}s`;
-                icon.style.animationDelay = `${Math.random() * 15}s`;
-                icon.setAttribute('aria-hidden', 'true');
-                
-                fragment.appendChild(icon);
-            }
-            
-            cryptoContainer.appendChild(fragment);
-        }
-        
-        // Load after DOM is ready
-        document.addEventListener('DOMContentLoaded', createCryptoIcons);
-        
-        // Create blockchain nodes
-        const nodesContainer = document.getElementById('blockchain-nodes');
-        
-        for (let i = 0; i < 20; i++) {
-            const node = document.createElement('div');
-            node.className = 'blockchain-node';
-            
-            // Random positioning
-            const left = Math.random() * 100;
-            const top = Math.random() * 100;
-            const delay = Math.random() * 5;
-            
-            node.style.left = `${left}%`;
-            node.style.top = `${top}%`;
-            node.style.animationDelay = `${delay}s`;
-            
-            nodesContainer.appendChild(node);
-        }
-        
-        // Binary effect on click for titles
-        document.querySelectorAll('.binary-trigger').forEach(el => {
-            el.addEventListener('click', function() {
-                const originalText = this.textContent;
-                const originalHTML = this.innerHTML;
-                const originalLength = originalText.length;
-                
-                // Store original text if not already stored
-                if (!this.dataset.original) {
-                    this.dataset.original = originalText;
-                }
-                
-                // Start animation
-                let counter = 0;
-                const steps = 10;
-                const interval = setInterval(() => {
-                    if (counter < steps) {
-                        // Generate random binary-like text
-                        let binaryText = '';
-                        for (let i = 0; i < originalLength; i++) {
-                            binaryText += Math.random() > 0.5 ? '0' : '1';
+            // Smooth scrolling for anchor links
+            smoothScroll: () => {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
                         }
-                        this.textContent = binaryText;
-                        counter++;
-                    } else {
-                        // Restore original text
-                        this.innerHTML = originalHTML;
-                        clearInterval(interval);
-                    }
-                }, 50);
-            });
+                    });
+                });
+            },
+            
+            // Animate elements when they come into view
+            animateOnScroll: () => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-fadeIn');
+                        }
+                    });
+                }, {
+                    threshold: 0.1
+                });
+
+                document.querySelectorAll('.glow-card').forEach(card => {
+                    observer.observe(card);
+                });
+            },
+            
+            // Create crypto icons
+            createCryptoIcons: () => {
+                const cryptoIcons = [
+                    'fab fa-bitcoin', 'fab fa-ethereum', 'fab fa-monero', 
+                    'fas fa-link', 'fas fa-coins', 'fab fa-btc',
+                    'fas fa-wallet', 'fas fa-key', 'fas fa-shield-alt'
+                ];
+                
+                const cryptoContainer = document.getElementById('animated-crypto-icons');
+                const fragment = document.createDocumentFragment();
+                
+                for (let i = 0; i < 12; i++) {
+                    const icon = document.createElement('i');
+                    const randomIcon = cryptoIcons[Math.floor(Math.random() * cryptoIcons.length)];
+                    
+                    icon.className = `${randomIcon} animated-crypto`;
+                    icon.style.left = `${Math.random() * 100}%`;
+                    icon.style.animationDuration = `${10 + Math.random() * 20}s`;
+                    icon.style.animationDelay = `${Math.random() * 15}s`;
+                    icon.setAttribute('aria-hidden', 'true');
+                    
+                    fragment.appendChild(icon);
+                }
+                
+                cryptoContainer.appendChild(fragment);
+            },
+            
+            // Create blockchain nodes
+            createBlockchainNodes: () => {
+                const nodesContainer = document.getElementById('blockchain-nodes');
+                
+                for (let i = 0; i < 20; i++) {
+                    const node = document.createElement('div');
+                    node.className = 'blockchain-node';
+                    
+                    const left = Math.random() * 100;
+                    const top = Math.random() * 100;
+                    const delay = Math.random() * 5;
+                    
+                    node.style.left = `${left}%`;
+                    node.style.top = `${top}%`;
+                    node.style.animationDelay = `${delay}s`;
+                    
+                    nodesContainer.appendChild(node);
+                }
+            },
+            
+            // Binary effect on click for titles
+            binaryEffect: () => {
+                document.querySelectorAll('.binary-trigger').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const originalText = this.textContent;
+                        const originalHTML = this.innerHTML;
+                        const originalLength = originalText.length;
+                        
+                        if (!this.dataset.original) {
+                            this.dataset.original = originalText;
+                        }
+                        
+                        let counter = 0;
+                        const steps = 10;
+                        const interval = setInterval(() => {
+                            if (counter < steps) {
+                                let binaryText = '';
+                                for (let i = 0; i < originalLength; i++) {
+                                    binaryText += Math.random() > 0.5 ? '0' : '1';
+                                }
+                                this.textContent = binaryText;
+                                counter++;
+                            } else {
+                                this.innerHTML = originalHTML;
+                                clearInterval(interval);
+                            }
+                        }, 50);
+                    });
+                });
+            }
+        };
+        
+        // Initialize all utilities when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            Utils.toggleMobileMenu();
+            Utils.closeMobileMenuOnLinkClick();
+            Utils.smoothScroll();
+            Utils.animateOnScroll();
+            Utils.createCryptoIcons();
+            Utils.createBlockchainNodes();
+            Utils.binaryEffect();
         });
     </script>
 </body>
