@@ -428,7 +428,7 @@
                         </p>
                         <div class="flex justify-between items-center">
                             <span class="price-tag">$99 USD</span>
-                            <a href="https://buy.stripe.com/5kQ3cvdsq0Z93I3fRm7Zu00" 
+                            <a href="https://bytes4273.com/f/aplicativo" 
                                target="_blank" 
                                class="buy-button px-4 py-2 rounded-md flex items-center">
                                 Comprar <i class="fas fa-credit-card ml-2"></i>
@@ -448,7 +448,7 @@
                         </p>
                         <div class="flex justify-between items-center">
                             <span class="price-tag">$129 USD</span>
-                            <a href="https://buy.stripe.com/test_00g3fV7wQ4nZ5OE144" 
+                            <a href="https://bytes4273.com/f/avatar" 
                                target="_blank" 
                                class="buy-button px-4 py-2 rounded-md flex items-center">
                                 Comprar <i class="fas fa-credit-card ml-2"></i>
@@ -468,7 +468,7 @@
                         </p>
                         <div class="flex justify-between items-center">
                             <span class="price-tag">$29 USD</span>
-                            <a href="https://buy.stripe.com/test_00g3fV7wQ4nZ5OE144" 
+                            <a href="https://bytes4273.com/f/sharkbyt" 
                                target="_blank" 
                                class="buy-button px-4 py-2 rounded-md flex items-center">
                                 Comprar <i class="fas fa-credit-card ml-2"></i>
@@ -488,7 +488,7 @@
                         </p>
                         <div class="flex justify-between items-center">
                             <span class="price-tag">$39 USD</span>
-                            <a href="https://buy.stripe.com/test_00g3fV7wQ4nZ5OE144" 
+                            <a href="https://bytes4273.com/f/blue-fund" 
                                target="_blank" 
                                class="buy-button px-4 py-2 rounded-md flex items-center">
                                 Comprar <i class="fas fa-credit-card ml-2"></i>
@@ -508,7 +508,7 @@
                         </p>
                         <div class="flex justify-between items-center">
                             <span class="price-tag">$20 USD</span>
-                            <a href="https://buy.stripe.com/test_00g3fV7wQ4nZ5OE144" 
+                            <a href="https://bytes4273.com/f/mega-block-chain" 
                                target="_blank" 
                                class="buy-button px-4 py-2 rounded-md flex items-center">
                                 Comprar <i class="fas fa-credit-card ml-2"></i>
@@ -528,7 +528,7 @@
                         </p>
                         <div class="flex justify-between items-center">
                             <span class="price-tag">$39 USD</span>
-                            <a href="https://buy.stripe.com/test_00g3fV7wQ4nZ5OE144" 
+                            <a href="https://bytes4273.com/f/j%C3%A1-imaginou-invocar-um-avatar" 
                                target="_blank" 
                                class="buy-button px-4 py-2 rounded-md flex items-center">
                                 Comprar <i class="fas fa-credit-card ml-2"></i>
@@ -548,7 +548,7 @@
                         </p>
                         <div class="flex justify-between items-center">
                             <span class="price-tag">$129 USD</span>
-                            <a href="https://buy.stripe.com/test_00g3fV7wQ4nZ5OE144" 
+                            <a href="https://bytes4273.com/f/criptoyotta" 
                                target="_blank" 
                                class="buy-button px-4 py-2 rounded-md flex items-center">
                                 Comprar <i class="fas fa-credit-card ml-2"></i>
@@ -648,7 +648,7 @@
                             Construir a infraestrutura financeira descentralizada mais inclusiva do mundo, conectando indivíduos, empresas e governos a uma rede segura, sem barreiras e livre de taxas abusivas.
                         </p>
                         <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">DAO</span>
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">ERC-20</span>
                         </div>
                     </div>
 
@@ -656,6 +656,9 @@
                         <h3 class="text-xl font-bold text-white mb-4">Visão 2035</h3>
                         <ul class="text-gray-300 space-y-2">
                             <li class="flex items-start">
+                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                <span>Plataforma de transferência de renda Grátis</span>
+                            </li>
                                 <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
                                 <span>Byt3s como padrão monetário digital global</span>
                             </li>
@@ -669,7 +672,7 @@
                             </li>
                         </ul>
                         <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">2035</span>
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Contrato</span>
                         </div>
                     </div>
                 </div>
@@ -698,14 +701,14 @@
                         </div>
                         <h3 class="text-xl font-bold text-white mb-4">Mega Block-chain</h3>
                         <p class="text-gray-300 mb-4">
-                            Seu token de valor e reputação dentro do ecossistema. Quanto mais você aprende e compartilha, mais Byt3s acumula.
+                            Estrutura que garante segurança e autonomia com integridade. Todas as transações são registradas de forma imutável e transparente.
                         </p>
                         <div class="flex items-center text-cyan-400">
-                            <span>0,8 á 1,5% de retorno mensal</span>
+                            <span>Sorteios Mensais e Anuais</span>
                             <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                         <div class="absolute bottom-4 right-4 flex items-center">
-                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">ERC-20</span>
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">PoS</span>
                         </div>
                     </div>
 
@@ -715,14 +718,14 @@
                         </div>
                         <h3 class="text-xl font-bold text-white mb-4">Byt3s</h3>
                         <p class="text-gray-300 mb-4">
-                            Estrutura que garante segurança e autonomia com integridade. Todas as transações são registradas de forma imutável e transparente.
+                            Seu token de valor e reputação dentro do ecossistema. Quanto mais você aprende e compartilha, mais Byt3s acumula.
                         </p>
                         <div class="flex items-center text-cyan-400">
-                            <span> Descentralizado</span>
+                            <span>Descentralizado</span>
                             <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                         <div class="absolute bottom-4 right-4 flex items-center">
-                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">PoS</span>
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">PoW</span>
                         </div>
                     </div>
 
@@ -739,7 +742,7 @@
                             <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                         <div class="absolute bottom-4 right-4 flex items-center">
-                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">DAO</span>
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">DaO</span>
                         </div>
                     </div>
                 </div>
@@ -767,6 +770,7 @@
                         <li>DAO global com representatividade proporcional</li>
                         <li>Legislação própria reconhecida</li>
                         <li>Transparência total nas decisões</li>
+                        <li>Descentralização</li>
                     </ul>
                 </div>
 
@@ -779,6 +783,7 @@
                         <li>Zero tributação sobre renda</li>
                         <li>Taxas mínimas para infraestrutura</li>
                         <li>Staking social para redistribuição</li>
+                        <li>Contribuição Social</li>
                     </ul>
                 </div>
 
@@ -788,7 +793,8 @@
                     </div>
                     <h3 class="text-xl font-bold text-white mb-4">Integração Total</h3>
                     <ul class="text-gray-300 space-y-2">
-                        <li>Avatares Byt3s como identidade</li>
+                        <li>Nova Identidade</li>
+                        <li>Token de Contribuição</li>
                         <li>Contratos inteligentes para serviços</li>
                         <li>Moeda para os invisiveis</li>
                     </ul>
@@ -1016,7 +1022,9 @@
                     Participe da rede e seja recompensado por contribuir com a segurança da blockchain. Seu Token +Byt3$ Premium deve conter 13 combinação de caracteres como <span class="gradient-text">" a50b.68d51236 "</span> .
                     </p>Para coletar seus <span class="gradient-text">Byt3$</span>, bastar aplicar seu Token em nosso site oficial.
                     </p>
-                    <span class="gradient-text">Clicando AQUI - RESGATAR</span> 
+                    <a href="https://bytes4273.com/ols/categories/byte" target="_blank" class="inline-block mt-4 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-lg hover:opacity-90 transition-all transform hover:scale-105">
+                        Clicando AQUI - RESGATAR
+                    </a>
                 </p>
             </div>
 
@@ -1042,12 +1050,12 @@
                             <div class="glow-card bg-gray-900 p-8 rounded-lg relative w-full">
                                 <div class="flex flex-col gap-8">
                                     <div>
-                                        <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-ef6a875.png/:/" 
+                                        <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Inscri%C3%A7%C3%B5es-NTF.BYTE%24%20(1).png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
                                              alt="Ícone de Minerador"
-                                             class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-full mx-auto mb-6">
+                                             class="w-60 h-60 md:w-32 md:h-32 object-cover rounded-full mx-auto mb-6">
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold text-white mb-4">Minerador SharkByt</h3>
+                                        <h3 class="text-xl font-bold text-white mb-4">Minerador B³$</h3>
                                         <p class="text-gray-300 mb-6">
                                             Nosso minerador utiliza o algoritmo SHA-256, o mesmo do Bitcoin, garantindo segurança e descentralização.
                                         </p>
@@ -1160,7 +1168,8 @@
                                     <div id="resultContainer" class="mt-6 hidden">
                                         <div class="bg-gray-800 rounded-lg p-4">
                                             <div class="flex justify-between items-center mb-3">
-                                                <h4 class="text-lg font-bold text-green-400">Mineração Bem-Sucedida!</h4>
+                                                <h4 class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                                                  <span class="gradient-text">Mineração Concluida!</h2>
                                                 <button id="copyResults" class="text-cyan-400 hover:text-cyan-300">
                                                     <i class="fas fa-copy"></i> Copiar
                                                 </button>
@@ -1293,6 +1302,14 @@
                 },
                 
                 showResults: (data) => {
+                    // Extrair o token Byt3$ do hash truncado de 32 caracteres
+                    const zeros = '0'.repeat(data.level);
+                    const truncatedHash = data.hash.substring(0, 32);
+                    const hashWithoutZeros = truncatedHash.substring(data.level);
+                    const first4Chars = hashWithoutZeros.substring(0, 4);
+                    const last8Chars = hashWithoutZeros.substring(hashWithoutZeros.length - 8);
+                    const byt3Token = first4Chars + last8Chars;
+                    
                     const resultHTML = `
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                             <div><span class="text-cyan-400">Identidade:</span> ${data.identity}</div>
@@ -1304,6 +1321,7 @@
                             <div><span class="text-cyan-400">Nível:</span> ${data.level}</div>
                             <div class="md:col-span-2"><span class="text-cyan-400">Hash:</span> <span class="text-green-400 font-mono">${data.hash.substring(0, 32)}</span></div>
                             <div class="md:col-span-2"><span class="text-cyan-400">Nonce:</span> ${data.nonce}</div>
+                            <div class="md:col-span-2"><span class="text-cyan-400">Token +Byt3S:</span> <span class="text-purple-400 font-mono">${byt3Token}</span></div>
                         </div>
                     `;
                     

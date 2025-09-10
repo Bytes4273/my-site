@@ -1050,12 +1050,12 @@
                             <div class="glow-card bg-gray-900 p-8 rounded-lg relative w-full">
                                 <div class="flex flex-col gap-8">
                                     <div>
-                                        <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-ef6a875.png/:/" 
+                                        <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Inscri%C3%A7%C3%B5es-NTF.BYTE%24%20(1).png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
                                              alt="Ícone de Minerador"
-                                             class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-full mx-auto mb-6">
+                                             class="w-60 h-60 md:w-32 md:h-32 object-cover rounded-full mx-auto mb-6">
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold text-white mb-4">Minerador SharkByt</h3>
+                                        <h3 class="text-xl font-bold text-white mb-4">Minerador B³$</h3>
                                         <p class="text-gray-300 mb-6">
                                             Nosso minerador utiliza o algoritmo SHA-256, o mesmo do Bitcoin, garantindo segurança e descentralização.
                                         </p>
@@ -1168,7 +1168,8 @@
                                     <div id="resultContainer" class="mt-6 hidden">
                                         <div class="bg-gray-800 rounded-lg p-4">
                                             <div class="flex justify-between items-center mb-3">
-                                                <h4 class="text-lg font-bold text-green-400">Mineração Bem-Sucedida!</h4>
+                                                <h4 class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                                                  <span class="gradient-text">Mineração Concluida!</h2>
                                                 <button id="copyResults" class="text-cyan-400 hover:text-cyan-300">
                                                     <i class="fas fa-copy"></i> Copiar
                                                 </button>
@@ -1301,6 +1302,14 @@
                 },
                 
                 showResults: (data) => {
+                    // Extrair o token Byt3$ do hash truncado de 32 caracteres
+                    const zeros = '0'.repeat(data.level);
+                    const truncatedHash = data.hash.substring(0, 32);
+                    const hashWithoutZeros = truncatedHash.substring(data.level);
+                    const first4Chars = hashWithoutZeros.substring(0, 4);
+                    const last8Chars = hashWithoutZeros.substring(hashWithoutZeros.length - 8);
+                    const byt3Token = first4Chars + last8Chars;
+                    
                     const resultHTML = `
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                             <div><span class="text-cyan-400">Identidade:</span> ${data.identity}</div>
@@ -1312,6 +1321,7 @@
                             <div><span class="text-cyan-400">Nível:</span> ${data.level}</div>
                             <div class="md:col-span-2"><span class="text-cyan-400">Hash:</span> <span class="text-green-400 font-mono">${data.hash.substring(0, 32)}</span></div>
                             <div class="md:col-span-2"><span class="text-cyan-400">Nonce:</span> ${data.nonce}</div>
+                            <div class="md:col-span-2"><span class="text-cyan-400">Token +Byt3S:</span> <span class="text-purple-400 font-mono">${byt3Token}</span></div>
                         </div>
                     `;
                     
