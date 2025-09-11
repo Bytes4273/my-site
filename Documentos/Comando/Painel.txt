@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Painel Futurista – Mega Block-chain • Blue Fund • +Byte$</title>
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              neon: {
+                pink: "#ff3bd4",
+                cyan: "#00eaff",
+                blue: "#5ab7ff",
+                violet: "#7b61ff",
+              },
+            },
+            boxShadow: {
+              neon: "0 0 12px rgba(0,234,255,.6), 0 0 24px rgba(91, 170, 255, .35)",
+              neonPink: "0 0 12px rgba(255,59,212,.6), 0 0 24px rgba(255,59,212,.35)",
+            },
+            keyframes: {
+              pulseGlow: {
+                '0%, 100%': { filter: 'drop-shadow(0 0 8px rgba(0,234,255,.65))' },
+                '50%': { filter: 'drop-shadow(0 0 16px rgba(0,234,255,.9))' },
+              },
+              scan: {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(200%)' },
+              },
+            },
+            animation: {
+              pulseGlow: 'pulseGlow 2.6s ease-in-out infinite',
+              scan: 'scan 6s linear infinite',
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background: radial-gradient(1200px 600px at 10% 0%, rgba(0,234,255,.15), transparent 55%),
+                    radial-gradient(900px 500px at 90% 10%, rgba(255,59,212,.10), transparent 60%),
+                    #030712;
+      }
+      .grid-bg::before {
+        content: "";
+        position: absolute; inset: 0; pointer-events: none; opacity: .25;
+        background-image: linear-gradient(rgba(0,234,255,.11) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(0,234,255,.11) 1px, transparent 1px);
+        background-size: 36px 36px;
+        mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+      }
+      .scanline::after {
+        content: ""; position: absolute; left: 0; right: 0; top: -100%; bottom: -100%;
+        background: linear-gradient(180deg, transparent, rgba(0,234,255,.08), transparent);
+        animation: scan 7.5s linear infinite;
+      }
+      .card {
+        background: linear-gradient(180deg, rgba(13,20,33,.8), rgba(7,12,22,.8));
+        border: 1px solid rgba(0,234,255,.18);
+        backdrop-filter: blur(6px);
+      }
+      .chip { border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03) }
+    </style>
+  </head>
+  <body class="min-h-screen text-white">
+    <!-- HEADER -->
+    <header class="relative grid-bg overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4 py-10">
+        <div class="flex items-center gap-4">
+          <div class="relative">
+            <button id="btnAdminToggle" class="relative group rounded-2xl p-[6px] bg-black/40 border border-cyan-400/50 shadow-neon hover:shadow-neonPink transition-all">
+              <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/9.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:58,h:100,cg=true" alt="Abrir painel admin" class="h-12 w-auto animate-pulseGlow"/>
+              <span class="pointer-events-none absolute -inset-1 rounded-2xl blur-lg opacity-60 bg-[conic-gradient(at_top_left,rgba(0,234,255,.35),rgba(255,59,212,.25),transparent_70%)]"></span>
+            </button>
+          </div>
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold tracking-tight">MEGA BLOCK-CHAIN</h1>
+            <p class="text-sm text-white/60 -mt-1">Visualização de saldos • Tema futurista</p>
+          </div>
+          <div class="ml-auto flex items-center gap-2">
+            <span id="authStatus" class="text-xs px-3 py-1 chip rounded-full">Visitante</span>
+            <button id="btnLogin" class="text-sm px-3 py-1 rounded-lg border border-white/20 hover:border-neon-cyan/50">Entrar</button>
+            <button id="btnLogout" class="hidden text-sm px-3 py-1 rounded-lg border border-white/20 hover:border-neon-pink/50">Sair</button>
+          </div>
+        </div>
+      </div>
+      <div class="scanline absolute inset-0 pointer-events-none"></div>
+    </header>
+
+    <!-- CONTAINER PRINCIPAL -->
+    <main class="max-w-6xl mx-auto px-4 pb-24">
+      <!-- Painel de Admin -->
+      <section id="adminPanel" class="hidden grid md:grid-cols-2 gap-6 mt-4">
+        <!-- Login Box -->
+        <div class="card rounded-2xl p-5 shadow-neon">
+          <h2 class="text-xl font-semibold mb-3">Acesso administrativo</h2>
+          <p class="text-sm text-white/70 mb-4">Apenas administradores autenticados podem aplicar novos saldos.</p>
+          <form id="formLogin" class="space-y-3">
+            <div>
+              <label class="text-sm">E-mail</label>
+              <input type="email" id="email" class="w-full mt-1 px-3 py-2 rounded-lg bg-black/40 border border-white/20" placeholder="admin@exemplo.com" />
+            </div>
+            <div>
+              <label class="text-sm">Senha</label>
+              <input type="password" id="password" class="w-full mt-1 px-3 py-2 rounded-lg bg-black/40 border border-white/20" placeholder="••••••••" />
+            </div>
+            <button type="submit" class="w-full py-2 rounded-xl bg-gradient-to-r from-neon-cyan to-neon-pink shadow-neon">Fazer login</button>
+            <p id="loginMsg" class="text-xs text-white/70"></p>
+          </form>
+        </div>
+
+        <!-- Formulário Admin -->
+        <div class="card rounded-2xl p-5 shadow-neon">
+          <h2 class="text-xl font-semibold mb-3">Aplicar valores</h2>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <h3 class="font-semibold mb-2">Consumidor</h3>
+              <div id="megaConsumerForm" class="space-y-2"></div>
+            </div>
+            <div>
+              <h3 class="font-semibold mb-2">Investidor</h3>
+              <div id="megaInvestorForm" class="space-y-2"></div>
+            </div>
+          </div>
+          <hr class="my-4 border-white/10">
+          <h3 class="font-semibold mb-2">+Byte$ – Blocos</h3>
+          <div id="byteForm" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+          <button id="btnSalvar" class="mt-4 w-full py-2 rounded-xl bg-gradient-to-r from-neon-blue to-neon-pink shadow-neon">Salvar alterações</button>
+          <p id="saveMsg" class="text-xs text-white/70 mt-2"></p>
+        </div>
+      </section>
+
+      <!-- CARDS PRINCIPAIS -->
+      <section class="mt-8 grid md:grid-cols-3 gap-6">
+        <div class="card rounded-2xl p-5 shadow-neon">
+          <h2 class="text-lg font-semibold">Mega Block-chain</h2>
+          <div class="mt-4 text-3xl font-bold" id="megaSaldo">R$ 0,00</div>
+          <p class="text-sm text-white/70">Saldo Total</p>
+          <div class="mt-1 text-sm" id="megaContrib">Contribuição: R$ 0,00</div>
+          <div class="mt-5">
+            <h3 class="font-semibold mb-2">Acumulado</h3>
+            <div class="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <ul id="megaConsumerList" class="space-y-1"></ul>
+              </div>
+              <div>
+                <ul id="megaInvestorList" class="space-y-1"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-5 shadow-neon">
+          <h2 class="text-lg font-semibold">Blue Fund</h2>
+          <div class="mt-4 text-3xl font-bold" id="blueSaldo">R$ 0,00</div>
+          <p class="text-sm text-white/70">Total</p>
+        </div>
+
+        <div class="card rounded-2xl p-5 shadow-neon">
+          <h2 class="text-lg font-semibold">+Byte$</h2>
+          <div class="mt-4 text-3xl font-bold" id="byteSaldo">R$ 0,00</div>
+          <p class="text-sm text-white/70">Saldo Byte$</p>
+          <div class="mt-1 text-sm" id="byteBlue">Saldo Blue: R$ 0,00</div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module">
+      // Firebase config e lógica JS aqui (igual no anterior)...
+    </script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+/* Estilo base */
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: linear-gradient(135deg, #0a0a1a, #0a1a2a);
+  color: #e5e5e5;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+}
+.navbar .logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #00f0ff;
+}
+.navbar .menu {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+.navbar .menu a {
+  color: #e5e5e5;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.navbar .menu a:hover {
+  color: #00f0ff;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 6rem 1rem;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.hero p {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: #ccc;
+}
+
+/* Gradiente em texto */
+.gradient-text {
+  background: linear-gradient(90deg, #00f0ff, #0085ff, #8a2be2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Botões */
+.btn-primary {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #00f0ff, #0085ff);
+  color: black;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+.btn-danger {
+  background: #e63946;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.btn-danger:hover {
+  background: #b51729;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  margin-top: 4rem;
+}

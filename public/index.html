@@ -18,7 +18,6 @@
             font-family: 'Space Grotesk', sans-serif;
             background: linear-gradient(135deg, #0a0a1a 0%, #0a1a2a 100%);
             color: #e5e5e5;
-            overflow-x: hidden;
         }
         
         .gradient-text {
@@ -206,11 +205,13 @@
         html {
             overflow-y: scroll;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         
         body {
             overflow-y: auto;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* Performance optimizations */
@@ -284,8 +285,8 @@
         <i class="fas fa-coins ethereum-icon" style="top: 70%; right: 20%; font-size: 7rem;"></i>
         
         <!-- Blockchain lines -->
-        <div class="blockchain-line" style="top: 20%; width: 120%;"></div>
-        <div class="blockchain-line" style="top: 50%; width: 150%; animation-delay: 3s;"></div>
+        <div class="blockchain-line" style="top: 20%; width: 100%;"></div>
+        <div class="blockchain-line" style="top: 50%; width: 100%; animation-delay: 3s;"></div>
         <div class="blockchain-line" style="top: 80%; width: 100%; animation-delay: 6s;"></div>
         
         <!-- Crypto grid -->
@@ -383,7 +384,9 @@
                                 <h3 class="text-lg font-medium text-white">Contratos</h3>
                                 <p class="mt-1 text-sm text-gray-300">Visualização em tempo real - Volume do ecossistema financeiro</p>
                             </div>
+
                             <!-- Blockchain verification badge -->
+
                             <div class="absolute top-4 right-4 flex items-center">
                                 <i class="fas fa-link text-cyan-400 mr-1"></i>
                                 <span class="text-xs text-cyan-400">BLOCKCHAIN VERIFIED</span>
@@ -398,166 +401,6 @@
             <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
-        </div>
-    </div>
-
-    <!-- Store Section -->
-    <div id="store" class="py-16 overflow-hidden relative content-wrapper">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Produtos & Serviços</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    <span class="gradient-text binary-trigger" data-original="Loja Byt3s">World Business</span>
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Adquira nossos produtos e serviços para potencializar sua jornada na economia digital.
-                </p>              
-            </div>
-
-            <!-- PRODUCTS GRID -->
-            <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-2a6bd99.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
-                         alt="NFT Shark Vision" 
-                         class="product-image">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Aplicação</h3>
-                        <p class="text-gray-300 mb-4">
-                            Sua corretora disruptiva de Educação Financeira, que Une Investimento e Impacto Global.
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="price-tag">$99 USD</span>
-                            <a href="https://bytes4273.com/f/aplicativo" 
-                               target="_blank" 
-                               class="buy-button px-4 py-2 rounded-md flex items-center">
-                                Comprar <i class="fas fa-credit-card ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-2a2089f.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
-                         alt="Mentoria Financeira" 
-                         class="product-image">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Avatar</h3>
-                        <p class="text-gray-300 mb-4">
-                            Em um mundo onde o capital digital se mistura à nossa rotina social e profissional, surge sua “Nova Identidade”.
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="price-tag">$129 USD</span>
-                            <a href="https://bytes4273.com/f/avatar" 
-                               target="_blank" 
-                               class="buy-button px-4 py-2 rounded-md flex items-center">
-                                Comprar <i class="fas fa-credit-card ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Original.Ntf%20(1).png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
-                         alt="Pacote Iniciante" 
-                         class="product-image">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Sharkbyt</h3>
-                        <p class="text-gray-300 mb-4">
-                            A Nova Era Tem um Guardião, nosso mascote oficial é mais do que um símbolo — é o guardião da descentralização e do capital justo. Enquanto o velho "Leão" representa o Estado que consome, o Sharkbyt é o Tubarão que protege o que é seu por direito.
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="price-tag">$29 USD</span>
-                            <a href="https://bytes4273.com/f/sharkbyt" 
-                               target="_blank" 
-                               class="buy-button px-4 py-2 rounded-md flex items-center">
-                                Comprar <i class="fas fa-credit-card ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-8e659c4.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
-                         alt="Relatório de Mercado" 
-                         class="product-image">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Blue Fund</h3>
-                        <p class="text-gray-300 mb-4">
-                            O Futuro do Impacto Social e da Segurança Empresarial. A missão é clara: fortalecer negócios, proteger patrimônio e combater a corrupção, garantindo qualidade de serviços e eficiência no uso dos recursos públicos.  
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="price-tag">$39 USD</span>
-                            <a href="https://bytes4273.com/f/blue-fund" 
-                               target="_blank" 
-                               class="buy-button px-4 py-2 rounded-md flex items-center">
-                                Comprar <i class="fas fa-credit-card ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-08bef60.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
-                         alt="Workshop Presencial" 
-                         class="product-image">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Mega Block-chain</h3>
-                        <p class="text-gray-300 mb-4">
-                            Inspirado no acúmulo da Mega Sena com a Receita Federal, o sistema Byt3$ inova com um modelo descentralizado, seguro e recompensador. Esqueça a Mega Sena, Bem-vindo à Nova Era, Mega Block-chain Financeira!
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="price-tag">$20 USD</span>
-                            <a href="https://bytes4273.com/f/mega-block-chain" 
-                               target="_blank" 
-                               class="buy-button px-4 py-2 rounded-md flex items-center">
-                                Comprar <i class="fas fa-credit-card ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/8-27b58fd.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
-                         alt="Relatório de Mercado" 
-                         class="product-image">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Byt3$</h3>
-                        <p class="text-gray-300 mb-4">
-                            Diferente de pirâmides e esquemas de risco, a Byt3$ se consolida como plataforma tecnológica, marketplace e educacional, onde cada usuário é responsável por suas escolhas e participa de uma rede que valoriza ética, descentralização e crescimento sustentável. Em vez de tentar fazer mais, que tal fazer menos, mas com mais propósito?. 
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="price-tag">$39 USD</span>
-                            <a href="https://bytes4273.com/f/j%C3%A1-imaginou-invocar-um-avatar" 
-                               target="_blank" 
-                               class="buy-button px-4 py-2 rounded-md flex items-center">
-                                Comprar <i class="fas fa-credit-card ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
-                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/7-75be233.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
-                         alt="Mentoria Financeira" 
-                         class="product-image">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Criptoyotta</h3>
-                        <p class="text-gray-300 mb-4">
-                            O Futuro da Moda Digital e Financeira, onde Moda se Encontra com Investimento Inteligente. A Criptoyotta não é apenas uma marca da Moda. É a fusão entre estilo, inovação e tecnologia blockchain, criada para transformar cada peça em um ativo digital e valor real dentro do ecossistema Byt3$
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="price-tag">$129 USD</span>
-                            <a href="https://bytes4273.com/f/criptoyotta" 
-                               target="_blank" 
-                               class="buy-button px-4 py-2 rounded-md flex items-center">
-                                Comprar <i class="fas fa-credit-card ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 
@@ -626,184 +469,88 @@
         </div>
     </div>
 
-    <!-- Future Section -->
-    <div id="future" class="py-16 overflow-hidden relative content-wrapper">
+    <!-- Value Proposition Section -->
+
+    <div id="value-proposition" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">B3$</h2>
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Proposta de Valor</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    <span class="gradient-text binary-trigger" data-original="Byt3s – O Futuro das Suas Finanças">Byt3s – O Futuro das Suas Finanças</span>
+                    <span class="gradient-text binary-trigger" data-original="O que a Byt3s oferece">O que a Byt3s oferece</span>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Uma infraestrutura socioeconômica global para inclusão, liberdade e prosperidade financeira.</p> A Byt3s é mais do que uma moeda digital — é um ecossistema econômico, social e tecnológico baseado em blockchain, com o objetivo de oferecer liberdade financeira, inclusão social e segurança patrimonial para todos.
-                    Nossa meta é transformar a Byt3s na moeda de referência global para transações digitais, integrando governança descentralizada, economia sustentável e identidade financeira universal. 
+                    Benefícios exclusivos que tornam nossa solução única no mercado financeiro digital.
                 </p>
             </div>
 
             <div class="mt-16">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
-                        <h3 class="text-xl font-bold text-white mb-4">Missão</h3>
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Transações gratuitas e instantâneas</h3>
                         <p class="text-gray-300">
-                            Construir a infraestrutura financeira descentralizada mais inclusiva do mundo, conectando indivíduos, empresas e governos a uma rede segura, sem barreiras e livre de taxas abusivas.
+                            Realize pagamentos e transferências sem taxas e com confirmação em segundos, em qualquer lugar do mundo.
                         </p>
-                        <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">ERC-20</span>
-                        </div>
                     </div>
 
                     <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
-                        <h3 class="text-xl font-bold text-white mb-4">Visão 2035</h3>
-                        <ul class="text-gray-300 space-y-2">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
-                                <span>Plataforma de transferência de renda Grátis</span>
-                            </li>
-                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
-                                <span>Byt3s como padrão monetário digital global</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
-                                <span>500 milhões de usuários ativos no mundo</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
-                                <span>20% do comércio digital brasileiro em Byt3s</span>
-                            </li>
-                        </ul>
-                        <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Contrato</span>
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-id-card"></i>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Ecosystem Section -->
-    <div id="ecosystem" class="py-16 overflow-hidden relative content-wrapper">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Ecossistema</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    Como funciona a <span class="gradient-text binary-trigger" data-original="Byt3s">Byt3s</span>
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Um painel visual onde cada decisão gera impacto em tempo real. Simples, transparente e transformador.
-                </p>
-            </div>
-
-            <div class="mt-16">
-                <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                    <div class="glow-card bg-gray-900 p-8 rounded-lg relative">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-700 text-white mb-6">
-                            <i class="fas fa-coins text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Mega Block-chain</h3>
-                        <p class="text-gray-300 mb-4">
-                            Estrutura que garante segurança e autonomia com integridade. Todas as transações são registradas de forma imutável e transparente.
+                        <h3 class="text-xl font-bold text-white mb-4">Identidade financeira universal</h3>
+                        <p class="text-gray-300">
+                            Seu ID.social único que conecta todas as suas atividades financeiras de forma segura e verificável.
                         </p>
-                        <div class="flex items-center text-cyan-400">
-                            <span>Sorteios Mensais e Anuais</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </div>
-                        <div class="absolute bottom-4 right-4 flex items-center">
-                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">PoS</span>
-                        </div>
                     </div>
 
-                    <div class="glow-card bg-gray-900 p-8 rounded-lg relative">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-800 text-white mb-6">
-                            <i class="fas fa-link text-2xl"></i>
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-shield-alt"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Byt3s</h3>
-                        <p class="text-gray-300 mb-4">
-                            Seu token de valor e reputação dentro do ecossistema. Quanto mais você aprende e compartilha, mais Byt3s acumula.
+                        <h3 class="text-xl font-bold text-white mb-4">Proteção contra inflação</h3>
+                        <p class="text-gray-300">
+                            Mecanismos econômicos inteligentes que protegem seu patrimônio da desvalorização e crises.
                         </p>
-                        <div class="flex items-center text-cyan-400">
-                            <span>Descentralizado</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </div>
-                        <div class="absolute bottom-4 right-4 flex items-center">
-                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">PoW</span>
-                        </div>
                     </div>
 
-                    <div class="glow-card bg-gray-900 p-8 rounded-lg relative">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
-                            <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Adesivos-Vestuario%20(4).png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:116,h:100,cg:true" alt="Blue Fund" class="w-12 h-12 object-contain">
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-chart-pie"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Blue Fund</h3>
-                        <p class="text-gray-300 mb-4">
-                            Parte do seu rendimento é automaticamente direcionada para causas sociais e ambientais que você escolhe apoiar.
+                        <h3 class="text-xl font-bold text-white mb-4">NFTs fracionados</h3>
+                        <p class="text-gray-300">
+                            Acesso democratizado a investimentos de alto valor através da propriedade fracionada de ativos digitais.
                         </p>
-                        <div class="flex items-center text-cyan-400">
-                            <span>Impacto mensurável</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-coins"></i>
                         </div>
-                        <div class="absolute bottom-4 right-4 flex items-center">
-                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">DaO</span>
+                        <h3 class="text-xl font-bold text-white mb-4">Renda passiva</h3>
+                        <p class="text-gray-300">
+                            Gere renda adicional participando do staking social e apoiando projetos comunitários.
+                        </p>
+                    </div>
+
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <i class="fas fa-globe"></i>
                         </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Acesso global</h3>
+                        <p class="text-gray-300">
+                            Plataforma inclusiva que funciona em qualquer lugar, mesmo sem conexão com a internet.
+                        </p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pillars Section -->
-    <div id="pillars" class="py-16 overflow-hidden relative content-wrapper">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Pilares Estratégicos</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    <span class="gradient-text binary-trigger" data-original="A Fundação do Nosso Ecossistema">A Fundação do Nosso Ecossistema</span>
-                </p>
-            </div>
-
-            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
-                        <i class="fas fa-shield-alt text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-4">Governança Imutável</h3>
-                    <ul class="text-gray-300 space-y-2">
-                        <li>DAO global com representatividade proporcional</li>
-                        <li>Legislação própria reconhecida</li>
-                        <li>Transparência total nas decisões</li>
-                        <li>Descentralização</li>
-                    </ul>
-                </div>
-
-                <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white mb-6">
-                        <i class="fas fa-recycle text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-4">Economia Cíclica</h3>
-                    <ul class="text-gray-300 space-y-2">
-                        <li>Zero tributação sobre renda</li>
-                        <li>Taxas mínimas para infraestrutura</li>
-                        <li>Staking social para redistribuição</li>
-                        <li>Contribuição Social</li>
-                    </ul>
-                </div>
-
-                <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-green-600 text-white mb-6">
-                        <i class="fas fa-user-astronaut text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-4">Integração Total</h3>
-                    <ul class="text-gray-300 space-y-2">
-                        <li>Nova Identidade</li>
-                        <li>Token de Contribuição</li>
-                        <li>Contratos inteligentes para serviços</li>
-                        <li>Moeda para os invisiveis</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Use Cases Section -->
+
     <div id="use-cases" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
@@ -900,79 +647,233 @@
         </div>
     </div>
 
-    <!-- Value Proposition Section -->
-    <div id="value-proposition" class="py-16 overflow-hidden relative content-wrapper">
+    <!-- Ecosystem Section -->
+
+    <div id="ecosystem" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Proposta de Valor</h2>
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Ecossistema</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    <span class="gradient-text binary-trigger" data-original="O que a Byt3s oferece">O que a Byt3s oferece</span>
+                    Como funciona a <span class="gradient-text binary-trigger" data-original="Byt3s">Byt3s</span>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Benefícios exclusivos que tornam nossa solução única no mercado financeiro digital.
+                    Um painel visual onde cada decisão gera impacto em tempo real. Simples, transparente e transformador.
                 </p>
             </div>
 
             <div class="mt-16">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
-                            <i class="fas fa-bolt"></i>
+                <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+                    <div class="glow-card bg-gray-900 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-700 text-white mb-6">
+                            <i class="fas fa-hammer"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Transações gratuitas e instantâneas</h3>
-                        <p class="text-gray-300">
-                            Realize pagamentos e transferências sem taxas e com confirmação em segundos, em qualquer lugar do mundo.
+                        <h3 class="text-xl font-bold text-white mb-4">Minerador</h3>
+                        <p class="text-gray-300 mb-4">
+                            Estrutura que garante segurança e autonomia com integridade. Todas as transações são registradas de forma imutável e transparente.
                         </p>
+                        <div class="flex items-center text-cyan-400">
+                            <span>Capital</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                        <div class="absolute bottom-4 right-4 flex items-center">
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">PoS</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-900 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-800 text-white mb-6">
+                            <i class="fas fa-coins text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Byt3s</h3>
+                        <p class="text-gray-300 mb-4">
+                            Seu token de valor e reputação dentro do ecossistema. Quanto mais você aprende e compartilha, mais Byt3s acumula.
+                        </p>
+                        <div class="flex items-center text-cyan-400">
+                            <span>Descentralizado</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                        <div class="absolute bottom-4 right-4 flex items-center">
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">PoW</span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card bg-gray-900 p-8 rounded-lg relative">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                            <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Adesivos-Vestuario%20(4).png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:116,h:100,cg:true" alt="Blue Fund" class="w-12 h-12 object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Blue Fund</h3>
+                        <p class="text-gray-300 mb-4">
+                            Parte do seu rendimento é automaticamente direcionada para causas sociais e ambientais que você escolhe apoiar.
+                        </p>
+                        <div class="flex items-center text-cyan-400">
+                            <span>Impacto mensurável</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                        <div class="absolute bottom-4 right-4 flex items-center">
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">DaO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pillars Section -->
+    
+    <div id="pillars" class="py-16 overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Pilares</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="A Fundação do Nosso Ecossistema">A Fundação do Nosso Ecossistema</span>
+                </p>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Governança Imutável</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>DAO global com representatividade proporcional</li>
+                        <li>Legislação própria reconhecida</li>
+                        <li>Transparência total nas decisões</li>
+                        <li>Descentralização</li>
+                    </ul>
+                </div>
+
+                <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white mb-6">
+                        <i class="fas fa-recycle text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Economia Cíclica</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>Zero tributação sobre renda</li>
+                        <li>Taxas mínimas para infraestrutura</li>
+                        <li>Staking social para redistribuição</li>
+                        <li>Contribuição Social</li>
+                    </ul>
+                </div>
+
+                <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-green-600 text-white mb-6">
+                        <i class="fas fa-user-astronaut text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Integração Total</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>Nova Identidade</li>
+                        <li>Token de Contribuição</li>
+                        <li>Contratos inteligentes para serviços</li>
+                        <li>Moeda para os invisiveis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Strategy Section -->
+
+    <div id="strategy" class="py-16 overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Estratégia de Crescimento</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="Nosso Roadmap para o Futuro">Nosso Roadmap para o Futuro</span>
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-cyan-400 to-blue-600"></div>
+                    
+                    <!-- Timeline items -->
+                    <div class="space-y-16">
+                        <div class="relative flex items-center">
+                            <div class="absolute left-1/2 transform -translate-x-1/2 h-6 w-6 rounded-full bg-cyan-400 border-4 border-gray-900"></div>
+                            <div class="ml-auto w-5/12 glow-card bg-gray-800 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-white">2025-2026</h3>
+                                <p class="text-gray-300 mt-2">
+                                    Prova de Conceito: Pilotos em 2 cidades brasileiras, parcerias com prefeituras e comerciantes locais.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center">
+                            <div class="absolute left-1/2 transform -translate-x-1/2 h-6 w-6 rounded-full bg-blue-500 border-4 border-gray-900"></div>
+                            <div class="mr-auto w-5/12 glow-card bg-gray-800 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-white">2027-2030</h3>
+                                <p class="text-gray-300 mt-2">
+                                    Escala Nacional: Integração com PIX, expansão para 10 países, adoção em e-commerce.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center">
+                            <div class="absolute left-1/2 transform -translate-x-1/2 h-6 w-6 rounded-full bg-purple-500 border-4 border-gray-900"></div>
+                            <div class="ml-auto w-5/12 glow-card bg-gray-800 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-white">2030-2035</h3>
+                                <p class="text-gray-300 mt-2">
+                                    Escala Global: Padrão monetário em países emergentes, aplicações espaciais, uso institucional.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Future Section -->
+    
+    <div id="future" class="py-16 overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">B3$</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="Byt3s – O Futuro das Suas Finanças">Byt3s – O Futuro das Suas Finanças</span>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Uma infraestrutura socioeconômica global para inclusão, liberdade e prosperidade financeira.</p> A Byt3s é mais do que uma moeda digital — é um ecossistema econômico, social e tecnológico baseado em blockchain, com o objetivo de oferecer liberdade financeira, inclusão social e segurança patrimonial para todos.
+                    Nossa meta é transformar a Byt3s na moeda de referência global para transações digitais, integrando governança descentralizada, economia sustentável e identidade financeira universal. 
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
+                        <h3 class="text-xl font-bold text-white mb-4">Missão</h3>
+                        <p class="text-gray-300">
+                            Construir a infraestrutura financeira descentralizada mais inclusiva do mundo, conectando indivíduos, empresas e governos a uma rede segura, sem barreiras e livre de taxas abusivas.
+                        </p>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">ERC-20</span>
+                        </div>
                     </div>
 
                     <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
-                            <i class="fas fa-id-card"></i>
+                        <h3 class="text-xl font-bold text-white mb-4">Visão 2035</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                <span>Plataforma de transferência de renda Grátis</span>
+                            </li>
+                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                <span>Byt3s como padrão monetário digital global</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                <span>500 milhões de usuários ativos no mundo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-cyan-400 mr-2 mt-1"></i>
+                                <span>20% do comércio digital brasileiro em Byt3s</span>
+                            </li>
+                        </ul>
+                        <div class="absolute bottom-4 right-4">
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Contrato</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Identidade financeira universal</h3>
-                        <p class="text-gray-300">
-                            Seu ID.social único que conecta todas as suas atividades financeiras de forma segura e verificável.
-                        </p>
-                    </div>
-
-                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Proteção contra inflação</h3>
-                        <p class="text-gray-300">
-                            Mecanismos econômicos inteligentes que protegem seu patrimônio da desvalorização e crises.
-                        </p>
-                    </div>
-
-                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
-                            <i class="fas fa-chart-pie"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4">NFTs fracionados</h3>
-                        <p class="text-gray-300">
-                            Acesso democratizado a investimentos de alto valor através da propriedade fracionada de ativos digitais.
-                        </p>
-                    </div>
-
-                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
-                            <i class="fas fa-coins"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Renda passiva</h3>
-                        <p class="text-gray-300">
-                            Gere renda adicional participando do staking social e apoiando projetos comunitários.
-                        </p>
-                    </div>
-
-                    <div class="glow-card bg-gray-800 p-8 rounded-lg relative">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white mb-6">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Acesso global</h3>
-                        <p class="text-gray-300">
-                            Plataforma inclusiva que funciona em qualquer lugar, mesmo sem conexão com a internet.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -980,68 +881,6 @@
     </div>
 
     <!-- Miner Section -->
-    <div id="miner" class="py-16 overflow-hidden relative content-wrapper">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Minerador</h2>
-                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Clique [2x] em</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    <span class="gradient-text binary-trigger" data-original="Mine seus Byte$">[Gerar Byt3$]</span>
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Você verá um codigo com 13 Digitos parecido como : <span class="gradient-text">"1010111100011"</span>.
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Copie esse Ticket.codigo que foi gerado por você e cole no "Ticket +Byt3$" do seu Minerador, após identificar seu "Ticket", inclua todos os dados solicitados no minerador como:
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    <span class="gradient-text">Identidade:</span> "Nome do responsavel"<br>
-                    <span class="gradient-text">Convite:</span> "2366"<br>
-                    <span class="gradient-text">Telefone:</span> "Whatsapp"<br>
-                    <span class="gradient-text">Rede:</span> "Instagram"<br>
-                    <span class="gradient-text">E-mail:</span> "Correspodência"
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    <span style="color: gold;">!!ATENÇÃO!!</span> </p>"Por Padrão - Todo Protocolo de Mineração deve ser registrado no "Nivel 4", para certificar a validação do seu Token +Byt3$"<br>
-                </p>
-                    você verá o convite "NONCE" como também o codigo 
-                    "Hash" da sua Carteira. Cada carteira contém uma quantidade: [X]=<span class="gradient-text">B3S</span>. Caso o codigo "NONCE" não seja igual ao <span class="gradient-text">" Convite: lvl-4 "</span>, Será apenas mais uma carteira "Vazia".
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    <span class="gradient-text">Byt3$:</span> "20.00B3S"<br>
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    <span class="gradient-text">Hash:</span> "a50b"<br>
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    <span class="gradient-text">Carteira:</span> "a50bfaf5d11407a1e02d68d51236"<br>
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    <span class="gradient-text">Token:</span> "a50b.68d51236"<br>
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Participe da rede e seja recompensado por contribuir com a segurança da blockchain. Seu Token +Byt3$ Premium deve conter 13 combinação de caracteres como <span class="gradient-text">" a50b.68d51236 "</span> .
-                    </p>Para coletar seus <span class="gradient-text">Byt3$</span>, bastar aplicar seu Token em nosso site oficial.
-                    </p>
-                    <a href="https://bytes4273.com/ols/categories/byte" target="_blank" class="inline-block mt-4 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-lg hover:opacity-90 transition-all transform hover:scale-105">
-                        Clicando AQUI - RESGATAR
-                    </a>
-                </p>
-            </div>
-
-            <div class="mt-16 text-center">
-                <p class="text-lg text-gray-300 mb-6">
-                    Todos os pagamentos são processados de forma segura.
-                </p>
-                <div class="flex items-center justify-center">
-                    <i class="fab fa-cc-visa text-2xl text-gray-400 mx-2"></i>
-                    <i class="fab fa-cc-mastercard text-2xl text-gray-400 mx-2"></i>
-                    <i class="fab fa-cc-amex text-2xl text-gray-400 mx-2"></i>
-                    <i class="fab fa-bitcoin text-2xl text-gray-400 mx-2"></i>
-                    <i class="fab fa-ethereum text-2xl text-gray-400 mx-2"></i>
-                </div>
-            </div>
-        </div>
-    </div>
 
             <div class="mt-12">
                 <div class="glow-card bg-gray-900 p-8 rounded-lg relative">
@@ -1081,6 +920,93 @@
                                 </div>
                             </div>
                         </div>
+
+
+    <div id="miner" class="py-16 overflow-hidden relative content-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Para participar</h2>
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Clique [2x] em</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    <span class="gradient-text binary-trigger" data-original="Mine seus Byte$">[Gerar Byt3$]</span>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Você verá um codigo com 13 Digitos parecido como : <span class="gradient-text">"1010111100011"</span>.
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Copie esse Ticket.codigo que foi gerado por você e cole no "Ticket +Byt3$" do seu Minerador, após identificar seu "Ticket", inclua todos os dados solicitados no minerador como:
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    <span class="gradient-text">Identidade:</span> "Nome do responsavel"<br>
+                    <span class="gradient-text">Convite:</span> "2366"<br>
+                    <span class="gradient-text">Telefone:</span> "Whatsapp"<br>
+                    <span class="gradient-text">Rede:</span> "Instagram"<br>
+                    <span class="gradient-text">E-mail:</span> "Correspodência"
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    <span style="color: gold;">!!ATENÇÃO!!</span> </p>"Por Padrão - Todo Protocolo de Mineração deve ser registrado no "Nivel 4", para certificar a validação do seu Token +Byt3$"<br>
+                </p>
+                    você verá o convite "NONCE" como também o codigo 
+                    "Hash" da sua Carteira. Cada carteira contém uma quantidade: [X]=<span class="gradient-text">B3S</span>. Caso o codigo "NONCE" não seja igual ao <span class="gradient-text">" Convite: lvl-4 "</span>, será apenas mais uma carteira "Vazia".
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    <span class="gradient-text">Byt3$:</span> "20.00B3S"<br>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    <span class="gradient-text">Hash:</span> "a50b"<br>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    <span class="gradient-text">Carteira:</span> "a50bfaf5d11407a1e02d68d51236"<br>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    <span class="gradient-text">Token:</span> "a50b.68d51236"<br>
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
+                    Participe da rede e seja recompensado por contribuir com a segurança da blockchain. Seu Token +Byt3$ Premium deve conter 13 combinação de caracteres como <span class="gradient-text">" a50b.68d51236 "</span> .
+                    </p>Para coletar seus <span class="gradient-text">Byt3$</span>, bastar aplicar seu Token em nosso site oficial.
+                    </p>
+                    <a href="https://bytes4273.com/ols/categories/byte" target="_blank" class="inline-block mt-4 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-lg hover:opacity-90 transition-all transform hover:scale-105">
+                        Clicando AQUI - RESGATAR
+                    </a>
+                </p>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
+                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-732e3ec.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
+                         alt="NFT Shark Vision" 
+                         class="product-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Loja Online</h3>
+                        <p class="text-gray-300 mb-4">
+                            Você não RESGATA apenas um valor em dinheiro ou produto: você entra em um ecossistema de dividendos que acompanha seu crescimento real.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="price-tag">Produtos</span>
+                            <a href="https://bytes4273.com/ols/categories/byte" 
+                               target="_blank" 
+                               class="buy-button px-4 py-2 rounded-md flex items-center">
+                                Resgatar. <i class="fas fa-credit-card ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="mt-16 text-center">
+                <p class="text-lg text-gray-300 mb-6">
+                    Todos os pagamentos são processados de forma segura.
+                </p>
+                <div class="flex items-center justify-center">
+                    <i class="fab fa-cc-visa text-2xl text-gray-400 mx-2"></i>
+                    <i class="fab fa-cc-mastercard text-2xl text-gray-400 mx-2"></i>
+                    <i class="fab fa-cc-amex text-2xl text-gray-400 mx-2"></i>
+                    <i class="fab fa-bitcoin text-2xl text-gray-400 mx-2"></i>
+                    <i class="fab fa-ethereum text-2xl text-gray-400 mx-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
                         <div>
                             <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 glow-box w-full">
                                 <div id="minerApp" class="w-full">
@@ -1464,59 +1390,8 @@
         document.addEventListener('DOMContentLoaded', Miner.init);
     </script>
 
-    <!-- Strategy Section -->
-    <div id="strategy" class="py-16 overflow-hidden relative content-wrapper">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Estratégia de Crescimento</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    <span class="gradient-text binary-trigger" data-original="Nosso Roadmap para o Futuro">Nosso Roadmap para o Futuro</span>
-                </p>
-            </div>
-
-            <div class="mt-16">
-                <div class="relative">
-                    <!-- Timeline line -->
-                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-cyan-400 to-blue-600"></div>
-                    
-                    <!-- Timeline items -->
-                    <div class="space-y-16">
-                        <div class="relative flex items-center">
-                            <div class="absolute left-1/2 transform -translate-x-1/2 h-6 w-6 rounded-full bg-cyan-400 border-4 border-gray-900"></div>
-                            <div class="ml-auto w-5/12 glow-card bg-gray-800 p-6 rounded-lg">
-                                <h3 class="text-xl font-bold text-white">2025-2026</h3>
-                                <p class="text-gray-300 mt-2">
-                                    Prova de Conceito: Pilotos em 2 cidades brasileiras, parcerias com prefeituras e comerciantes locais.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="relative flex items-center">
-                            <div class="absolute left-1/2 transform -translate-x-1/2 h-6 w-6 rounded-full bg-blue-500 border-4 border-gray-900"></div>
-                            <div class="mr-auto w-5/12 glow-card bg-gray-800 p-6 rounded-lg">
-                                <h3 class="text-xl font-bold text-white">2027-2030</h3>
-                                <p class="text-gray-300 mt-2">
-                                    Escala Nacional: Integração com PIX, expansão para 10 países, adoção em e-commerce.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="relative flex items-center">
-                            <div class="absolute left-1/2 transform -translate-x-1/2 h-6 w-6 rounded-full bg-purple-500 border-4 border-gray-900"></div>
-                            <div class="ml-auto w-5/12 glow-card bg-gray-800 p-6 rounded-lg">
-                                <h3 class="text-xl font-bold text-white">2030-2035</h3>
-                                <p class="text-gray-300 mt-2">
-                                    Escala Global: Padrão monetário em países emergentes, aplicações espaciais, uso institucional.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Benefits Section -->
+
     <div id="benefits" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
@@ -1525,7 +1400,7 @@
                     Ganhe <span class="gradient-text binary-trigger" data-original="aprendendo e compartilhando">aprendendo e compartilhando</span>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Cada ação dentro da Blue Fund gera valor real para você e para a comunidade.
+                    Cada ação dentro da Byt3$ gera valor real para você e para a comunidade BLue Fund.
                 </p>
             </div>
 
@@ -1541,12 +1416,12 @@
                             <div class="ml-4">
                                 <h3 class="text-lg font-medium text-white">Aprender = Ganhar</h3>
                                 <p class="mt-2 text-gray-300">
-                                    Complete cursos, participe de workshops e desafios educacionais para acumular Byte$ que podem be converted em benefícios real.
+                                    Complete cursos, participe de workshops e desafios educacionais para acumular Byte$ que podem ser convertidos em benefícios real.
                                 </p>
                             </div>
                         </div>
                         <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">+1,5 B3S</span>
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">+Byt3$</span>
                         </div>
                     </div>
 
@@ -1558,14 +1433,14 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <h3 class="text-lg font-medium text-white">Indicar = Mega Byt </h3>
+                                <h3 class="text-lg font-medium text-white">Indicar = Minerador </h3>
                                 <p class="mt-2 text-gray-300">
                                     Traga novos membros para o ecossistema e receba uma porcentagem de todas as transações que eles realizarem.
                                 </p>
                             </div>
                         </div>
                         <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">0,8 á 1,5%</span>
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">+Produtos</span>
                         </div>
                     </div>
 
@@ -1577,14 +1452,14 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <h3 class="text-lg font-medium text-white">Desafios = Shark Vision</h3>
+                                <h3 class="text-lg font-medium text-white">Desafio = Avatar</h3>
                                 <p class="mt-2 text-gray-300">
-                                    Participe de competições e conquiste NFTs exclusivos que valorizam com o tempo e podem ser negociados no marketplace.
+                                    Participe de competições e conquistas exclusivas que valorizam com o tempo patentiadas por Ranking.
                                 </p>
                             </div>
                         </div>
                         <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">NFT</span>
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">+Empregos</span>
                         </div>
                     </div>
 
@@ -1596,14 +1471,14 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <h3 class="text-lg font-medium text-white">Apoiar = Reputação</h3>
+                                <h3 class="text-lg font-medium text-white">Apoiar = Blue fund</h3>
                                 <p class="mt-2 text-gray-300">
-                                    Contribua com causas sociais e aumente sua reputação na comunidade, desbloqueando benefícios exclusivos e oportunidades.
+                                    Contribua com causas sociais e aumente sua reputação na comunidade, contribuir é investir.
                                 </p>
                             </div>
                         </div>
                         <div class="absolute bottom-4 right-4">
-                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">Contribuir</span>
+                            <span class="text-xs bg-gray-700 px-2 py-1 rounded-full text-cyan-400">+Contribuição</span>
                         </div>
                     </div>
                 </div>
@@ -1611,62 +1486,170 @@
         </div>
     </div>
 
-    <!-- Case Study Section -->
-    <div id="case" class="py-16 overflow-hidden relative content-wrapper">
+    <!-- Store Section -->
+
+    <div id="store" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Transformação Real</h2>
+                <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Produtos & Serviços</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    <span class="gradient-text binary-trigger" data-original="De Estagiária a Investidora">De Estagiária a Investidora</span>
+                    <span class="gradient-text binary-trigger" data-original="Loja Byt3s">World Business</span>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Conheça a história da Leticia e como os Byt3s transformaram sua vida financeira.
-                </p>
+                    Adquira nossos produtos e serviços para potencializar sua jornada na economia digital.
+                </p>              
             </div>
 
-            <div class="mt-16">
-                <div class="glow-card bg-gray-800 rounded-lg overflow-hidden">
-                    <div class="md:flex">
-                        <div class="md:flex-shrink-0">
-                            <img class="h-96 w-full object-cover md:w-80" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Letícia">
-                        </div>
-                        <div class="p-8">
-                            <div class="uppercase tracking-wide text-sm text-cyan-400 font-semibold">Estudo de Caso</div>
-                            <h3 class="mt-2 text-2xl font-semibold text-white">Leticia Rav, 24 anos</h3>
-                            <p class="mt-3 text-gray-300">
-                                Começou na Byt3s como curiosa. Baixou o painel, leu os termos e fez uma indicação. Ganhou 5 B3S. Participou de um desafio de educação financeira e ganhou 15 BT$.
-                            </p>
-                            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div class="bg-gray-700 p-4 rounded-lg">
-                                    <h4 class="text-sm font-medium text-cyan-400">Participação em Curso</h4>
-                                    <p class="mt-1 text-sm text-gray-300">Inteligência Financeira Avançada</p>
-                                </div>
-                                <div class="bg-gray-700 p-4 rounded-lg">
-                                    <h4 class="text-sm font-medium text-cyan-400">Co-criadora DAO</h4>
-                                    <p class="mt-1 text-sm text-gray-300">Educacional</p>
-                                </div>
-                                <div class="bg-gray-700 p-4 rounded-lg">
-                                    <h4 class="text-sm font-medium text-cyan-400">Lucro Mensal</h4>
-                                    <p class="mt-1 text-sm text-gray-300">R$ 30,00 via engajamento</p>
-                                </div>
-                            </div>
-                            <div class="mt-8">
-                                <blockquote class="text-white italic">
-                                    "O Byt3s me mostrou que é possível aprender sobre finanças de forma prática e ainda ser recompensada por isso. Hoje lidero meus estudos na faculdade de psicologia em Goiânia e  transformando nossa realidade em ações de valor."
-                                </blockquote>
-                            </div>
-                            <div class="mt-6 flex items-center">
-                                <i class="fas fa-wallet text-cyan-400 mr-2"></i>
-                                <span class="text-sm text-cyan-400">Carteira Metamask: 0x9C9fE6405b4FE92E9405b691922FCe3bB4523B63</span>
-                            </div>
+            <!-- PRODUCTS GRID -->
+
+            <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
+                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-2a6bd99.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
+                         alt="NFT Shark Vision" 
+                         class="product-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Aplicação</h3>
+                        <p class="text-gray-300 mb-4">
+                            Sua corretora disruptiva de Educação Financeira, que Une Investimento e Impacto Global.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="price-tag">Contrato</span>
+                            <a href="https://bytes4273.com/f/aplicativo" 
+                               target="_blank" 
+                               class="buy-button px-4 py-2 rounded-md flex items-center">
+                                Info. <i class="fas fa-credit-card ml-2"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
+
+                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
+                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-2a2089f.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
+                         alt="Mentoria Financeira" 
+                         class="product-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Avatar</h3>
+                        <p class="text-gray-300 mb-4">
+                            Em um mundo onde o capital digital se mistura à nossa rotina social e profissional, surge sua “Nova Identidade”.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="price-tag">Contrato</span>
+                            <a href="https://bytes4273.com/f/avatar" 
+                               target="_blank" 
+                               class="buy-button px-4 py-2 rounded-md flex items-center">
+                                Info. <i class="fas fa-credit-card ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
+                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Original.Ntf%20(1).png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
+                         alt="Pacote Iniciante" 
+                         class="product-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Sharkbyt</h3>
+                        <p class="text-gray-300 mb-4">
+                            A Nova Era Tem um Guardião, nosso mascote oficial é mais do que um símbolo — é o guardião da descentralização e do capital justo. Enquanto o velho "Leão" representa o Estado que consome, o Sharkbyt é o Tubarão que protege o que é seu por direito.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="price-tag">Contrato</span>
+                            <a href="https://bytes4273.com/f/sharkbyt" 
+                               target="_blank" 
+                               class="buy-button px-4 py-2 rounded-md flex items-center">
+                                Info. <i class="fas fa-credit-card ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
+                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-8e659c4.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
+                         alt="Relatório de Mercado" 
+                         class="product-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Blue Fund</h3>
+                        <p class="text-gray-300 mb-4">
+                            O Futuro do Impacto Social e da Segurança Empresarial. A missão é clara: fortalecer negócios, proteger patrimônio e combater a corrupção, garantindo qualidade de serviços e eficiência no uso dos recursos públicos.  
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="price-tag">Contrato</span>
+                            <a href="https://bytes4273.com/f/blue-fund" 
+                               target="_blank" 
+                               class="buy-button px-4 py-2 rounded-md flex items-center">
+                                Info. <i class="fas fa-credit-card ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
+                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-08bef60.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
+                         alt="Workshop Presencial" 
+                         class="product-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Mega Block-chain</h3>
+                        <p class="text-gray-300 mb-4">
+                            Inspirado no acúmulo da Mega Sena com a Receita Federal, o sistema Byt3$ inova com um modelo descentralizado, seguro e recompensador. Esqueça a Mega Sena, Bem-vindo à Nova Era, Mega Block-chain Financeira!
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="price-tag">Contrato</span>
+                            <a href="https://bytes4273.com/f/mega-block-chain" 
+                               target="_blank" 
+                               class="buy-button px-4 py-2 rounded-md flex items-center">
+                                Info. <i class="fas fa-credit-card ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
+                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/8-27b58fd.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
+                         alt="Relatório de Mercado" 
+                         class="product-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Byt3$</h3>
+                        <p class="text-gray-300 mb-4">
+                            Diferente de pirâmides e esquemas de risco, a Byt3$ se consolida como plataforma tecnológica, marketplace e educacional, onde cada usuário é responsável por suas escolhas e participa de uma rede que valoriza ética, descentralização e crescimento sustentável. Em vez de tentar fazer mais, que tal fazer menos, mas com mais propósito?. 
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="price-tag">Contrato</span>
+                            <a href="https://bytes4273.com/f/j%C3%A1-imaginou-invocar-um-avatar" 
+                               target="_blank" 
+                               class="buy-button px-4 py-2 rounded-md flex items-center">
+                                Info. <i class="fas fa-credit-card ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glow-card bg-gray-800 rounded-lg overflow-hidden">
+                    <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/7-75be233.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
+                         alt="Mentoria Financeira" 
+                         class="product-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Criptoyotta</h3>
+                        <p class="text-gray-300 mb-4">
+                            O Futuro da Moda Digital e Financeira, onde Moda se Encontra com Investimento Inteligente. A Criptoyotta não é apenas uma marca da Moda. É a fusão entre estilo, inovação e tecnologia blockchain, criada para transformar cada peça em um ativo digital e valor real dentro do ecossistema Byt3$
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="price-tag">Contrato</span>
+                            <a href="https://bytes4273.com/f/criptoyotta" 
+                               target="_blank" 
+                               class="buy-button px-4 py-2 rounded-md flex items-center">
+                                Info. <i class="fas fa-credit-card ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
     <!-- Start Now Section -->
+
     <div id="start" class="py-16 relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
@@ -1696,6 +1679,7 @@
     </div>
 
     <!-- Contact Section -->
+
     <div id="contact" class="py-16 overflow-hidden relative content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
@@ -1751,6 +1735,7 @@
     </div>
 
     <!-- Footer -->
+
     <footer class="border-t border-gray-800 content-wrapper">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div class="xl:grid xl:grid-cols-3 xl:gap-8">
@@ -1864,11 +1849,12 @@
                     O foturo só depende de você.
                 </p>
                   <p class="text-base text-gray-400 text-center">
-                    &copy; 2025 Byt3s / Todos os direitos reservados no INPI.
+                    &copy; 2025 Byt3s / Todos os direitos reservados no INPI - 937640395.
                 </p>
                 <div class="mt-4 flex justify-center space-x-4">
                     <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">ERC-20</span>
                     <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">PoS</span>
+                    <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">PoW</span>
                     <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">DAO</span>
                     <span class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400">NFT</span>
                 </div>
