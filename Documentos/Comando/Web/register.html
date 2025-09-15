@@ -365,12 +365,12 @@
                 const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                 const user = userCredential.user;
                 
-                // Salvar dados adicionais no Firestore
+                // Salvar dados adicionais no Firestore com role em minúsculo
                 await db.collection('users').doc(user.uid).set({
                     name: name,
                     email: email,
                     phone: phone,
-                    role: 'Standard', // Perfil padrão
+                    role: 'standard', // Perfil padrão em minúsculo
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                     lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
                     status: 'active'

@@ -14,9 +14,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <style>
-        .admin-only {
-            display: none;
-        }
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         
         body {
@@ -494,20 +491,16 @@
                     return;
                 }
 
-                // Verificar se usuário tem permissão de acesso
                 const userData = userDoc.data();
-                if (!userData.role || userData.role === 'Standard') {
-                    window.location.href = 'index.html';
-                    return;
-                }
-
-                const userData = userDoc.data();
+                const role = (userData.role || 'standard').toLowerCase();
+                
+                // Permitir acesso para todos os usuários autenticados
                 userName.textContent = userData.name || 'Usuário';
                 userEmail.textContent = user.email;
-                userRole.textContent = userData.role || 'Padrão';
+                userRole.textContent = role;
                 
                 // Atualizar interface com funcionalidades baseadas no role
-                updateInterfaceByRole(userData.role);
+                updateInterfaceByRole(role);
                 
                 // Carregar dados reais do usuário
                 loadUserData(user.uid);
@@ -515,7 +508,7 @@
                 console.error('Erro ao carregar dados do usuário:', error);
                 userName.textContent = 'Usuário';
                 userEmail.textContent = user.email;
-                userRole.textContent = 'Padrão';
+                userRole.textContent = 'standard';
             }
         });
 
@@ -528,12 +521,12 @@
             adminElements.forEach(el => el.classList.add('hidden'));
             premiumElements.forEach(el => el.classList.add('hidden'));
             
-            // Show elements based on role
-            if (role === 'Admin' || role === 'Premium') {
+            // Show elements based on role (trabalhando com minúsculas)
+            if (role === 'premium' || role === 'admin') {
                 premiumElements.forEach(el => el.classList.remove('hidden'));
             }
             
-            if (role === 'Admin') {
+            if (role === 'admin') {
                 adminElements.forEach(el => el.classList.remove('hidden'));
             }
         }
@@ -623,14 +616,11 @@
                     }
 
                     const userData = userDoc.data();
-                    if (!userData.role || userData.role === 'Standard') {
-                        window.location.href = 'index.html';
-                        return;
-                    }
-
+                    const role = (userData.role || 'standard').toLowerCase();
+                    
                     // Carregar dados do usuário
                     loadUserData(user.uid);
-                    updateInterfaceByRole(userData.role);
+                    updateInterfaceByRole(role);
                 } catch (error) {
                     console.error('Erro:', error);
                     showError('Erro ao carregar perfil');
