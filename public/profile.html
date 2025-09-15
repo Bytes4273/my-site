@@ -477,41 +477,30 @@
         const profit24h = document.getElementById('profit24h');
         const investmentsCount = document.getElementById('investmentsCount');
 
-        // Verificar autenticação e permissões
+        // Adicione um auth.onAuthStateChanged
         auth.onAuthStateChanged(async (user) => {
-            if (!user) {
-                window.location.href = 'login.html';
-                return;
-            }
-
-            try {
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                
-                if (!userDoc.exists) {
-                    // Se não existir perfil, redirecionar para login
-                    await auth.signOut();
-                    window.location.href = 'login.html';
-                    return;
+            if (user) {
+                try {
+                    // Carregue os dados no container "Perfil"
+                    const userDoc = await db.collection('users').doc(user.uid).get();
+                    if (userDoc.exists) {
+                        const userData = userDoc.data();
+                        userName.textContent = userData.name || 'Usuário';
+                        userEmail.textContent = user.email;
+                        userRole.textContent = userData.role || 'padrao';
+                        
+                        // Atualizar interface com funcionalidades baseadas no role
+                        updateInterfaceByRole(userData.role);
+                        
+                        // Carregar dados reais do usuário
+                        loadUserData(user.uid);
+                    }
+                } catch (error) {
+                    console.error('Erro ao carregar dados do usuário:', error);
                 }
-
-                // Verificar se usuário tem permissão de acesso
-                const userData = userDoc.data();
-
-                const userData = userDoc.data();
-                userName.textContent = userData.name || 'Usuário';
-                userEmail.textContent = user.email;
-                userRole.textContent = userData.role || 'Padrão';
-                
-                // Atualizar interface com funcionalidades baseadas no role
-                updateInterfaceByRole(userData.role);
-                
-                // Carregar dados reais do usuário
-                loadUserData(user.uid);
-            } catch (error) {
-                console.error('Erro ao carregar dados do usuário:', error);
-                userName.textContent = 'Usuário';
-                userEmail.textContent = user.email;
-                userRole.textContent = 'Padrão';
+            } else {
+                // Se não está autenticado, redirecione de volta para login.html
+                window.location.href = 'login.html';
             }
         });
 
