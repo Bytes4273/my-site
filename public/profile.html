@@ -14,9 +14,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <style>
-        .admin-only {
-            display: none;
-        }
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         
         body {
@@ -477,30 +474,41 @@
         const profit24h = document.getElementById('profit24h');
         const investmentsCount = document.getElementById('investmentsCount');
 
-        // Adicione um auth.onAuthStateChanged
+        // Verificar autenticação e permissões
         auth.onAuthStateChanged(async (user) => {
-            if (user) {
-                try {
-                    // Carregue os dados no container "Perfil"
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    if (userDoc.exists) {
-                        const userData = userDoc.data();
-                        userName.textContent = userData.name || 'Usuário';
-                        userEmail.textContent = user.email;
-                        userRole.textContent = userData.role || 'padrao';
-                        
-                        // Atualizar interface com funcionalidades baseadas no role
-                        updateInterfaceByRole(userData.role);
-                        
-                        // Carregar dados reais do usuário
-                        loadUserData(user.uid);
-                    }
-                } catch (error) {
-                    console.error('Erro ao carregar dados do usuário:', error);
-                }
-            } else {
-                // Se não está autenticado, redirecione de volta para login.html
+            if (!user) {
                 window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                
+                if (!userDoc.exists) {
+                    // Se não existir perfil, redirecionar para login
+                    await auth.signOut();
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                const userData = userDoc.data();
+                const role = (userData.role || 'standard').toLowerCase();
+                
+                // Permitir acesso para todos os usuários autenticados
+                userName.textContent = userData.name || 'Usuário';
+                userEmail.textContent = user.email;
+                userRole.textContent = role;
+                
+                // Atualizar interface com funcionalidades baseadas no role
+                updateInterfaceByRole(role);
+                
+                // Carregar dados reais do usuário
+                loadUserData(user.uid);
+            } catch (error) {
+                console.error('Erro ao carregar dados do usuário:', error);
+                userName.textContent = 'Usuário';
+                userEmail.textContent = user.email;
+                userRole.textContent = 'standard';
             }
         });
 
@@ -513,14 +521,13 @@
             adminElements.forEach(el => el.classList.add('hidden'));
             premiumElements.forEach(el => el.classList.add('hidden'));
             
-            // Show elements based on role
-            if (role === 'Premium') {
+            // Show elements based on role (trabalhando com minúsculas)
+            if (role === 'premium' || role === 'admin') {
                 premiumElements.forEach(el => el.classList.remove('hidden'));
             }
             
-            if (role === 'Admin') {
+            if (role === 'admin') {
                 adminElements.forEach(el => el.classList.remove('hidden'));
-                premiumElements.forEach(el => el.classList.remove('hidden'));
             }
         }
 
@@ -608,9 +615,12 @@
                         return;
                     }
 
+                    const userData = userDoc.data();
+                    const role = (userData.role || 'standard').toLowerCase();
+                    
                     // Carregar dados do usuário
                     loadUserData(user.uid);
-                    updateInterfaceByRole(userData.role);
+                    updateInterfaceByRole(role);
                 } catch (error) {
                     console.error('Erro:', error);
                     showError('Erro ao carregar perfil');

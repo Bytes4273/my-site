@@ -427,23 +427,32 @@
             loginButtonSpinner.classList.remove('hidden');
             
             try {
-                // Autentique o usuário com signInWithEmailAndPassword
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
                 const uid = userCredential.user.uid;
-
-                // Busque o documento no Firestore
+                
+                // Busca role no Firestore
                 const userDoc = await db.collection("users").doc(uid).get();
-                const role = userDoc.exists ? userDoc.data().role : "padrao";
-
+                let role = "standard";
+                if (userDoc.exists && userDoc.data().role) {
+                    role = userDoc.data().role.toLowerCase();
+                }
+                
+                // Atualizar lastLogin no Firestore
+                await db.collection("users").doc(uid).update({
+                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                // Log de depuração
+                console.log("Usuário logado:", uid, "Role:", role);
+                
                 showMessage(loginMessage, 'Login realizado com sucesso! Redirecionando...', true);
                 
-                // Redirecione para profile.html usando query string
+                // Redirecionar para o perfil (todos os usuários autenticados têm acesso)
                 setTimeout(() => {
-                    window.location.href = "profile.html?role=" + role.toLowerCase();
+                    window.location.href = "profile.html";
                 }, 2000);
-
             } catch (error) {
-                console.error("Erro no login:", error);
+                console.error('Erro no login:', error);
                 let errorMessage = 'Erro ao fazer login. ';
                 
                 switch (error.code) {
@@ -491,11 +500,12 @@
                 const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                 const user = userCredential.user;
                 
-                // Salvar dados adicionais no Firestore com role padrao
+                // Salvar dados adicionais no Firestore com role e status
                 await db.collection('users').doc(user.uid).set({
                     name: name,
                     email: email,
-                    role: 'padrao',
+                    role: "standard",
+                    status: "active",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                     lastLogin: firebase.firestore.FieldValue.serverTimestamp()
                 });
@@ -535,25 +545,19 @@
         // Verificar se usuário já está logado
         auth.onAuthStateChanged(async (user) => {
             if (user) {
-                // Verificar o perfil do usuário
-                const userDoc = await db.collection('users').doc(user.uid).get();
+                const uid = user.uid;
                 
-                if (userDoc.exists) {
-                    const userData = userDoc.data();
-                    const role = userData.role || "padrao";
-                    
-                    // Redirecionar baseado no perfil
-                    if (role === "Admin") {
-                        window.location.href = "profile.html?role=admin";
-                    } else if (role === "Premium") {
-                        window.location.href = "profile.html?role=premium";
-                    } else {
-                        window.location.href = "profile.html?role=padrao";
-                    }
-                } else {
-                    // Se não existir perfil, redirecionar para login
-                    auth.signOut();
+                // Busca role no Firestore
+                const userDoc = await db.collection("users").doc(uid).get();
+                let role = "standard";
+                if (userDoc.exists && userDoc.data().role) {
+                    role = userDoc.data().role.toLowerCase();
                 }
+                
+                // Log de depuração
+                console.log("Usuário já logado:", uid, "Role:", role);
+                
+                window.location.href = "profile.html";
             }
         });
     </script>
