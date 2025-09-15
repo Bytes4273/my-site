@@ -1,6 +1,6 @@
 
 
-cd D:\Byte$.App\My-site
+cd D:\ByteS.App\My-site
 
 D:
 

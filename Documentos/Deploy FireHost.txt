@@ -1,0 +1,13 @@
+
+
+cd D:\Byte$.App\My-site
+
+D:
+
+firebase login
+
+
+firebase init
+
+
+firebase deploy --only hosting

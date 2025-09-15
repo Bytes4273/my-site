@@ -331,7 +331,6 @@
                 <a href="#" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Início</a>
                 <a href="login.html" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Login</a>
                 <a href="login.html" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Cadastro</a>
-                <a href="profile.html" id="profileLink" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium hidden">Perfil</a>
                 <a href="#miner" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Minerador</a>
                 <a href="#store" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Loja</a>
                 <a href="#about" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
@@ -2013,39 +2012,6 @@
             Utils.createCryptoIcons();
             Utils.createBlockchainNodes();
             Utils.binaryEffect();
-            
-            // Verificar autenticação do usuário
-            const checkAuth = () => {
-                const firebaseConfig = {
-                    apiKey: "AIzaSyDDeeOrTUGuDeYENGo3_r1LjYD5_CTLuo8",
-                    authDomain: "site-bytfire.firebaseapp.com",
-                    projectId: "site-bytfire",
-                    storageBucket: "site-bytfire.firebasestorage.app",
-                    messagingSenderId: "38682430422",
-                    appId: "1:38682430422:web:f48e3183f62ddf72623277",
-                    measurementId: "G-E9026C5C13"
-                };
-
-                // Inicializar Firebase se ainda não estiver inicializado
-                if (!firebase.apps.length) {
-                    firebase.initializeApp(firebaseConfig);
-                }
-                
-                const auth = firebase.auth();
-                const profileLink = document.getElementById('profileLink');
-                
-                auth.onAuthStateChanged(user => {
-                    if (user) {
-                        // Usuário autenticado - mostrar link do perfil
-                        profileLink.classList.remove('hidden');
-                    } else {
-                        // Usuário não autenticado - esconder link do perfil
-                        profileLink.classList.add('hidden');
-                    }
-                });
-            };
-            
-            checkAuth();
         });
     </script>
 </body>
