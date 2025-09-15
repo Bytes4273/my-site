@@ -14,6 +14,9 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <style>
+        .admin-only {
+            display: none;
+        }
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         
         body {
@@ -474,36 +477,40 @@
         const profit24h = document.getElementById('profit24h');
         const investmentsCount = document.getElementById('investmentsCount');
 
-        // Verificar autenticação
+        // Verificar autenticação e permissões
         auth.onAuthStateChanged(async (user) => {
             if (!user) {
-                // Usuário não autenticado, redirecionar para login
                 window.location.href = 'login.html';
                 return;
             }
 
-            // Carregar dados do usuário
             try {
                 const userDoc = await db.collection('users').doc(user.uid).get();
-                if (userDoc.exists) {
-                    const userData = userDoc.data();
-                    userName.textContent = userData.name || 'Usuário';
-                    userEmail.textContent = userData.email || user.email;
-                    
-                    // Definir role padrão como "Padrão"
-                    const role = userData.role || 'Padrão';
-                    userRole.textContent = role;
-                    
-                    // Atualizar interface com base no role
-                    updateInterfaceByRole(role);
-                } else {
-                    userName.textContent = 'Usuário';
-                    userEmail.textContent = user.email;
-                    userRole.textContent = 'Padrão';
-                }
                 
-                // Simular dados financeiros
-                simulateFinancialData();
+                if (!userDoc.exists) {
+                    // Se não existir perfil, redirecionar para login
+                    await auth.signOut();
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // Verificar se usuário tem permissão de acesso
+                const userData = userDoc.data();
+                if (!userData.role || userData.role === 'Standard') {
+                    window.location.href = 'index.html';
+                    return;
+                }
+
+                const userData = userDoc.data();
+                userName.textContent = userData.name || 'Usuário';
+                userEmail.textContent = user.email;
+                userRole.textContent = userData.role || 'Padrão';
+                
+                // Atualizar interface com funcionalidades baseadas no role
+                updateInterfaceByRole(userData.role);
+                
+                // Carregar dados reais do usuário
+                loadUserData(user.uid);
             } catch (error) {
                 console.error('Erro ao carregar dados do usuário:', error);
                 userName.textContent = 'Usuário';
@@ -514,30 +521,70 @@
 
         // Função para atualizar interface com base no role
         function updateInterfaceByRole(role) {
-            // Aqui você pode adicionar lógica específica para cada tipo de usuário
-            switch(role) {
-                case 'Premium':
-                    // Adicionar funcionalidades premium
-                    break;
-                case 'Admin':
-                    // Adicionar funcionalidades administrativas
-                    break;
-                default:
-                    // Funcionalidades padrão
-                    break;
+            const adminElements = document.querySelectorAll('.admin-only');
+            const premiumElements = document.querySelectorAll('.premium-only');
+            
+            // Reset all elements
+            adminElements.forEach(el => el.classList.add('hidden'));
+            premiumElements.forEach(el => el.classList.add('hidden'));
+            
+            // Show elements based on role
+            if (role === 'Admin' || role === 'Premium') {
+                premiumElements.forEach(el => el.classList.remove('hidden'));
+            }
+            
+            if (role === 'Admin') {
+                adminElements.forEach(el => el.classList.remove('hidden'));
             }
         }
 
-        // Simular dados financeiros
-        function simulateFinancialData() {
-            // Valores simulados
-            const balance = (Math.random() * 10000 + 1000).toFixed(2);
-            const profit = (Math.random() * 500).toFixed(2);
-            const investments = Math.floor(Math.random() * 10) + 1;
-            
-            totalBalance.textContent = balance.replace('.', ',');
-            profit24h.textContent = profit.replace('.', ',');
-            investmentsCount.textContent = investments;
+        // Carregar dados reais do usuário
+        async function loadUserData(userId) {
+            try {
+                const userData = await db.collection('users').doc(userId).get();
+                const walletData = await db.collection('wallets').doc(userId).get();
+                
+                if (userData.exists) {
+                    const data = userData.data();
+                    userName.textContent = data.name || 'Usuário';
+                    userEmail.textContent = data.email || 'N/A';
+                    userRole.textContent = data.role || 'Padrão';
+                }
+                
+                if (walletData.exists) {
+                    const wallet = walletData.data();
+                    totalBalance.textContent = wallet.balance?.toFixed(2).replace('.', ',') || '0,00';
+                    profit24h.textContent = wallet.dailyProfit?.toFixed(2).replace('.', ',') || '0,00';
+                    investmentsCount.textContent = wallet.investments?.length || '0';
+                } else {
+                    // Dados padrão caso não exista carteira
+                    totalBalance.textContent = '0,00';
+                    profit24h.textContent = '0,00';
+                    investmentsCount.textContent = '0';
+                    
+                    // Criar registro de carteira padrão
+                    await db.collection('wallets').doc(userId).set({
+                        balance: 0,
+                        dailyProfit: 0,
+                        investments: [],
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+                showError('Erro ao carregar dados da carteira');
+            }
+        }
+
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+                setTimeout(() => {
+                    errorElement.classList.add('hidden');
+                }, 5000);
+            }
         }
 
         // Logout
@@ -545,11 +592,53 @@
             e.preventDefault();
             try {
                 await auth.signOut();
-                window.location.href = 'index.html';
+                window.location.href = 'login.html';
             } catch (error) {
                 console.error('Erro ao fazer logout:', error);
+                showError('Erro ao fazer logout');
             }
         });
+        // Verificar se o DOM está carregado
+        document.addEventListener('DOMContentLoaded', () => {
+            // Garantir que todos os elementos necessários existam
+            if (!auth || !db) {
+                showError('Erro na inicialização do Firebase');
+                return;
+            }
+
+            // Verificar se usuário está autenticado
+            auth.onAuthStateChanged(async (user) => {
+                if (!user) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                try {
+                    const userDoc = await db.collection('users').doc(user.uid).get();
+                    
+                    if (!userDoc.exists) {
+                        await auth.signOut();
+                        window.location.href = 'login.html';
+                        return;
+                    }
+
+                    const userData = userDoc.data();
+                    if (!userData.role || userData.role === 'Standard') {
+                        window.location.href = 'index.html';
+                        return;
+                    }
+
+                    // Carregar dados do usuário
+                    loadUserData(user.uid);
+                    updateInterfaceByRole(userData.role);
+                } catch (error) {
+                    console.error('Erro:', error);
+                    showError('Erro ao carregar perfil');
+                }
+            });
+        });
     </script>
+    <!-- Adicionando elemento para mensagens de erro -->
+    <div id="errorMessage" class="fixed bottom-4 right-4 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg hidden z-50 max-w-md"></div>
 </body>
 </html>
