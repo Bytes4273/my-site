@@ -496,10 +496,6 @@
 
                 // Verificar se usuário tem permissão de acesso
                 const userData = userDoc.data();
-                if (!userData.role || userData.role === 'Standard') {
-                    window.location.href = 'index.html';
-                    return;
-                }
 
                 const userData = userDoc.data();
                 userName.textContent = userData.name || 'Usuário';
@@ -529,12 +525,13 @@
             premiumElements.forEach(el => el.classList.add('hidden'));
             
             // Show elements based on role
-            if (role === 'Admin' || role === 'Premium') {
+            if (role === 'Premium') {
                 premiumElements.forEach(el => el.classList.remove('hidden'));
             }
             
             if (role === 'Admin') {
                 adminElements.forEach(el => el.classList.remove('hidden'));
+                premiumElements.forEach(el => el.classList.remove('hidden'));
             }
         }
 
@@ -619,12 +616,6 @@
                     if (!userDoc.exists) {
                         await auth.signOut();
                         window.location.href = 'login.html';
-                        return;
-                    }
-
-                    const userData = userDoc.data();
-                    if (!userData.role || userData.role === 'Standard') {
-                        window.location.href = 'index.html';
                         return;
                     }
 

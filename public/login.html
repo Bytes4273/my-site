@@ -366,7 +366,7 @@
             projectId: "site-bytfire",
             storageBucket: "site-bytfire.firebasestorage.app",
             messagingSenderId: "38682430422",
-            appId: "1:38682430422:web:f48e3183f62ddf72623277"
+            appId: "1:38682430422:web:f48e3183f62ddf72623277",
             measurementId: "G-E9026C5C13"
         };
 
@@ -544,12 +544,7 @@
                 const userDoc = await db.collection('users').doc(user.uid).get();
                 
                 if (userDoc.exists) {
-                    const userData = userDoc.data();
-                    if (userData.role === 'Admin') {
-                        window.location.href = 'profile.html';
-                    } else {
-                        window.location.href = 'index.html';
-                    }
+                    window.location.href = 'profile.html';
                 } else {
                     // Se não existir perfil, redirecionar para login
                     auth.signOut();
