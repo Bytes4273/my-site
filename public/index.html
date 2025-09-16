@@ -6,7 +6,7 @@
     <meta name="description" content="Byt3s 4273 - Ecossistema que une tecnologia blockchain, educação financeira e impacto social em um modelo revolucionário de valor compartilhado">
     <meta name="keywords" content="Byt3s, criptomoeda, blockchain, economia digital, finanças">
     <meta name="theme-color" content="#0a0a0a">
-    <title>Byt3s 4273 | A Nova Dimensão da Economia Digital Consciente</title>
+    <title>Byt3s 4273 | My-bytsite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -2034,10 +2034,25 @@
                 const auth = firebase.auth();
                 const profileLink = document.getElementById('profileLink');
                 
-                auth.onAuthStateChanged(user => {
+                auth.onAuthStateChanged(async (user) => {
                     if (user) {
-                        // Usuário autenticado - mostrar link do perfil
-                        profileLink.classList.remove('hidden');
+                        // Verificar o perfil do usuário no Firestore
+                        try {
+                            const db = firebase.firestore();
+                            const userDoc = await db.collection('users').doc(user.uid).get();
+                            
+                            if (userDoc.exists) {
+                                const userData = userDoc.data();
+                                // Usuário autenticado - mostrar link do perfil
+                                profileLink.classList.remove('hidden');
+                            } else {
+                                // Se não existir perfil, esconder link do perfil
+                                profileLink.classList.add('hidden');
+                            }
+                        } catch (error) {
+                            console.error('Erro ao verificar perfil:', error);
+                            profileLink.classList.add('hidden');
+                        }
                     } else {
                         // Usuário não autenticado - esconder link do perfil
                         profileLink.classList.add('hidden');

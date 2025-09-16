@@ -428,28 +428,25 @@
             
             try {
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                const uid = userCredential.user.uid;
+                const user = userCredential.user;
                 
-                // Busca role no Firestore
-                const userDoc = await db.collection("users").doc(uid).get();
-                let role = "standard";
-                if (userDoc.exists && userDoc.data().role) {
-                    role = userDoc.data().role.toLowerCase();
+                // Verificar o perfil do usuário no Firestore
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                
+                if (!userDoc.exists) {
+                    throw new Error('Perfil de usuário não encontrado');
                 }
                 
-                // Atualizar lastLogin no Firestore
-                await db.collection("users").doc(uid).update({
-                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                
-                // Log de depuração
-                console.log("Usuário logado:", uid, "Role:", role);
-                
+                const userData = userDoc.data();
                 showMessage(loginMessage, 'Login realizado com sucesso! Redirecionando...', true);
                 
-                // Redirecionar para o perfil (todos os usuários autenticados têm acesso)
+                // Redirecionar baseado no perfil
                 setTimeout(() => {
-                    window.location.href = "profile.html";
+                    if (userData.role === 'admin') {
+                        window.location.href = 'profile.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
                 }, 2000);
             } catch (error) {
                 console.error('Erro no login:', error);
@@ -500,12 +497,10 @@
                 const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                 const user = userCredential.user;
                 
-                // Salvar dados adicionais no Firestore com role e status
+                // Salvar dados adicionais no Firestore
                 await db.collection('users').doc(user.uid).set({
                     name: name,
                     email: email,
-                    role: "standard",
-                    status: "active",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                     lastLogin: firebase.firestore.FieldValue.serverTimestamp()
                 });
@@ -545,19 +540,20 @@
         // Verificar se usuário já está logado
         auth.onAuthStateChanged(async (user) => {
             if (user) {
-                const uid = user.uid;
+                // Verificar o perfil do usuário
+                const userDoc = await db.collection('users').doc(user.uid).get();
                 
-                // Busca role no Firestore
-                const userDoc = await db.collection("users").doc(uid).get();
-                let role = "standard";
-                if (userDoc.exists && userDoc.data().role) {
-                    role = userDoc.data().role.toLowerCase();
+                if (userDoc.exists) {
+                    const userData = userDoc.data();
+                    if (userData.role === 'admin') {
+                        window.location.href = 'profile.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                } else {
+                    // Se não existir perfil, redirecionar para login
+                    auth.signOut();
                 }
-                
-                // Log de depuração
-                console.log("Usuário já logado:", uid, "Role:", role);
-                
-                window.location.href = "profile.html";
             }
         });
     </script>

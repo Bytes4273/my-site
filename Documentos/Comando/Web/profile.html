@@ -14,6 +14,9 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <style>
+        .admin-only {
+            display: none;
+        }
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         
         body {
@@ -474,44 +477,6 @@
         const profit24h = document.getElementById('profit24h');
         const investmentsCount = document.getElementById('investmentsCount');
 
-        // Verificar autenticação e permissões
-        auth.onAuthStateChanged(async (user) => {
-            if (!user) {
-                window.location.href = 'login.html';
-                return;
-            }
-
-            try {
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                
-                if (!userDoc.exists) {
-                    // Se não existir perfil, redirecionar para login
-                    await auth.signOut();
-                    window.location.href = 'login.html';
-                    return;
-                }
-
-                const userData = userDoc.data();
-                const role = (userData.role || 'standard').toLowerCase();
-                
-                // Permitir acesso para todos os usuários autenticados
-                userName.textContent = userData.name || 'Usuário';
-                userEmail.textContent = user.email;
-                userRole.textContent = role;
-                
-                // Atualizar interface com funcionalidades baseadas no role
-                updateInterfaceByRole(role);
-                
-                // Carregar dados reais do usuário
-                loadUserData(user.uid);
-            } catch (error) {
-                console.error('Erro ao carregar dados do usuário:', error);
-                userName.textContent = 'Usuário';
-                userEmail.textContent = user.email;
-                userRole.textContent = 'standard';
-            }
-        });
-
         // Função para atualizar interface com base no role
         function updateInterfaceByRole(role) {
             const adminElements = document.querySelectorAll('.admin-only');
@@ -521,12 +486,12 @@
             adminElements.forEach(el => el.classList.add('hidden'));
             premiumElements.forEach(el => el.classList.add('hidden'));
             
-            // Show elements based on role (trabalhando com minúsculas)
-            if (role === 'premium' || role === 'admin') {
+            // Show elements based on role
+            if (role === 'Admin' || role === 'Premium') {
                 premiumElements.forEach(el => el.classList.remove('hidden'));
             }
             
-            if (role === 'admin') {
+            if (role === 'Admin') {
                 adminElements.forEach(el => el.classList.remove('hidden'));
             }
         }
@@ -600,6 +565,7 @@
             }
 
             // Verificar se usuário está autenticado
+
             auth.onAuthStateChanged(async (user) => {
                 if (!user) {
                     window.location.href = 'login.html';
@@ -616,11 +582,29 @@
                     }
 
                     const userData = userDoc.data();
-                    const role = (userData.role || 'standard').toLowerCase();
-                    
+                    if (userData.role === 'admin') {
+                        // Carregar dados do usuário admin
+                        loadUserData(user.uid);
+                        updateInterfaceByRole(userData.role);
+                        // Redireciona para a página principal se já não estiver lá
+                        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+                            // Usuário já está na página principal ou em uma rota raiz
+                            // Não precisa redirecionar
+                        } else {
+                            // Para outros papéis (ou se não houver papel), redirecione para a página de login
+                            // ou outra página padrão, garantindo que o admin não seja redirecionado
+                            await auth.signOut();
+                            window.location.href = 'index.html';
+                            return;
+                        }
+                    } catch (error) {
+                        console.error('Erro:', error);
+                        showError('Erro ao carregar perfil');
+                    }
+
                     // Carregar dados do usuário
                     loadUserData(user.uid);
-                    updateInterfaceByRole(role);
+                    updateInterfaceByRole(userData.role);
                 } catch (error) {
                     console.error('Erro:', error);
                     showError('Erro ao carregar perfil');
@@ -628,6 +612,7 @@
             });
         });
     </script>
+
     <!-- Adicionando elemento para mensagens de erro -->
     <div id="errorMessage" class="fixed bottom-4 right-4 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg hidden z-50 max-w-md"></div>
 </body>

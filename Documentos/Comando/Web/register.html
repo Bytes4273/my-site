@@ -106,14 +106,18 @@
         
         .input-icon {
             position: absolute;
-            left: 12px;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: #00f0ff;
         }
         
-        .input-with-icon {
-            padding-left: 40px;
+        .input-group {
+            position: relative;
+        }
+        
+        .form-input {
+            padding-right: 40px;
         }
     </style>
 </head>
@@ -166,66 +170,66 @@
                 
                 <form id="registerForm" class="space-y-6">
                     <div class="input-group">
-                        <i class="fas fa-user input-icon"></i>
                         <input
                             id="registerName"
                             name="name"
                             type="text"
                             required
-                            class="form-input w-full px-4 py-3 rounded-md input-with-icon"
+                            class="form-input w-full px-4 py-3 rounded-md pr-10"
                             placeholder="Nome completo"
                         >
+                        <i class="fas fa-user input-icon"></i>
                     </div>
                     
                     <div class="input-group">
-                        <i class="fas fa-envelope input-icon"></i>
                         <input
                             id="registerEmail"
                             name="email"
                             type="email"
                             required
-                            class="form-input w-full px-4 py-3 rounded-md input-with-icon"
+                            class="form-input w-full px-4 py-3 rounded-md pr-10"
                             placeholder="Seu melhor e-mail"
                         >
+                        <i class="fas fa-envelope input-icon"></i>
                     </div>
                     
                     <div class="input-group">
-                        <i class="fas fa-phone input-icon"></i>
                         <input
                             id="registerPhone"
                             name="phone"
                             type="tel"
                             required
-                            class="form-input w-full px-4 py-3 rounded-md input-with-icon"
+                            class="form-input w-full px-4 py-3 rounded-md pr-10"
                             placeholder="WhatsApp com DDD"
                             oninput="formatPhone(this)"
                         >
+                        <i class="fas fa-phone input-icon"></i>
                     </div>
                     
                     <div class="input-group">
-                        <i class="fas fa-lock input-icon"></i>
                         <input
                             id="registerPassword"
                             name="password"
                             type="password"
                             required
                             minlength="6"
-                            class="form-input w-full px-4 py-3 rounded-md input-with-icon"
+                            class="form-input w-full px-4 py-3 rounded-md pr-10"
                             placeholder="Crie uma senha segura"
                         >
+                        <i class="fas fa-lock input-icon"></i>
                     </div>
                     
                     <div class="input-group">
-                        <i class="fas fa-check-circle input-icon"></i>
                         <input
                             id="registerConfirmPassword"
                             name="confirmPassword"
                             type="password"
                             required
                             minlength="6"
-                            class="form-input w-full px-4 py-3 rounded-md input-with-icon"
+                            class="form-input w-full px-4 py-3 rounded-md pr-10"
                             placeholder="Confirme sua senha"
                         >
+                        <i class="fas fa-check-circle input-icon"></i>
                     </div>
                     
                     <div class="flex items-center">
@@ -365,12 +369,12 @@
                 const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                 const user = userCredential.user;
                 
-                // Salvar dados adicionais no Firestore com role em minúsculo
+                // Salvar dados adicionais no Firestore
                 await db.collection('users').doc(user.uid).set({
                     name: name,
                     email: email,
                     phone: phone,
-                    role: 'standard', // Perfil padrão em minúsculo
+                    role: 'Standard', // Perfil padrão
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                     lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
                     status: 'active'
