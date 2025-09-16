@@ -477,48 +477,6 @@
         const profit24h = document.getElementById('profit24h');
         const investmentsCount = document.getElementById('investmentsCount');
 
-        // Verificar autenticação e permissões
-        auth.onAuthStateChanged(async (user) => {
-            if (!user) {
-                window.location.href = 'login.html';
-                return;
-            }
-
-            try {
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                
-                if (!userDoc.exists) {
-                    // Se não existir perfil, redirecionar para login
-                    await auth.signOut();
-                    window.location.href = 'login.html';
-                    return;
-                }
-
-                // Verificar se usuário tem permissão de acesso
-                const userData = userDoc.data();
-                if (!userData.role || userData.role === 'Standard') {
-                    window.location.href = 'index.html';
-                    return;
-                }
-
-                const userData = userDoc.data();
-                userName.textContent = userData.name || 'Usuário';
-                userEmail.textContent = user.email;
-                userRole.textContent = userData.role || 'Padrão';
-                
-                // Atualizar interface com funcionalidades baseadas no role
-                updateInterfaceByRole(userData.role);
-                
-                // Carregar dados reais do usuário
-                loadUserData(user.uid);
-            } catch (error) {
-                console.error('Erro ao carregar dados do usuário:', error);
-                userName.textContent = 'Usuário';
-                userEmail.textContent = user.email;
-                userRole.textContent = 'Padrão';
-            }
-        });
-
         // Função para atualizar interface com base no role
         function updateInterfaceByRole(role) {
             const adminElements = document.querySelectorAll('.admin-only');
@@ -607,6 +565,7 @@
             }
 
             // Verificar se usuário está autenticado
+
             auth.onAuthStateChanged(async (user) => {
                 if (!user) {
                     window.location.href = 'login.html';
@@ -623,9 +582,24 @@
                     }
 
                     const userData = userDoc.data();
-                    if (!userData.role || userData.role === 'Standard') {
-                        window.location.href = 'index.html';
-                        return;
+                    if (userData.role === 'admin') {
+                        // Carregar dados do usuário admin
+                        loadUserData(user.uid);
+                        updateInterfaceByRole(userData.role);
+                        // Redireciona para a página principal se já não estiver lá
+                        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+                            // Usuário já está na página principal ou em uma rota raiz
+                            // Não precisa redirecionar
+                        } else {
+                            // Para outros papéis (ou se não houver papel), redirecione para a página de login
+                            // ou outra página padrão, garantindo que o admin não seja redirecionado
+                            await auth.signOut();
+                            window.location.href = 'index.html';
+                            return;
+                        }
+                    } catch (error) {
+                        console.error('Erro:', error);
+                        showError('Erro ao carregar perfil');
                     }
 
                     // Carregar dados do usuário
@@ -638,6 +612,7 @@
             });
         });
     </script>
+
     <!-- Adicionando elemento para mensagens de erro -->
     <div id="errorMessage" class="fixed bottom-4 right-4 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg hidden z-50 max-w-md"></div>
 </body>

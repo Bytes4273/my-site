@@ -366,7 +366,7 @@
             projectId: "site-bytfire",
             storageBucket: "site-bytfire.firebasestorage.app",
             messagingSenderId: "38682430422",
-            appId: "1:38682430422:web:f48e3183f62ddf72623277"
+            appId: "1:38682430422:web:f48e3183f62ddf72623277",
             measurementId: "G-E9026C5C13"
         };
 
@@ -442,7 +442,7 @@
                 
                 // Redirecionar baseado no perfil
                 setTimeout(() => {
-                    if (userData.role === 'Admin') {
+                    if (userData.role === 'admin') {
                         window.location.href = 'profile.html';
                     } else {
                         window.location.href = 'index.html';
@@ -545,7 +545,7 @@
                 
                 if (userDoc.exists) {
                     const userData = userDoc.data();
-                    if (userData.role === 'Admin') {
+                    if (userData.role === 'admin') {
                         window.location.href = 'profile.html';
                     } else {
                         window.location.href = 'index.html';
