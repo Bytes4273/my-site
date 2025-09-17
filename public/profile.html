@@ -565,18 +565,57 @@
             }
         }
 
-        // Logout
+        // Logout com tratamento completo
         logoutButton.addEventListener('click', async (e) => {
             e.preventDefault();
+            
+            // Mostrar feedback visual
+            const originalText = logoutButton.innerHTML;
+            logoutButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Saindo...';
+            logoutButton.disabled = true;
+            
             try {
+                // Executar logout
                 await auth.signOut();
-                window.location.href = 'login.html';
+                
+                // Feedback visual de sucesso
+                logoutButton.innerHTML = '<i class="fas fa-check mr-2"></i> Logout realizado!';
+                
+                // Redirecionar após breve delay
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1000);
+                
             } catch (error) {
-                console.error('Erro ao fazer logout:', error);
-                showError('Erro ao fazer logout');
+                console.error('Erro no logout:', error);
+                
+                // Restaurar botão
+                logoutButton.innerHTML = originalText;
+                logoutButton.disabled = false;
+                
+                // Mostrar mensagem de erro detalhada
+                let errorMessage = 'Falha ao sair: ';
+                switch(error.code) {
+                    case 'auth/network-request-failed':
+                        errorMessage += 'Sem conexão com a internet';
+                        break;
+                    default:
+                        errorMessage += 'Tente novamente ou atualize a página';
+                }
+                
+                showError(errorMessage);
+                
+                // Adicionar log adicional para admin
+                if (user && user.role === 'admin') {
+                    console.log('Detalhes do erro:', {
+                        code: error.code,
+                        message: error.message,
+                        stack: error.stack
+                    });
+                }
             }
         });
-        // Verificar se o DOM está carregado
+        // Verificar autenticação ao carregar
         document.addEventListener('DOMContentLoaded', () => {
             // Garantir que todos os elementos necessários existam
             if (!auth || !db) {
