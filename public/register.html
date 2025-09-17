@@ -424,9 +424,9 @@
             }
         });
 
-        // Verificar autenticação apenas para redirecionar se já estiver logado
+        // Verificação de autenticação - redireciona usuários logados
         auth.onAuthStateChanged((user) => {
-            if (user && window.location.pathname.endsWith('register.html')) {
+            if (user) {
                 window.location.href = 'profile.html';
             }
         });
