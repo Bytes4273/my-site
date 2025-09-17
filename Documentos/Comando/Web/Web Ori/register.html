@@ -106,14 +106,18 @@
         
         .input-icon {
             position: absolute;
-            left: 12px;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: #00f0ff;
         }
         
-        .input-with-icon {
-            padding-left: 40px;
+        .input-group {
+            position: relative;
+        }
+        
+        .form-input {
+            padding-right: 40px;
         }
     </style>
 </head>
@@ -166,66 +170,66 @@
                 
                 <form id="registerForm" class="space-y-6">
                     <div class="input-group">
-                        <i class="fas fa-user input-icon"></i>
                         <input
                             id="registerName"
                             name="name"
                             type="text"
                             required
-                            class="form-input w-full px-4 py-3 rounded-md input-with-icon"
+                            class="form-input w-full px-4 py-3 rounded-md pr-10"
                             placeholder="Nome completo"
                         >
+                        <i class="fas fa-user input-icon"></i>
                     </div>
                     
                     <div class="input-group">
-                        <i class="fas fa-envelope input-icon"></i>
                         <input
                             id="registerEmail"
                             name="email"
                             type="email"
                             required
-                            class="form-input w-full px-4 py-3 rounded-md input-with-icon"
+                            class="form-input w-full px-4 py-3 rounded-md pr-10"
                             placeholder="Seu melhor e-mail"
                         >
+                        <i class="fas fa-envelope input-icon"></i>
                     </div>
                     
                     <div class="input-group">
-                        <i class="fas fa-phone input-icon"></i>
                         <input
                             id="registerPhone"
                             name="phone"
                             type="tel"
                             required
-                            class="form-input w-full px-4 py-3 rounded-md input-with-icon"
+                            class="form-input w-full px-4 py-3 rounded-md pr-10"
                             placeholder="WhatsApp com DDD"
                             oninput="formatPhone(this)"
                         >
+                        <i class="fas fa-phone input-icon"></i>
                     </div>
                     
                     <div class="input-group">
-                        <i class="fas fa-lock input-icon"></i>
                         <input
                             id="registerPassword"
                             name="password"
                             type="password"
                             required
                             minlength="6"
-                            class="form-input w-full px-4 py-3 rounded-md input-with-icon"
+                            class="form-input w-full px-4 py-3 rounded-md pr-10"
                             placeholder="Crie uma senha segura"
                         >
+                        <i class="fas fa-lock input-icon"></i>
                     </div>
                     
                     <div class="input-group">
-                        <i class="fas fa-check-circle input-icon"></i>
                         <input
                             id="registerConfirmPassword"
                             name="confirmPassword"
                             type="password"
                             required
                             minlength="6"
-                            class="form-input w-full px-4 py-3 rounded-md input-with-icon"
+                            class="form-input w-full px-4 py-3 rounded-md pr-10"
                             placeholder="Confirme sua senha"
                         >
+                        <i class="fas fa-check-circle input-icon"></i>
                     </div>
                     
                     <div class="flex items-center">
@@ -285,6 +289,7 @@
         // Elementos do DOM
         const registerForm = document.getElementById('registerForm');
         const registerMessage = document.getElementById('registerMessage');
+        const registerButton = document.getElementById('registerButton');
         const registerButtonSpinner = document.getElementById('registerButtonSpinner');
         const registerButtonText = document.getElementById('registerButtonText');
 
@@ -342,6 +347,12 @@
                 return;
             }
             
+            // Verificar se o telefone foi preenchido corretamente
+            if (!phone || phone.length < 14) {
+                showMessage('Por favor, insira um WhatsApp válido com DDD.', false);
+                return;
+            }
+            
             // Validar formato do telefone (DDD) + número
             const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
             if (!phoneRegex.test(phone)) {
@@ -359,18 +370,19 @@
             // Mostrar spinner
             registerButtonText.textContent = 'Criando conta...';
             registerButtonSpinner.classList.remove('hidden');
+            registerButton.disabled = true;
             
             try {
                 // Criar usuário no Firebase Auth
                 const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                 const user = userCredential.user;
                 
-                // Salvar dados adicionais no Firestore
+                // Salvar dados adicionais no Firestore com role padrão = standard
                 await db.collection('users').doc(user.uid).set({
                     name: name,
                     email: email,
                     phone: phone,
-                    role: 'Standard', // Perfil padrão
+                    role: 'standard',
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                     lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
                     status: 'active'
@@ -396,6 +408,9 @@
                     case 'auth/weak-password':
                         errorMessage += 'A senha deve ter pelo menos 6 caracteres.';
                         break;
+                    case 'auth/network-request-failed':
+                        errorMessage += 'Erro de conexão. Verifique sua internet.';
+                        break;
                     default:
                         errorMessage += error.message;
                 }
@@ -405,12 +420,14 @@
                 // Esconder spinner
                 registerButtonText.textContent = 'Criar minha conta';
                 registerButtonSpinner.classList.add('hidden');
+                registerButton.disabled = false;
             }
         });
 
         // Verificar se usuário já está logado
         auth.onAuthStateChanged((user) => {
             if (user) {
+                // Usuário já está logado, redirecionar para profile
                 window.location.href = 'profile.html';
             }
         });

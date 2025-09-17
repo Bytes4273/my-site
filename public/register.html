@@ -424,10 +424,9 @@
             }
         });
 
-        // Verificar se usuário já está logado
+        // Verificar autenticação apenas para redirecionar se já estiver logado
         auth.onAuthStateChanged((user) => {
-            if (user) {
-                // Usuário já está logado, redirecionar para profile
+            if (user && window.location.pathname.endsWith('register.html')) {
                 window.location.href = 'profile.html';
             }
         });

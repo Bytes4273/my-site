@@ -6,7 +6,7 @@
     <meta name="description" content="Byt3s 4273 - Ecossistema que une tecnologia blockchain, educação financeira e impacto social em um modelo revolucionário de valor compartilhado">
     <meta name="keywords" content="Byt3s, criptomoeda, blockchain, economia digital, finanças">
     <meta name="theme-color" content="#0a0a0a">
-    <title>Byt3s 4273 | A Nova Dimensão da Economia Digital Consciente</title>
+    <title>Byt3s 4273 | My-bytsite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -330,10 +330,9 @@
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Início</a>
                 <a href="login.html" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Login</a>
-                <a href="login.html" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Cadastro</a>
                 <a href="profile.html" id="profileLink" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium hidden">Perfil</a>
                 <a href="#miner" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Minerador</a>
-                <a href="#store" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Loja</a>
+                <a href="#store" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Produtos</a>
                 <a href="#about" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
             </div>
         </div>
@@ -1497,7 +1496,7 @@
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Produtos & Serviços</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    <span class="gradient-text binary-trigger" data-original="Loja Byt3s">World Business</span>
+                    <span class="gradient-text binary-trigger" data-original="Produtos Byt3s">World Business</span>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                     Adquira nossos produtos e serviços para potencializar sua jornada na economia digital.
@@ -2016,6 +2015,7 @@
             
             // Verificar autenticação do usuário
             const checkAuth = () => {
+                // Configuração do Firebase
                 const firebaseConfig = {
                     apiKey: "AIzaSyDDeeOrTUGuDeYENGo3_r1LjYD5_CTLuo8",
                     authDomain: "site-bytfire.firebaseapp.com",
@@ -2034,7 +2034,8 @@
                 const auth = firebase.auth();
                 const profileLink = document.getElementById('profileLink');
                 
-                auth.onAuthStateChanged(user => {
+                // Verificar estado de autenticação
+                auth.onAuthStateChanged(async (user) => {
                     if (user) {
                         // Usuário autenticado - mostrar link do perfil
                         profileLink.classList.remove('hidden');
@@ -2045,6 +2046,7 @@
                 });
             };
             
+            // Inicializar verificação de autenticação
             checkAuth();
         });
     </script>

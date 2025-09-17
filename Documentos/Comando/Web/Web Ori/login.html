@@ -366,7 +366,7 @@
             projectId: "site-bytfire",
             storageBucket: "site-bytfire.firebasestorage.app",
             messagingSenderId: "38682430422",
-            appId: "1:38682430422:web:f48e3183f62ddf72623277"
+            appId: "1:38682430422:web:f48e3183f62ddf72623277",
             measurementId: "G-E9026C5C13"
         };
 
@@ -376,37 +376,11 @@
         const db = firebase.firestore();
 
         // Elementos do DOM
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const showRegister = document.getElementById('showRegister');
-        const showLogin = document.getElementById('showLogin');
         const loginFormElement = document.getElementById('loginFormElement');
-        const registerFormElement = document.getElementById('registerFormElement');
         const loginMessage = document.getElementById('loginMessage');
-        const registerMessage = document.getElementById('registerMessage');
+        const loginButton = document.getElementById('loginButton');
         const loginButtonSpinner = document.getElementById('loginButtonSpinner');
-        const registerButtonSpinner = document.getElementById('registerButtonSpinner');
         const loginButtonText = document.getElementById('loginButtonText');
-        const registerButtonText = document.getElementById('registerButtonText');
-
-        // Alternar entre login e cadastro
-        showRegister.addEventListener('click', () => {
-            loginForm.classList.add('hidden');
-            registerForm.classList.remove('hidden');
-            clearMessages();
-        });
-
-        showLogin.addEventListener('click', () => {
-            registerForm.classList.add('hidden');
-            loginForm.classList.remove('hidden');
-            clearMessages();
-        });
-
-        // Limpar mensagens
-        function clearMessages() {
-            loginMessage.classList.add('hidden');
-            registerMessage.classList.add('hidden');
-        }
 
         // Mostrar mensagem
         function showMessage(element, message, isSuccess = true) {
@@ -425,29 +399,23 @@
             // Mostrar spinner
             loginButtonText.textContent = 'Entrando...';
             loginButtonSpinner.classList.remove('hidden');
+            loginButton.disabled = true;
             
             try {
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
                 const user = userCredential.user;
                 
-                // Verificar o perfil do usuário no Firestore
-                const userDoc = await db.collection('users').doc(user.uid).get();
+                // Atualizar lastLogin no Firestore
+                await db.collection('users').doc(user.uid).update({
+                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                });
                 
-                if (!userDoc.exists) {
-                    throw new Error('Perfil de usuário não encontrado');
-                }
-                
-                const userData = userDoc.data();
                 showMessage(loginMessage, 'Login realizado com sucesso! Redirecionando...', true);
                 
-                // Redirecionar baseado no perfil
+                // Redirecionar para profile.html
                 setTimeout(() => {
-                    if (userData.role === 'Admin') {
-                        window.location.href = 'profile.html';
-                    } else {
-                        window.location.href = 'index.html';
-                    }
-                }, 2000);
+                    window.location.href = 'profile.html';
+                }, 1500);
             } catch (error) {
                 console.error('Erro no login:', error);
                 let errorMessage = 'Erro ao fazer login. ';
@@ -471,89 +439,15 @@
                 // Esconder spinner
                 loginButtonText.textContent = 'Entrar';
                 loginButtonSpinner.classList.add('hidden');
-            }
-        });
-
-        // Cadastro
-        registerFormElement.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('registerName').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('registerConfirmPassword').value;
-            
-            // Verificar se as senhas coincidem
-            if (password !== confirmPassword) {
-                showMessage(registerMessage, 'As senhas não coincidem.', false);
-                return;
-            }
-            
-            // Mostrar spinner
-            registerButtonText.textContent = 'Cadastrando...';
-            registerButtonSpinner.classList.remove('hidden');
-            
-            try {
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-                
-                // Salvar dados adicionais no Firestore
-                await db.collection('users').doc(user.uid).set({
-                    name: name,
-                    email: email,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                
-                showMessage(registerMessage, 'Cadastro realizado com sucesso! Redirecionando...', true);
-                
-                // Redirecionar após 2 segundos
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 2000);
-            } catch (error) {
-                console.error('Erro no cadastro:', error);
-                let errorMessage = 'Erro ao cadastrar. ';
-                
-                switch (error.code) {
-                    case 'auth/email-already-in-use':
-                        errorMessage += 'Este e-mail já está em uso.';
-                        break;
-                    case 'auth/invalid-email':
-                        errorMessage += 'E-mail inválido.';
-                        break;
-                    case 'auth/weak-password':
-                        errorMessage += 'A senha deve ter pelo menos 6 caracteres.';
-                        break;
-                    default:
-                        errorMessage += error.message;
-                }
-                
-                showMessage(registerMessage, errorMessage, false);
-            } finally {
-                // Esconder spinner
-                registerButtonText.textContent = 'Cadastrar';
-                registerButtonSpinner.classList.add('hidden');
+                loginButton.disabled = false;
             }
         });
 
         // Verificar se usuário já está logado
-        auth.onAuthStateChanged(async (user) => {
+        auth.onAuthStateChanged((user) => {
             if (user) {
-                // Verificar o perfil do usuário
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                
-                if (userDoc.exists) {
-                    const userData = userDoc.data();
-                    if (userData.role === 'Admin') {
-                        window.location.href = 'profile.html';
-                    } else {
-                        window.location.href = 'index.html';
-                    }
-                } else {
-                    // Se não existir perfil, redirecionar para login
-                    auth.signOut();
-                }
+                // Usuário já está logado, redirecionar para profile
+                window.location.href = 'profile.html';
             }
         });
     </script>

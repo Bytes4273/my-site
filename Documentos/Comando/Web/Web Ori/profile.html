@@ -174,9 +174,9 @@
                     <a href="index.html" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-base font-medium">
                         <i class="fas fa-home mr-2"></i>Início
                     </a>
-                    <a href="#" id="logoutButton" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                    <button id="logoutButton" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-base font-medium">
                         <i class="fas fa-sign-out-alt mr-2"></i>Sair
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -477,63 +477,41 @@
         const profit24h = document.getElementById('profit24h');
         const investmentsCount = document.getElementById('investmentsCount');
 
-        // Verificar autenticação e permissões
-        auth.onAuthStateChanged(async (user) => {
-            if (!user) {
-                window.location.href = 'login.html';
-                return;
-            }
-
-            try {
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                
-                if (!userDoc.exists) {
-                    // Se não existir perfil, redirecionar para login
-                    await auth.signOut();
-                    window.location.href = 'login.html';
-                    return;
-                }
-
-                // Verificar se usuário tem permissão de acesso
-                const userData = userDoc.data();
-                if (!userData.role || userData.role === 'Standard') {
-                    window.location.href = 'index.html';
-                    return;
-                }
-
-                const userData = userDoc.data();
-                userName.textContent = userData.name || 'Usuário';
-                userEmail.textContent = user.email;
-                userRole.textContent = userData.role || 'Padrão';
-                
-                // Atualizar interface com funcionalidades baseadas no role
-                updateInterfaceByRole(userData.role);
-                
-                // Carregar dados reais do usuário
-                loadUserData(user.uid);
-            } catch (error) {
-                console.error('Erro ao carregar dados do usuário:', error);
-                userName.textContent = 'Usuário';
-                userEmail.textContent = user.email;
-                userRole.textContent = 'Padrão';
-            }
-        });
-
-        // Função para atualizar interface com base no role
-        function updateInterfaceByRole(role) {
+        // Função para atualizar interface com base no role e priority
+        function updateInterfaceByRole(role, priority = 1) {
             const adminElements = document.querySelectorAll('.admin-only');
             const premiumElements = document.querySelectorAll('.premium-only');
+            const standardElements = document.querySelectorAll('.standard-only');
+            
+            // Reset all elements
+            adminElements.forEach(el => el.classList.add('hidden'));
+            premiumElements.forEach(el => el.classList.add('hidden'));
+            standardElements.forEach(el => el.classList.add('hidden'));
+            
+            // Show elements based on priority
+            if (priority >= 1) {
+                standardElements.forEach(el => el.classList.remove('hidden'));
+            }
+            
+            if (priority >= 2) {
+                premiumElements.forEach(el => el.classList.remove('hidden'));
+            }
+            
+            if (priority >= 3) {
+                adminElements.forEach(el => el.classList.remove('hidden'));
+            }
+        }
             
             // Reset all elements
             adminElements.forEach(el => el.classList.add('hidden'));
             premiumElements.forEach(el => el.classList.add('hidden'));
             
             // Show elements based on role
-            if (role === 'Admin' || role === 'Premium') {
+            if (role === 'admin' || role === 'premium') {
                 premiumElements.forEach(el => el.classList.remove('hidden'));
             }
             
-            if (role === 'Admin') {
+            if (role === 'admin') {
                 adminElements.forEach(el => el.classList.remove('hidden'));
             }
         }
@@ -588,16 +566,19 @@
         }
 
         // Logout
-        logoutButton.addEventListener('click', async (e) => {
-            e.preventDefault();
-            try {
-                await auth.signOut();
-                window.location.href = 'login.html';
-            } catch (error) {
-                console.error('Erro ao fazer logout:', error);
-                showError('Erro ao fazer logout');
-            }
-        });
+        if (logoutButton) {
+            logoutButton.addEventListener('click', async (e) => {
+                e.preventDefault();
+                try {
+                    await auth.signOut();
+                    window.location.href = 'login.html';
+                } catch (error) {
+                    console.error('Erro ao fazer logout:', error);
+                    showError('Erro ao fazer logout');
+                }
+            });
+        }
+        
         // Verificar se o DOM está carregado
         document.addEventListener('DOMContentLoaded', () => {
             // Garantir que todos os elementos necessários existam
@@ -623,14 +604,34 @@
                     }
 
                     const userData = userDoc.data();
-                    if (!userData.role || userData.role === 'Standard') {
-                        window.location.href = 'index.html';
+                    
+                    // Verificar role padronizado (minúsculas) - aceitar admin, premium, standard
+                    const validRoles = ['admin', 'premium', 'standard'];
+                    if (validRoles.includes(userData.role)) {
+                        // Carregar dados do usuário
+                        loadUserData(user.uid);
+                        
+                        // Verificar priority no documento de roles
+                        try {
+                            const roleDoc = await db.collection('roles').doc(userData.role).get();
+                            if (roleDoc.exists) {
+                                const roleData = roleDoc.data();
+                                updateInterfaceByRole(userData.role, roleData.priority || 1);
+                            } else {
+                                // Se não encontrar o documento de role, usar padrão
+                                updateInterfaceByRole(userData.role, 1);
+                            }
+                        } catch (roleError) {
+                            console.error('Erro ao carregar role:', roleError);
+                            // Usar padrão se houver erro ao carregar role
+                            updateInterfaceByRole(userData.role, 1);
+                        }
+                    } else {
+                        // Se não encontrar role válido, redirecionar para login
+                        await auth.signOut();
+                        window.location.href = 'login.html';
                         return;
                     }
-
-                    // Carregar dados do usuário
-                    loadUserData(user.uid);
-                    updateInterfaceByRole(userData.role);
                 } catch (error) {
                     console.error('Erro:', error);
                     showError('Erro ao carregar perfil');
@@ -638,6 +639,7 @@
             });
         });
     </script>
+
     <!-- Adicionando elemento para mensagens de erro -->
     <div id="errorMessage" class="fixed bottom-4 right-4 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg hidden z-50 max-w-md"></div>
 </body>
