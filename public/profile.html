@@ -565,66 +565,54 @@
             }
         }
 
-        // Logout com tratamento completo
-        logoutButton.addEventListener('click', async (e) => {
-            e.preventDefault();
+        // Logout Function
+        function setupLogout() {
+            const logoutButton = document.getElementById('logoutButton');
             
-            // Mostrar feedback visual
-            const originalText = logoutButton.innerHTML;
-            logoutButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Saindo...';
-            logoutButton.disabled = true;
-            
-            try {
-                // Executar logout
-                await auth.signOut();
-                
-                // Feedback visual de sucesso
-                logoutButton.innerHTML = '<i class="fas fa-check mr-2"></i> Logout realizado!';
-                
-                // Redirecionar após breve delay
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, 1000);
-                
-            } catch (error) {
-                console.error('Erro no logout:', error);
-                
-                // Restaurar botão
-                logoutButton.innerHTML = originalText;
-                logoutButton.disabled = false;
-                
-                // Mostrar mensagem de erro detalhada
-                let errorMessage = 'Falha ao sair: ';
-                switch(error.code) {
-                    case 'auth/network-request-failed':
-                        errorMessage += 'Sem conexão com a internet';
-                        break;
-                    default:
-                        errorMessage += 'Tente novamente ou atualize a página';
-                }
-                
-                showError(errorMessage);
-                
-                // Adicionar log adicional para admin
-                if (user && user.role === 'admin') {
-                    console.log('Detalhes do erro:', {
-                        code: error.code,
-                        message: error.message,
-                        stack: error.stack
-                    });
-                }
+            if (logoutButton) {
+                logoutButton.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    
+                    try {
+                        // Mostrar feedback visual
+                        logoutButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Saindo...';
+                        logoutButton.disabled = true;
+                        
+                        // Executar logout
+                        await auth.signOut();
+                        
+                        // Redirecionar após logout bem-sucedido
+                        window.location.href = 'login.html';
+                        
+                    } catch (error) {
+                        console.error('Erro no logout:', error);
+                        
+                        // Restaurar botão
+                        logoutButton.innerHTML = '<i class="fas fa-sign-out-alt mr-2"></i>Sair';
+                        logoutButton.disabled = false;
+                        
+                        // Mostrar mensagem de erro
+                        showError('Erro ao sair. Tente novamente.');
+                    }
+                });
             }
-        });
-        // Verificar autenticação ao carregar
+        }
+
+        // Chamar a função quando o DOM estiver pronto
         document.addEventListener('DOMContentLoaded', () => {
-            // Garantir que todos os elementos necessários existam
-            if (!auth || !db) {
-                showError('Erro na inicialização do Firebase');
-                return;
+            setupLogout();
+            
+            // Restante do código de inicialização...
+        // Verificar autenticação quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar Firebase se ainda não estiver inicializado
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
             }
-
-            // Verificar se usuário está autenticado
-
+            
+            // Configurar logout
+            setupLogout();
+            
             // Verificar autenticação e redirecionar se não estiver logado
             auth.onAuthStateChanged(async (user) => {
                 if (!user && window.location.pathname.endsWith('profile.html')) {
@@ -678,7 +666,55 @@
         });
     </script>
 
-    <!-- Adicionando elemento para mensagens de erro -->
-    <div id="errorMessage" class="fixed bottom-4 right-4 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg hidden z-50 max-w-md"></div>
+    <!-- Sistema de Mensagens -->
+    <div id="messageSystem" class="fixed bottom-4 right-4 z-50 hidden">
+        <div id="errorMessage" class="bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg max-w-md mb-2 transition-all duration-300 transform translate-y-2 opacity-0">
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-circle mr-2"></i>
+                <span id="errorMessageText"></span>
+            </div>
+        </div>
+        <div id="successMessage" class="bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg max-w-md transition-all duration-300 transform translate-y-2 opacity-0">
+            <div class="flex items-center">
+                <i class="fas fa-check-circle mr-2"></i>
+                <span id="successMessageText"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para mostrar mensagens
+        function showMessage(type, text, duration = 5000) {
+            const messageSystem = document.getElementById('messageSystem');
+            const messageElement = document.getElementById(`${type}Message`);
+            const textElement = document.getElementById(`${type}MessageText`);
+            
+            // Definir texto
+            textElement.textContent = text;
+            
+            // Mostrar sistema de mensagens
+            messageSystem.classList.remove('hidden');
+            
+            // Mostrar mensagem específica
+            messageElement.classList.remove('opacity-0', 'translate-y-2');
+            messageElement.classList.add('opacity-100', 'translate-y-0');
+            
+            // Ocultar após o tempo definido
+            setTimeout(() => {
+                messageElement.classList.add('opacity-0', 'translate-y-2');
+                messageElement.classList.remove('opacity-100', 'translate-y-0');
+                
+                setTimeout(() => {
+                    if (!messageSystem.querySelector('.opacity-100')) {
+                        messageSystem.classList.add('hidden');
+                    }
+                }, 300);
+            }, duration);
+        }
+        
+        // Função de erro (compatibilidade com código existente)
+        function showError(text) {
+            showMessage('error', text);
+        }
 </body>
 </html>
