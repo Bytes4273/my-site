@@ -375,12 +375,10 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // Elementos do DOM
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const showRegister = document.getElementById('showRegister');
-        const showLogin = document.getElementById('showLogin');
+        // Elementos do DOM [form]
         const loginFormElement = document.getElementById('loginFormElement');
+        const registerForm = document.getElementById('registerForm');
+        const showLogin = document.getElementById('showLogin');
         const registerFormElement = document.getElementById('registerFormElement');
         const loginMessage = document.getElementById('loginMessage');
         const registerMessage = document.getElementById('registerMessage');
@@ -389,24 +387,21 @@
         const loginButtonText = document.getElementById('loginButtonText');
         const registerButtonText = document.getElementById('registerButtonText');
 
-        // Alternar entre login e cadastro
-        showRegister.addEventListener('click', () => {
-            loginForm.classList.add('hidden');
+        // Alternar para cadastro
+        document.getElementById('showRegisterLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('loginForm').classList.add('hidden');
             registerForm.classList.remove('hidden');
-            clearMessages();
-        });
-
-        showLogin.addEventListener('click', () => {
-            registerForm.classList.add('hidden');
-            loginForm.classList.remove('hidden');
-            clearMessages();
-        });
-
-        // Limpar mensagens
-        function clearMessages() {
             loginMessage.classList.add('hidden');
+        });
+
+        // Alternar para login
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerForm.classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
             registerMessage.classList.add('hidden');
-        }
+        });
 
         // Mostrar mensagem
         function showMessage(element, message, isSuccess = true) {
@@ -462,10 +457,8 @@
                 
                 showMessage(loginMessage, 'Login realizado com sucesso! Redirecionando...', true);
                 
-                // Redirecionar para profile.html para todos os usuários autenticados
-                setTimeout(() => {
-                    window.location.href = 'profile.html';
-                }, 2000);
+                // Redirecionar imediatamente para profile.html
+                window.location.href = 'profile.html';
             } catch (error) {
                 console.error('Erro no login:', error);
                 let errorMessage = 'Erro ao fazer login. ';
@@ -527,10 +520,8 @@
                 
                 showMessage(registerMessage, 'Cadastro realizado com sucesso! Redirecionando...', true);
                 
-                // Redirecionar após 2 segundos
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 2000);
+                // Redirecionar imediatamente para profile.html
+                window.location.href = 'profile.html';
             } catch (error) {
                 console.error('Erro no cadastro:', error);
                 let errorMessage = 'Erro ao cadastrar. ';
@@ -573,12 +564,7 @@
                             });
                         }
                         // Redirecionar para profile.html se o usuário tiver um role definido
-                        if (userData.role) {
-                            window.location.href = 'profile.html';
-                        } else {
-                            // Se não tiver role mesmo após a atualização, redirecionar para index
-                            window.location.href = 'index.html';
-                        }
+                        window.location.href = 'profile.html';
                     } else {
                         // Se não existir perfil, criar um novo e redirecionar para profile
                         await db.collection('users').doc(user.uid).set({
