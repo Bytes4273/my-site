@@ -375,33 +375,12 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // Elementos do DOM [form]
+        // Elementos do DOM
         const loginFormElement = document.getElementById('loginFormElement');
-        const registerForm = document.getElementById('registerForm');
-        const showLogin = document.getElementById('showLogin');
-        const registerFormElement = document.getElementById('registerFormElement');
         const loginMessage = document.getElementById('loginMessage');
-        const registerMessage = document.getElementById('registerMessage');
+        const loginButton = document.getElementById('loginButton');
         const loginButtonSpinner = document.getElementById('loginButtonSpinner');
-        const registerButtonSpinner = document.getElementById('registerButtonSpinner');
         const loginButtonText = document.getElementById('loginButtonText');
-        const registerButtonText = document.getElementById('registerButtonText');
-
-        // Alternar para cadastro
-        document.getElementById('showRegisterLink').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('loginForm').classList.add('hidden');
-            registerForm.classList.remove('hidden');
-            loginMessage.classList.add('hidden');
-        });
-
-        // Alternar para login
-        showLogin.addEventListener('click', (e) => {
-            e.preventDefault();
-            registerForm.classList.add('hidden');
-            document.getElementById('loginForm').classList.remove('hidden');
-            registerMessage.classList.add('hidden');
-        });
 
         // Mostrar mensagem
         function showMessage(element, message, isSuccess = true) {
@@ -420,45 +399,23 @@
             // Mostrar spinner
             loginButtonText.textContent = 'Entrando...';
             loginButtonSpinner.classList.remove('hidden');
+            loginButton.disabled = true;
             
             try {
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
                 const user = userCredential.user;
                 
-                // Verificar o perfil do usuário no Firestore
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                
-                if (!userDoc.exists) {
-                    // Se não existir documento, criar um novo com role padrão
-                    await db.collection('users').doc(user.uid).set({
-                        name: user.email.split('@')[0],
-                        email: user.email,
-                        role: 'standard',
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                        lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
-                        status: 'active'
-                    });
-                } else {
-                    // Se existir documento, verificar se tem role
-                    const userData = userDoc.data();
-                    if (!userData.role) {
-                        // Se não tiver role, atualizar com role padrão
-                        await db.collection('users').doc(user.uid).update({
-                            role: 'standard',
-                            lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-                        });
-                    } else {
-                        // Se tiver role, apenas atualizar o último login
-                        await db.collection('users').doc(user.uid).update({
-                            lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-                        });
-                    }
-                }
+                // Atualizar lastLogin no Firestore
+                await db.collection('users').doc(user.uid).update({
+                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                });
                 
                 showMessage(loginMessage, 'Login realizado com sucesso! Redirecionando...', true);
                 
-                // Redirecionar imediatamente para profile.html
-                window.location.href = 'profile.html';
+                // Redirecionar para profile.html
+                setTimeout(() => {
+                    window.location.href = 'profile.html';
+                }, 1500);
             } catch (error) {
                 console.error('Erro no login:', error);
                 let errorMessage = 'Erro ao fazer login. ';
@@ -482,105 +439,15 @@
                 // Esconder spinner
                 loginButtonText.textContent = 'Entrar';
                 loginButtonSpinner.classList.add('hidden');
-            }
-        });
-
-        // Cadastro
-        registerFormElement.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('registerName').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('registerConfirmPassword').value;
-            
-            // Verificar se as senhas coincidem
-            if (password !== confirmPassword) {
-                showMessage(registerMessage, 'As senhas não coincidem.', false);
-                return;
-            }
-            
-            // Mostrar spinner
-            registerButtonText.textContent = 'Cadastrando...';
-            registerButtonSpinner.classList.remove('hidden');
-            
-            try {
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-                
-                // Salvar dados adicionais no Firestore com role padronizado
-                await db.collection('users').doc(user.uid).set({
-                    name: name,
-                    email: email,
-                    role: 'standard', // Role padronizado para minúsculas
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                    lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
-                    status: 'active'
-                });
-                
-                showMessage(registerMessage, 'Cadastro realizado com sucesso! Redirecionando...', true);
-                
-                // Redirecionar imediatamente para profile.html
-                window.location.href = 'profile.html';
-            } catch (error) {
-                console.error('Erro no cadastro:', error);
-                let errorMessage = 'Erro ao cadastrar. ';
-                
-                switch (error.code) {
-                    case 'auth/email-already-in-use':
-                        errorMessage += 'Este e-mail já está em uso.';
-                        break;
-                    case 'auth/invalid-email':
-                        errorMessage += 'E-mail inválido.';
-                        break;
-                    case 'auth/weak-password':
-                        errorMessage += 'A senha deve ter pelo menos 6 caracteres.';
-                        break;
-                    default:
-                        errorMessage += error.message;
-                }
-                
-                showMessage(registerMessage, errorMessage, false);
-            } finally {
-                // Esconder spinner
-                registerButtonText.textContent = 'Cadastrar';
-                registerButtonSpinner.classList.add('hidden');
+                loginButton.disabled = false;
             }
         });
 
         // Verificar se usuário já está logado
-        auth.onAuthStateChanged(async (user) => {
+        auth.onAuthStateChanged((user) => {
             if (user) {
-                try {
-                    // Verificar o perfil do usuário
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    
-                    if (userDoc.exists) {
-                        const userData = userDoc.data();
-                        // Verificar se tem role, se não tiver criar com role padrão
-                        if (!userData.role) {
-                            await db.collection('users').doc(user.uid).update({
-                                role: 'standard'
-                            });
-                        }
-                        // Redirecionar para profile.html se o usuário tiver um role definido
-                        window.location.href = 'profile.html';
-                    } else {
-                        // Se não existir perfil, criar um novo e redirecionar para profile
-                        await db.collection('users').doc(user.uid).set({
-                            name: user.email.split('@')[0],
-                            email: user.email,
-                            role: 'standard',
-                            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                            lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
-                            status: 'active'
-                        });
-                        window.location.href = 'profile.html';
-                    }
-                } catch (error) {
-                    console.error('Erro ao verificar perfil:', error);
-                    auth.signOut();
-                }
+                // Usuário já está logado, redirecionar para profile
+                window.location.href = 'profile.html';
             }
         });
     </script>

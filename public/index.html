@@ -2015,6 +2015,7 @@
             
             // Verificar autenticação do usuário
             const checkAuth = () => {
+                // Configuração do Firebase
                 const firebaseConfig = {
                     apiKey: "AIzaSyDDeeOrTUGuDeYENGo3_r1LjYD5_CTLuo8",
                     authDomain: "site-bytfire.firebaseapp.com",
@@ -2033,25 +2034,11 @@
                 const auth = firebase.auth();
                 const profileLink = document.getElementById('profileLink');
                 
+                // Verificar estado de autenticação
                 auth.onAuthStateChanged(async (user) => {
                     if (user) {
-                        // Verificar o perfil do usuário no Firestore
-                        try {
-                            const db = firebase.firestore();
-                            const userDoc = await db.collection('users').doc(user.uid).get();
-                            
-                            if (userDoc.exists) {
-                                const userData = userDoc.data();
-                                // Usuário autenticado - mostrar link do perfil
-                                profileLink.classList.remove('hidden');
-                            } else {
-                                // Se não existir perfil, esconder link do perfil
-                                profileLink.classList.add('hidden');
-                            }
-                        } catch (error) {
-                            console.error('Erro ao verificar perfil:', error);
-                            profileLink.classList.add('hidden');
-                        }
+                        // Usuário autenticado - mostrar link do perfil
+                        profileLink.classList.remove('hidden');
                     } else {
                         // Usuário não autenticado - esconder link do perfil
                         profileLink.classList.add('hidden');
@@ -2059,6 +2046,7 @@
                 });
             };
             
+            // Inicializar verificação de autenticação
             checkAuth();
         });
     </script>

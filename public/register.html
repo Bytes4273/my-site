@@ -289,6 +289,7 @@
         // Elementos do DOM
         const registerForm = document.getElementById('registerForm');
         const registerMessage = document.getElementById('registerMessage');
+        const registerButton = document.getElementById('registerButton');
         const registerButtonSpinner = document.getElementById('registerButtonSpinner');
         const registerButtonText = document.getElementById('registerButtonText');
 
@@ -369,18 +370,19 @@
             // Mostrar spinner
             registerButtonText.textContent = 'Criando conta...';
             registerButtonSpinner.classList.remove('hidden');
+            registerButton.disabled = true;
             
             try {
                 // Criar usuário no Firebase Auth
                 const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                 const user = userCredential.user;
                 
-                // Salvar dados adicionais no Firestore com role padronizado
+                // Salvar dados adicionais no Firestore com role padrão = standard
                 await db.collection('users').doc(user.uid).set({
                     name: name,
                     email: email,
                     phone: phone,
-                    role: 'standard', // Role padronizado para minúsculas
+                    role: 'standard',
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                     lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
                     status: 'active'
@@ -418,32 +420,15 @@
                 // Esconder spinner
                 registerButtonText.textContent = 'Criar minha conta';
                 registerButtonSpinner.classList.add('hidden');
+                registerButton.disabled = false;
             }
         });
 
         // Verificar se usuário já está logado
-        auth.onAuthStateChanged(async (user) => {
+        auth.onAuthStateChanged((user) => {
             if (user) {
-                // Verificar o perfil do usuário
-                try {
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    
-                    if (userDoc.exists) {
-                        const userData = userDoc.data();
-                        // Verificar role padronizado (minúsculas)
-                        if (userData.role === 'admin') {
-                            window.location.href = 'profile.html';
-                        } else {
-                            window.location.href = 'index.html';
-                        }
-                    } else {
-                        // Se não existir perfil, redirecionar para login
-                        auth.signOut();
-                    }
-                } catch (error) {
-                    console.error('Erro ao verificar perfil:', error);
-                    auth.signOut();
-                }
+                // Usuário já está logado, redirecionar para profile
+                window.location.href = 'profile.html';
             }
         });
     </script>
