@@ -593,30 +593,30 @@
                 showError('Erro ao fazer logout. Tente novamente.');
             }
         });
-        // Verificar autenticação quando a página carrega
+        // Verificar se o DOM está carregado
         document.addEventListener('DOMContentLoaded', () => {
-            // Inicializar Firebase se ainda não estiver inicializado
-            if (!firebase.apps.length) {
-                firebase.initializeApp(firebaseConfig);
+            // Garantir que todos os elementos necessários existam
+            if (!auth || !db) {
+                showError('Erro na inicialização do Firebase');
+                return;
             }
 
-            // Verificar estado de autenticação
+            // Verificar se usuário está autenticado
+
+            // Verificar autenticação e redirecionar se não estiver logado
             auth.onAuthStateChanged(async (user) => {
                 if (!user) {
-                    // Se não estiver autenticado, redirecionar para login
                     window.location.href = 'login.html';
                     return;
                 }
 
                 try {
-                    // Verificar se o documento do usuário existe
                     const userDoc = await db.collection('users').doc(user.uid).get();
                     
+                    // Se o documento não existe, criar um básico
                     if (!userDoc.exists) {
-                        // Criar documento padrão se não existir
                         await db.collection('users').doc(user.uid).set({
                             email: user.email,
-                            name: user.email.split('@')[0],
                             role: 'standard',
                             status: 'active',
                             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -625,19 +625,14 @@
                     }
 
                     // Carregar dados do usuário
-                    await loadUserData(user.uid);
+                    loadUserData(user.uid);
                     
-                    // Atualizar interface com base no role
+                    // Atualizar interface com base no role (todos os usuários autenticados podem acessar)
                     const userData = userDoc.exists ? userDoc.data() : { role: 'standard' };
                     updateInterfaceByRole(userData.role);
-
                 } catch (error) {
-                    console.error('Erro ao verificar autenticação:', error);
-                    showError('Erro ao carregar perfil. Tente novamente.');
-                    
-                    // Forçar logout em caso de erro grave
-                    await auth.signOut();
-                    window.location.href = 'login.html';
+                    console.error('Erro:', error);
+                    showError('Erro ao carregar perfil');
                 }
             });
         });
