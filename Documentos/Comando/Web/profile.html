@@ -605,7 +605,7 @@
 
             // Verificar autenticação e redirecionar se não estiver logado
             auth.onAuthStateChanged(async (user) => {
-                if (!user) {
+                if (!user && window.location.pathname.endsWith('profile.html')) {
                     window.location.href = 'login.html';
                     return;
                 }
@@ -613,23 +613,41 @@
                 try {
                     const userDoc = await db.collection('users').doc(user.uid).get();
                     
-                    // Se o documento não existe, criar um básico
                     if (!userDoc.exists) {
-                        await db.collection('users').doc(user.uid).set({
-                            email: user.email,
-                            role: 'standard',
-                            status: 'active',
-                            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                            lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-                        });
+                        await auth.signOut();
+                        window.location.href = 'login.html';
+                        return;
                     }
 
-                    // Carregar dados do usuário
-                    loadUserData(user.uid);
+                    const userData = userDoc.data();
                     
-                    // Atualizar interface com base no role (todos os usuários autenticados podem acessar)
-                    const userData = userDoc.exists ? userDoc.data() : { role: 'standard' };
-                    updateInterfaceByRole(userData.role);
+                    // Verificar role padronizado (minúsculas) - aceitar admin, premium, standard
+                    const validRoles = ['admin', 'premium', 'standard'];
+                    if (validRoles.includes(userData.role)) {
+                        // Carregar dados do usuário
+                        loadUserData(user.uid);
+                        
+                        // Verificar priority no documento de roles
+                        try {
+                            const roleDoc = await db.collection('roles').doc(userData.role).get();
+                            if (roleDoc.exists) {
+                                const roleData = roleDoc.data();
+                                updateInterfaceByRole(userData.role, roleData.priority || 1);
+                            } else {
+                                // Se não encontrar o documento de role, usar padrão
+                                updateInterfaceByRole(userData.role, 1);
+                            }
+                        } catch (roleError) {
+                            console.error('Erro ao carregar role:', roleError);
+                            // Usar padrão se houver erro ao carregar role
+                            updateInterfaceByRole(userData.role, 1);
+                        }
+                    } else {
+                        // Se não encontrar role válido, redirecionar para login
+                        await auth.signOut();
+                        window.location.href = 'login.html';
+                        return;
+                    }
                 } catch (error) {
                     console.error('Erro:', error);
                     showError('Erro ao carregar perfil');
