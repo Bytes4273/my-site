@@ -377,23 +377,24 @@
                 const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                 const user = userCredential.user;
                 
-                // Salvar dados adicionais no Firestore com role padrão = standard
+                // Salvar dados adicionais no Firestore com todos os campos obrigatórios
                 await db.collection('users').doc(user.uid).set({
                     name: name,
                     email: email,
                     phone: phone,
                     role: 'standard',
+                    status: 'active',
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                     lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
-                    status: 'active'
+                    wallet: {
+                        balance: 0,
+                        dailyProfit: 0,
+                        investments: []
+                    }
                 });
                 
-                showMessage('Cadastro realizado com sucesso! Redirecionando...', true);
-                
-                // Redirecionar para o perfil após 2 segundos
-                setTimeout(() => {
-                    window.location.href = 'profile.html';
-                }, 2000);
+                // Redirecionar imediatamente para profile.html
+                window.location.href = 'profile.html';
             } catch (error) {
                 console.error('Erro no cadastro:', error);
                 let errorMessage = 'Erro ao cadastrar. ';

@@ -564,32 +564,27 @@
             }
         }
 
-        // Logout com tratamento de estado
+        // Logout com limpeza de cache
         logoutButton.addEventListener('click', async (e) => {
             e.preventDefault();
             
-            // Mostrar feedback visual
-            const originalText = logoutButton.innerHTML;
-            logoutButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saindo...';
-            logoutButton.disabled = true;
-            
             try {
+                // Limpar cache antes de redirecionar
+                if ('caches' in window) {
+                    await caches.keys().then(cacheNames => {
+                        return Promise.all(cacheNames.map(cacheName => {
+                            return caches.delete(cacheName);
+                        }));
+                    });
+                }
+                
                 await auth.signOut();
                 
-                // Feedback visual adicional
-                logoutButton.innerHTML = '<i class="fas fa-check mr-2"></i>Logout realizado';
-                
-                // Redirecionar após breve delay
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, 1000);
+                // Forçar recarregamento para limpar qualquer estado da aplicação
+                window.location.href = 'login.html?logout=' + new Date().getTime();
                 
             } catch (error) {
                 console.error('Erro ao fazer logout:', error);
-                
-                // Restaurar botão e mostrar erro
-                logoutButton.innerHTML = originalText;
-                logoutButton.disabled = false;
                 showError('Erro ao fazer logout. Tente novamente.');
             }
         });
@@ -603,51 +598,16 @@
 
             // Verificar se usuário está autenticado
 
-            // Verificar autenticação e redirecionar se não estiver logado
-            auth.onAuthStateChanged(async (user) => {
-                if (!user && window.location.pathname.endsWith('profile.html')) {
+            // Verificar autenticação
+            auth.onAuthStateChanged((user) => {
+                if (!user) {
+                    // Redirecionar usuários não autenticados para login.html
                     window.location.href = 'login.html';
                     return;
                 }
-
-                try {
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    
-                    if (!userDoc.exists) {
-                        await auth.signOut();
-                        window.location.href = 'login.html';
-                        return;
-                    }
-
-                    const userData = userDoc.data();
-                    
-                    // Verificar role padronizado (minúsculas) - aceitar admin, premium, standard
-                    const validRoles = ['admin', 'premium', 'standard'];
-                    if (validRoles.includes(userData.role)) {
-                        // Carregar dados do usuário
-                        loadUserData(user.uid);
-                        
-                        // Verificar priority no documento de roles
-                        try {
-                            const roleDoc = await db.collection('roles').doc(userData.role).get();
-                            if (roleDoc.exists) {
-                                const roleData = roleDoc.data();
-                                updateInterfaceByRole(userData.role, roleData.priority || 1);
-                            } else {
-                                // Se não encontrar o documento de role, usar padrão
-                                updateInterfaceByRole(userData.role, 1);
-                            }
-                        } catch (roleError) {
-                            console.error('Erro ao carregar role:', roleError);
-                            // Usar padrão se houver erro ao carregar role
-                            updateInterfaceByRole(userData.role, 1);
-                        }
-                    } else {
-                        // Se não encontrar role válido, redirecionar para login
-                        await auth.signOut();
-                        window.location.href = 'login.html';
-                        return;
-                    }
+                
+                // Carregar dados do usuário independente do role
+                loadUserData(user.uid);
                 } catch (error) {
                     console.error('Erro:', error);
                     showError('Erro ao carregar perfil');

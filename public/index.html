@@ -2035,13 +2035,10 @@
                 const profileLink = document.getElementById('profileLink');
                 
                 // Verificar estado de autenticação
-                auth.onAuthStateChanged(async (user) => {
+                auth.onAuthStateChanged((user) => {
                     if (user) {
-                        // Usuário autenticado - mostrar link do perfil
-                        profileLink.classList.remove('hidden');
-                    } else {
-                        // Usuário não autenticado - esconder link do perfil
-                        profileLink.classList.add('hidden');
+                        // Redirecionar usuários logados para profile.html
+                        window.location.href = 'profile.html';
                     }
                 });
             };

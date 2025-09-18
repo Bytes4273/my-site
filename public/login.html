@@ -405,17 +405,26 @@
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
                 const user = userCredential.user;
                 
-                // Atualizar lastLogin no Firestore
-                await db.collection('users').doc(user.uid).update({
-                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-                });
+                // Atualizar ou criar documento no Firestore
+                const userRef = db.collection('users').doc(user.uid);
+                const doc = await userRef.get();
                 
-                showMessage(loginMessage, 'Login realizado com sucesso! Redirecionando...', true);
+                if (!doc.exists) {
+                    await userRef.set({
+                        email: user.email,
+                        role: 'standard',
+                        status: 'active',
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                } else {
+                    await userRef.update({
+                        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
                 
-                // Redirecionar para profile.html
-                setTimeout(() => {
-                    window.location.href = 'profile.html';
-                }, 1500);
+                // Redirecionar imediatamente para profile.html
+                window.location.href = 'profile.html';
             } catch (error) {
                 console.error('Erro no login:', error);
                 let errorMessage = 'Erro ao fazer login. ';
