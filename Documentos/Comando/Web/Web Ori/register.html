@@ -424,10 +424,9 @@
             }
         });
 
-        // Verificar se usuário já está logado
+        // Verificação de autenticação - redireciona usuários logados
         auth.onAuthStateChanged((user) => {
             if (user) {
-                // Usuário já está logado, redirecionar para profile
                 window.location.href = 'profile.html';
             }
         });

@@ -174,9 +174,9 @@
                     <a href="index.html" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-base font-medium">
                         <i class="fas fa-home mr-2"></i>Início
                     </a>
-                    <button id="logoutButton" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                    <a href="#" id="logoutButton" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-base font-medium">
                         <i class="fas fa-sign-out-alt mr-2"></i>Sair
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -500,7 +500,6 @@
             if (priority >= 3) {
                 adminElements.forEach(el => el.classList.remove('hidden'));
             }
-        }
             
             // Reset all elements
             adminElements.forEach(el => el.classList.add('hidden'));
@@ -565,20 +564,35 @@
             }
         }
 
-        // Logout
-        if (logoutButton) {
-            logoutButton.addEventListener('click', async (e) => {
-                e.preventDefault();
-                try {
-                    await auth.signOut();
+        // Logout com tratamento de estado
+        logoutButton.addEventListener('click', async (e) => {
+            e.preventDefault();
+            
+            // Mostrar feedback visual
+            const originalText = logoutButton.innerHTML;
+            logoutButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saindo...';
+            logoutButton.disabled = true;
+            
+            try {
+                await auth.signOut();
+                
+                // Feedback visual adicional
+                logoutButton.innerHTML = '<i class="fas fa-check mr-2"></i>Logout realizado';
+                
+                // Redirecionar após breve delay
+                setTimeout(() => {
                     window.location.href = 'login.html';
-                } catch (error) {
-                    console.error('Erro ao fazer logout:', error);
-                    showError('Erro ao fazer logout');
-                }
-            });
-        }
-        
+                }, 1000);
+                
+            } catch (error) {
+                console.error('Erro ao fazer logout:', error);
+                
+                // Restaurar botão e mostrar erro
+                logoutButton.innerHTML = originalText;
+                logoutButton.disabled = false;
+                showError('Erro ao fazer logout. Tente novamente.');
+            }
+        });
         // Verificar se o DOM está carregado
         document.addEventListener('DOMContentLoaded', () => {
             // Garantir que todos os elementos necessários existam
@@ -588,6 +602,8 @@
             }
 
             // Verificar se usuário está autenticado
+
+            // Verificar autenticação e redirecionar se não estiver logado
             auth.onAuthStateChanged(async (user) => {
                 if (!user) {
                     window.location.href = 'login.html';
@@ -597,41 +613,23 @@
                 try {
                     const userDoc = await db.collection('users').doc(user.uid).get();
                     
+                    // Se o documento não existe, criar um básico
                     if (!userDoc.exists) {
-                        await auth.signOut();
-                        window.location.href = 'login.html';
-                        return;
+                        await db.collection('users').doc(user.uid).set({
+                            email: user.email,
+                            role: 'standard',
+                            status: 'active',
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                            lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                        });
                     }
 
-                    const userData = userDoc.data();
+                    // Carregar dados do usuário
+                    loadUserData(user.uid);
                     
-                    // Verificar role padronizado (minúsculas) - aceitar admin, premium, standard
-                    const validRoles = ['admin', 'premium', 'standard'];
-                    if (validRoles.includes(userData.role)) {
-                        // Carregar dados do usuário
-                        loadUserData(user.uid);
-                        
-                        // Verificar priority no documento de roles
-                        try {
-                            const roleDoc = await db.collection('roles').doc(userData.role).get();
-                            if (roleDoc.exists) {
-                                const roleData = roleDoc.data();
-                                updateInterfaceByRole(userData.role, roleData.priority || 1);
-                            } else {
-                                // Se não encontrar o documento de role, usar padrão
-                                updateInterfaceByRole(userData.role, 1);
-                            }
-                        } catch (roleError) {
-                            console.error('Erro ao carregar role:', roleError);
-                            // Usar padrão se houver erro ao carregar role
-                            updateInterfaceByRole(userData.role, 1);
-                        }
-                    } else {
-                        // Se não encontrar role válido, redirecionar para login
-                        await auth.signOut();
-                        window.location.href = 'login.html';
-                        return;
-                    }
+                    // Atualizar interface com base no role (todos os usuários autenticados podem acessar)
+                    const userData = userDoc.exists ? userDoc.data() : { role: 'standard' };
+                    updateInterfaceByRole(userData.role);
                 } catch (error) {
                     console.error('Erro:', error);
                     showError('Erro ao carregar perfil');
