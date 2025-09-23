@@ -328,12 +328,39 @@
         <!-- Menu mobile/desktop -->
         <div id="mobile-menu" class="mobile-menu bg-black bg-opacity-90">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Início</a>
-                <a href="login.html" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Login</a>
-                <a href="profile.html" id="profileLink" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium hidden">Perfil</a>
-                <a href="#miner" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Minerador</a>
-                <a href="#store" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Produtos</a>
-                <a href="#about" class="text-cyan-300 hover:bg-gray-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
+                <!-- Início/Perfil dinâmico -->
+                <a href="#" id="homeProfileLink" class="flex items-center text-cyan-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                    <i class="fas fa-home mr-2"></i>
+                    <span id="homeProfileText">Início</span>
+                </a>
+                
+                <!-- Área de autenticação -->
+                <div class="border-t border-gray-700 pt-2">
+                    <a href="login.html" id="loginLink" class="flex items-center text-cyan-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                        <i class="fas fa-user-circle mr-2"></i>
+                        Perfil
+                    </a>
+                    <a href="profile.html" id="profileLink" class="hidden flex items-center text-cyan-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                        <i class="fas fa-user-circle mr-2"></i>
+                        Meu Perfil
+                    </a>
+                </div>
+
+                <!-- Menu principal -->
+                <div class="border-t border-gray-700 pt-2">
+                    <a href="#miner" class="flex items-center text-cyan-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                        <i class="fas fa-microchip mr-2"></i>
+                        Minerador
+                    </a>
+                    <a href="#store" class="flex items-center text-cyan-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        Produtos
+                    </a>
+                    <a href="#about" class="flex items-center text-cyan-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Sobre
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -896,7 +923,7 @@
                                     <div>
                                         <h3 class="text-xl font-bold text-white mb-4">Minerador B³$</h3>
                                         <p class="text-gray-300 mb-6">
-                                            Nosso minerador utiliza o algoritmo SHA-256, o mesmo do Bitcoin, garantindo segurança e descentralização.  Lista de Byte$ Gratis logo a baixo. 
+                                            Nosso minerador utiliza o algoritmo SHA-256, o mesmo do Bitcoin, garantindo segurança e descentralização. 
                                         </p>
                                         <ul class="text-gray-300 space-y-3">
                                             <li class="flex items-start">

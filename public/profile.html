@@ -170,14 +170,6 @@
                         <span class="ml-3 text-xl font-bold gradient-text">Byt3s</span>
                     </div>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <a href="index.html" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-base font-medium">
-                        <i class="fas fa-home mr-2"></i>Início
-                    </a>
-                    <a href="#" id="logoutButton" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-base font-medium">
-                        <i class="fas fa-sign-out-alt mr-2"></i>Sair
-                    </a>
-                </div>
             </div>
         </div>
     </nav>
@@ -213,9 +205,17 @@
                         </div>
                         
                         <div class="space-y-2">
+                            <a href="index.html" class="menu-item flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                                <i class="fas fa-home mr-3"></i>
+                                <span>Início</span>
+                            </a>
                             <a href="#" class="menu-item active flex items-center px-4 py-3 text-white">
                                 <i class="fas fa-chart-line mr-3"></i>
                                 <span>Dashboard</span>
+                            </a>
+                            <a href="#" class="menu-item admin-only flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                                <i class="fas fa-puzzle-piece mr-3"></i>
+                                <span>Protocolos</span>
                             </a>
                             <a href="#" class="menu-item flex items-center px-4 py-3 text-gray-300 hover:text-white">
                                 <i class="fas fa-wallet mr-3"></i>
@@ -236,6 +236,10 @@
                             <a href="#" class="menu-item flex items-center px-4 py-3 text-gray-300 hover:text-white">
                                 <i class="fas fa-cog mr-3"></i>
                                 <span>Configurações</span>
+                            </a>
+                            <a href="#" id="logoutButton" class="menu-item flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                                <i class="fas fa-sign-out-alt mr-3"></i>
+                                <span>Sair</span>
                             </a>
                         </div>
                     </div>
@@ -500,10 +504,6 @@
             if (priority >= 3) {
                 adminElements.forEach(el => el.classList.remove('hidden'));
             }
-            
-            // Reset all elements
-            adminElements.forEach(el => el.classList.add('hidden'));
-            premiumElements.forEach(el => el.classList.add('hidden'));
             
             // Show elements based on role
             if (role === 'admin' || role === 'premium') {
