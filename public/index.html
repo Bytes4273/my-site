@@ -302,6 +302,7 @@
             <!-- These will be added via JavaScript -->
         </div>
     </div>
+    </div>
 
     <!-- Navigation -->
     <nav class="fixed w-full bg-black bg-opacity-80 backdrop-filter backdrop-blur-lg z-50 border-b border-cyan-500 border-opacity-20 content-wrapper">
@@ -329,7 +330,7 @@
         <div id="mobile-menu" class="mobile-menu bg-black bg-opacity-90">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <!-- Início/Perfil dinâmico -->
-                <a href="#" id="homeProfileLink" class="flex items-center text-cyan-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                <a href="#hero" id="homeProfileLink" class="flex items-center text-cyan-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-base font-medium">
                     <i class="fas fa-home mr-2"></i>
                     <span id="homeProfileText">Início</span>
                 </a>
@@ -337,12 +338,8 @@
                 <!-- Área de autenticação -->
                 <div class="border-t border-gray-700 pt-2">
                     <a href="login.html" id="loginLink" class="flex items-center text-cyan-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-base font-medium">
-                        <i class="fas fa-user-circle mr-2"></i>
-                        Perfil
-                    </a>
-                    <a href="profile.html" id="profileLink" class="hidden flex items-center text-cyan-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-base font-medium">
-                        <i class="fas fa-user-circle mr-2"></i>
-                        Meu Perfil
+                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        Login
                     </a>
                 </div>
 
@@ -361,11 +358,17 @@
                         Sobre
                     </a>
                 </div>
+                    <a href="profile.html" id="profileLink" class="hidden flex items-center text-cyan-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                        <i class="fas fa-user-circle mr-2"></i>
+                        Meu Perfil
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section --> 
+    <div id="hero">
     <div class="relative pt-24 pb-32 px-4 sm:px-6 lg:px-8 content-wrapper">
         <div class="max-w-7xl mx-auto">
             <div class="lg:grid lg:grid-cols-12 lg:gap-8">
@@ -382,10 +385,10 @@
                             <a href="login.html" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-500 hover:to-blue-700 md:py-4 md:text-lg md:px-10 transition-all duration-300">
                                 Inscreva-se
                             </a>
-                            <a href="#ecosystem" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 md:py-4 md:text-lg md:px-10 transition-all duration-300">
-                                Saiba Mais
-                            </a>
-                        </div>
+                                <a href="#store" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 md:py-4 md:text-lg md:px-10 transition-all duration-300">
+                                    Saiba Mais
+                                </a>
+</div>
                     </div>
                 </div>
                 <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
@@ -972,6 +975,14 @@
     </div>
                 </p>
                 <div class="block mb-6 glow-card rounded-lg overflow-hidden transition-all transform hover:scale-[1.02]">
+                    <a href="https://bytes4273.com/ols/categories/byte" target="_blank">
+                        <img src="https://img1.wsimg.com/isteam/ip/b467ac44-bc09-4776-aba5-c0da6d43f806/Post%20para%20Facebook%20divertido%20vermelho%20-732e3ec.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" 
+                             alt="Loja Online Byt3s" 
+                             class="w-full h-auto">
+                    </a>
+                </div>
+
+                <div class="block mb-6 glow-card rounded-lg overflow-hidden transition-all transform hover:scale-[1.02]">
                     <a href="https://www.bytes4273.com/#:~:text=CLIQUE%20%5B2X%5D%20EM-,%5BGerar%20Byt3%24%5D,-Voc%C3%AA%20ver%C3%A1%20um" target="_blank">
                         <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3QyMGkxN3dvNGdqdWVkYzh1a2FoZGhrenNlbHJ4bHpocGk4NnYyZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ofRnaGHLiOiRpZ50Ie/giphy.gif" 
                              alt="Novo Banner Byt3s" 
@@ -980,7 +991,7 @@
                 </div>
 
     <div id="miner" class="py-16 overflow-hidden relative content-wrapper">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Para participar</h2>
                 <h2 class="text-base text-cyan-400 font-semibold tracking-wide uppercase">Clique [2x] em</h2>
@@ -990,7 +1001,7 @@
                     Você verá um codigo com 13 Digitos parecido como : <span class="gradient-text">"1010111100011"</span>.
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Copie o Ticket.codigo que foi gerado por você e cole no "Ticket +Byt3$" do seu Minerador, após identificar seu "Ticket", inclua todos os dados solicitados no minerador como:
+                    Copie o Ticket.codigo que foi gerado por você e cole no <span class="gradient-text">"Ticket +Byt3$"</span> do seu Minerador, após identificar seu "Ticket", inclua todos os dados solicitados no minerador como:
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                     <span class="gradient-text">Identidade:</span> "Nome do responsavel"<br>
@@ -1000,15 +1011,15 @@
                     <span class="gradient-text">E-mail:</span> "Correspodência"
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    <span style="color: gold;">!!ATENÇÃO!!</span> </p>"Por Padrão - Todo Protocolo de Mineração deve ser registrado no "Nivel 4", para certificar a validação do seu Token +Byt3$"<br>
+                    <span style="color: gold;">!!ATENÇÃO!!</span> </p>"Por Padrão - Todo Protocolo de Mineração deve ser registrado no <span class="gradient-text">"Nivel - 4"</span>, para certificar a validação do seu <span class="gradient-text">"Token +Byt3$"</span><br>
                 </p>
-                    você verá o convite "NONCE" como também o codigo 
-                    "Hash" da sua Carteira. Cada carteira contém uma quantidade: [X]=<span class="gradient-text">B3S</span>. Caso o codigo "NONCE" não seja igual ao <span class="gradient-text">" Convite: lvl-4 "</span>, será apenas mais uma carteira "Vazia".
+                    você verá o convite <span class="gradient-text">"Nonce"</span> como também o codigo 
+                    <span class="gradient-text">"Hash"</span> da sua <span class="gradient-text">"Carteira"</span>. Cada carteira contém uma quantidade: [<span class="gradient-text">X</span>]=<span class="gradient-text">B3S</span>. Caso o codigo <span class="gradient-text">"Nonce"</span> não seja igual ao <span class="gradient-text">" Convite: lvl-4 "</span> da lista de <span class="gradient-text">"Byte$ Gratis"</span> logo a baixo será apenas mais uma carteira "Vazia".
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                     <span class="gradient-text">Byt3$:</span> "20.00B3S"<br>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    <span class="gradient-text">Hash:</span> "a50b"<br>
+                    <span class="gradient-text">Nonce:</span> "2366"<br>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                     <span class="gradient-text">Carteira:</span> "a50bfaf5d11407a1e02d68d51236"<br>
@@ -1017,7 +1028,7 @@
                     <span class="gradient-text">Token:</span> "a50b.68d51236"<br>
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Participe da rede e seja recompensado por contribuir com a segurança da blockchain. Seu Token +Byt3$ Premium deve conter 13 combinação de caracteres como <span class="gradient-text">" a50b.68d51236 "</span> .
+                    Participe da rede e seja recompensado por contribuir com a segurança da blockchain. Seu <span class="gradient-text">"Token +Byt3$"</span> Premium deve conter 13 combinação de caracteres como <span class="gradient-text">" a50b.68d51236 "</span> .
                     </p>Para coletar seus <span class="gradient-text">Byt3$</span>, bastar aplicar seu Token em nosso site oficial.
                     </p>
                     <a href="https://bytes4273.com/ols/categories/byte" target="_blank" class="inline-block mt-4 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-lg hover:opacity-90 transition-all transform hover:scale-105">
