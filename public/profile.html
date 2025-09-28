@@ -155,9 +155,42 @@
 <body>
     <!-- Crypto Background Elements -->
     <div id="crypto-bg-elements">
-        <div class="crypto-grid"></div>
-    </div>
+        <div class="crypto-grid">
+</div>
 
+<!-- Adicionando menu de preview -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const previewContent = document.getElementById('previewContent');
+    if (previewContent.dataset.preview === 'true') {
+        // Adicionar menu de controle de preview
+        const previewMenu = document.createElement('div');
+        previewMenu.className = 'fixed bottom-4 left-4 bg-gray-800 p-4 rounded-lg shadow-lg z-50';
+        previewMenu.innerHTML = `
+            <h4 class="text-cyan-400 font-bold mb-2">Modo Preview</h4>
+            <div class="flex flex-col space-y-2">
+                <button onclick="setPreviewRole('admin')" class="btn-primary px-3 py-1 text-sm">
+                    <i class="fas fa-user-shield mr-1"></i> Admin
+                </button>
+                <button onclick="setPreviewRole('premium')" class="btn-primary px-3 py-1 text-sm">
+                    <i class="fas fa-crown mr-1"></i> Premium
+                </button>
+                <button onclick="setPreviewRole('standard')" class="btn-primary px-3 py-1 text-sm">
+                    <i class="fas fa-user mr-1"></i> Padrão
+                </button>
+            </div>
+        `;
+        document.body.appendChild(previewMenu);
+
+        // Função para alterar o role no preview
+        window.setPreviewRole = (role) => {
+            userRole.textContent = role.charAt(0).toUpperCase() + role.slice(1);
+            updateInterfaceByRole(role, role === 'admin' ? 3 : role === 'premium' ? 2 : 1);
+        };
+    }
+});
+</script>
+</div>
     <!-- Navigation -->
     <nav class="fixed w-full bg-black bg-opacity-80 backdrop-filter backdrop-blur-lg z-50 border-b border-cyan-500 border-opacity-20 content-wrapper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -170,13 +203,17 @@
                         <span class="ml-3 text-xl font-bold gradient-text">Byt3s</span>
                     </div>
                 </div>
+                <div>
+                    <a href="index.html" class="text-cyan-300 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                        <i class="fas fa-arrow-left mr-2"></i>Voltar
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
-
     <!-- Main Content -->
-    <div class="min-h-screen pt-24 pb-12 content-wrapper">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="min-h-screen pt-24 pb-12 content-wrapper" id="previewContent" data-preview="true">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10">
                 <h1 class="text-3xl font-extrabold text-white sm:text-4xl">
                     Painel do <span class="gradient-text">Investidor</span>
@@ -593,51 +630,68 @@
                 showError('Erro ao fazer logout. Tente novamente.');
             }
         });
-        // Verificar se o DOM está carregado
-        document.addEventListener('DOMContentLoaded', () => {
-            // Garantir que todos os elementos necessários existam
-            if (!auth || !db) {
-                showError('Erro na inicialização do Firebase');
-                return;
-            }
-
-            // Verificar se usuário está autenticado
-
-            // Verificar autenticação e redirecionar se não estiver logado
-            const authStateListener = auth.onAuthStateChanged(async (user) => {
-                if (!user) {
-                    window.location.href = 'login.html';
-                    return;
-                }
-
-                try {
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    
-                    // Se o documento não existe, criar um básico
-                    if (!userDoc.exists) {
-                        await db.collection('users').doc(user.uid).set({
-                            email: user.email,
-                            role: 'standard',
-                            status: 'active',
-                            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                            lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-                        });
+        // Função para carregar dados de preview
+        function loadPreviewData() {
+            const previewContent = document.getElementById('previewContent');
+            const isPreview = previewContent.dataset.preview === 'true' || window.location.href.includes('preview=true');
+            
+            if (isPreview) {
+                // Modo preview - mostrar dados de exemplo
+                userName.textContent = 'Usuário de Exemplo';
+                userEmail.textContent = 'exemplo@bytes4273.com';
+                userRole.textContent = 'Admin';
+                totalBalance.textContent = '1.250,00';
+                profit24h.textContent = '87,50';
+                investmentsCount.textContent = '3';
+                
+                // Mostrar todos os elementos incluindo admin
+                document.querySelectorAll('.admin-only, .premium-only').forEach(el => {
+                    el.style.display = 'block';
+                });
+            } else {
+// Modo normal - verificar autenticação
+                document.addEventListener('DOMContentLoaded', () => {
+                    if (!auth || !db) {
+                        showError('Erro na inicialização do Firebase');
+                        return;
                     }
 
-                    // Carregar dados do usuário
-                    loadUserData(user.uid);
-                    
-                    // Atualizar interface com base no role (todos os usuários autenticados podem acessar)
-                    const userData = userDoc.exists ? userDoc.data() : { role: 'standard' };
-                    updateInterfaceByRole(userData.role, userData.priority || 1);
-                    authStateListener(); // Remove listener after setup
-                } catch (error) {
-                    console.error('Erro:', error);
-                    showError('Erro ao carregar perfil');
-                }
-            });
-        });
-    </script>
+                    const authStateListener = auth.onAuthStateChanged(async (user) => {
+                        if (!user) {
+                            window.location.href = 'login.html';
+                            return;
+                        }
+
+                        try {
+                            const userDoc = await db.collection('users').doc(user.uid).get();
+                            
+                            if (!userDoc.exists) {
+                                await db.collection('users').doc(user.uid).set({
+                                    email: user.email,
+                                    role: 'standard',
+                                    status: 'active',
+                                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                                });
+                            }
+
+                            loadUserData(user.uid);
+                            
+                            const userData = userDoc.exists ? userDoc.data() : { role: 'standard' };
+                            updateInterfaceByRole(userData.role, userData.priority || 1);
+                            authStateListener();
+                        } catch (error) {
+                            console.error('Erro:', error);
+                            showError('Erro ao carregar perfil');
+                        }
+                    });
+                });
+            }
+        }
+
+        // Inicializar
+        loadPreviewData();
+</script>
 
     <!-- Adicionando elemento para mensagens de erro -->
     <div id="errorMessage" class="fixed bottom-4 right-4 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg hidden z-50 max-w-md"></div>
