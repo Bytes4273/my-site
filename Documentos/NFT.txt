@@ -1,5 +1,0 @@
-Preciso que crie uma barbatana inferior branca onde esta riscado de verde, preciso que seja igual a que esta na parte inferior da calda, crie uma um pouco mais a frente e um poquinho maior , para ficar em simetira, senguindo os exemplos das duas barbatanas na parte superior da calda. Faça um Movimento natural de acenar:
-Apenas a barbatana peitoral direita faz um movimento de acenar natural
-Sem características de "mão humana" - mantém a aparência de barbatana de tubarão, faça um video de 5 segundos usando o VEO3 , garanta que os dentes do sorriso do tubarão esteja todos em simetria . Preciso que garanta um Layout responsivo: Sem bordas corrompidas ou artefatos
-Fundo "#0a1121" limpo
-Dimensionamento adequado com o tubarão completo no quadro. 

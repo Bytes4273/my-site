@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Byt3s 4273 - Perfil do Usuário">
+    <meta name="description" content="B3$ - Perfil do Usuário">
     <meta name="theme-color" content="#0a0a0a">
-    <title>B3S - Perfil</title>
+    <title>B3$ - Perfil</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,8 +13,9 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="script.js"></script>
     <style>
-        .admin-only {
+.admin-only {
             display: none;
         }
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
@@ -83,15 +84,21 @@
             box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
             transform: translateY(-5px);
         }
-        
         .stat-card {
             background: rgba(30, 41, 59, 0.7);
             border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 12px;
+            border-radius: 0.75rem;
             transition: all 0.3s ease;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
         }
-        
-        .stat-card:hover {
+
+        @media (max-width: 768px) {
+            .stat-card {
+                padding: 1rem;
+            }
+        }
+.stat-card:hover {
             border-color: rgba(0, 255, 255, 0.5);
         }
         
@@ -250,11 +257,28 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <i class="fas fa-chart-line mr-3"></i>
                                 <span>Dashboard</span>
                             </a>
-                            <a href="#" class="menu-item admin-only flex items-center px-4 py-3 text-gray-300 hover:text-white">
-                                <i class="fas fa-puzzle-piece mr-3"></i>
-                                <span>Protocolos</span>
-                            </a>
-                            <a href="#" class="menu-item flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                            <div class="menu-item admin-only px-4 py-3" id="protocolsSection">
+                                <div class="flex items-center text-gray-300 hover:text-white cursor-pointer" onclick="toggleProtocols()">
+                                    <i class="fas fa-puzzle-piece mr-3"></i>
+                                    <span>Protocolos</span>
+                                    <i class="fas fa-chevron-down ml-auto text-xs"></i>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 mt-2 hidden" id="protocolsButtons">
+                                    <button class="flex flex-col items-center justify-center py-2 px-1 bg-gray-800 hover:bg-gray-700 rounded-lg transition-all">
+                                        <i class="fas fa-file-contract text-cyan-400 text-lg mb-1"></i>
+                                        <span class="text-xs text-gray-300">Protocolado</span>
+                                    </button>
+                                    <button class="flex flex-col items-center justify-center py-2 px-1 bg-gray-800 hover:bg-gray-700 rounded-lg transition-all">
+                                        <i class="fas fa-microchip text-cyan-400 text-lg mb-1"></i>
+                                        <span class="text-xs text-gray-300">Minerado</span>
+                                    </button>
+                                    <button class="flex flex-col items-center justify-center py-2 px-1 bg-gray-800 hover:bg-gray-700 rounded-lg transition-all">
+                                        <i class="fas fa-coins text-cyan-400 text-lg mb-1"></i>
+                                        <span class="text-xs text-gray-300">Mint</span>
+                                    </button>
+                                </div>
+                            </div>
+<a href="#" class="menu-item flex items-center px-4 py-3 text-gray-300 hover:text-white">
                                 <i class="fas fa-wallet mr-3"></i>
                                 <span>Carteira</span>
                             </a>
@@ -322,7 +346,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                     </div>
-
                     <!-- Gráfico e Atividades -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <!-- Gráfico -->
@@ -600,12 +623,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 5000);
             }
         }
-
-        // Logout com tratamento de estado
-        logoutButton.addEventListener('click', async (e) => {
+        // Gerenciamento de logout
+        const handleLogout = async (e) => {
             e.preventDefault();
             
-            // Mostrar feedback visual
+            if (typeof firebase === 'undefined' || !auth) {
+                console.error('Firebase não está disponível');
+                showError('Erro no sistema. Tente novamente mais tarde.');
+                return;
+            }
+// Mostrar feedback visual
             const originalText = logoutButton.innerHTML;
             logoutButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saindo...';
             logoutButton.disabled = true;
@@ -630,9 +657,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 showError('Erro ao fazer logout. Tente novamente.');
             }
         });
-        // Função para carregar dados de preview
-        function loadPreviewData() {
-            const previewContent = document.getElementById('previewContent');
+        // Toggle dos botões de Protocolos
+        function toggleProtocols() {
+            const buttons = document.getElementById('protocolsButtons');
+            const chevron = document.querySelector('#protocolsSection .fa-chevron-down');
+            
+            buttons.classList.toggle('hidden');
+            chevron.classList.toggle('fa-chevron-down');
+            chevron.classList.toggle('fa-chevron-up');
+        }
+        /**
+         * Carrega dados de preview para desenvolvimento
+         * @function loadPreviewData
+         */
+        const loadPreviewData = () => {
+const previewContent = document.getElementById('previewContent');
             const isPreview = previewContent.dataset.preview === 'true' || window.location.href.includes('preview=true');
             
             if (isPreview) {
