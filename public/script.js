@@ -1,4 +1,3 @@
-console.log("Byte$ 4273 iniciado com sucesso.");
 // Rate limiting and abuse detection
 class AbuseDetection {
     constructor() {
