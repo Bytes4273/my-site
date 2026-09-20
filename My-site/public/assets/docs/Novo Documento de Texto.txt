@@ -1,0 +1,5 @@
+Este é o backup do documento original (Novo Documento de Texto.txt).
+Aqui fica registrado o conteúdo bruto antes da modularização em HTML, CSS e JS.
+
+⚠️ Importante: este arquivo NÃO faz parte do deploy do site.
+Ele serve apenas como referência e histórico de desenvolvimento.

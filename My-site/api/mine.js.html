@@ -1,0 +1,109 @@
+const admin = require('firebase-admin');
+const crypto = require('crypto');
+
+// 💡 Configuração: Certifique-se de definir a variável de ambiente FIREBASE_ADMIN_CREDENTIALS no seu provedor (Vercel).
+// O valor deve ser o conteúdo JSON do arquivo de chave privada do Admin SDK, convertido em uma string.
+if (!admin.apps.length) {
+  try {
+    // Tenta carregar as credenciais da variável de ambiente (necessário para a Vercel)
+    const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_CREDENTIALS);
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount)
+    });
+  } catch (error) {
+    console.error('Falha ao inicializar o Firebase Admin SDK. Verifique a variável FIREBASE_ADMIN_CREDENTIALS.', error);
+    // Em um ambiente de produção real, você deve retornar um erro 500 aqui se a inicialização falhar.
+  }
+}
+
+const db = admin.firestore();
+
+// Função para calcular SHA256 (igual à do cliente)
+const sha256 = (data) => {
+    return crypto.createHash('sha256').update(data).digest('hex');
+};
+
+module.exports = async (req, res) => {
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Método não permitido.' });
+    }
+
+    // 1. Receber e validar dados essenciais
+    const { 
+        ticket, 
+        nonce, 
+        hash, 
+        level, 
+        invite, 
+        previousHash, 
+        userId // O ID do Firebase Auth do cliente
+    } = req.body;
+
+    if (!ticket || nonce === undefined || !hash || !level || !previousHash || !userId) {
+        return res.status(400).json({ error: 'Dados incompletos fornecidos.' });
+    }
+
+    const levelInt = parseInt(level);
+    const target = '0'.repeat(levelInt);
+
+    try {
+        // 2. VERIFICAÇÃO CRIPTOGRÁFICA DO POW
+        
+        // **IMPORTANTE:** A ordem de concatenação deve ser EXATAMENTE a mesma do seu código JavaScript no cliente.
+        const dataToHash = previousHash + ticket + invite + nonce;
+        const calculatedHash = sha256(dataToHash);
+        
+        // 2a. Validar Hash e Dificuldade (a segurança principal)
+        if (calculatedHash !== hash || !calculatedHash.startsWith(target)) {
+            return res.status(401).json({ error: 'O Hash enviado não é válido ou não atinge o nível de dificuldade requerido.' });
+        }
+
+        // 3. VERIFICAÇÃO DE REPLAY (ANTI-CHEAT)
+        // 3a. Checa se este Hash Válido já foi usado (impede que o mesmo PoW seja submetido múltiplas vezes)
+        const replayCheck = await db.collection('blocks').where('hash', '==', hash).limit(1).get();
+        if (!replayCheck.empty) {
+            return res.status(409).json({ error: 'O Hash Válido (prova de trabalho) já foi registrado. Reutilização de token detectada.' });
+        }
+        
+        // 3b. Opcional: Verificar se o Hash Anterior existe (ajuda a garantir a integridade da cadeia)
+        // Se previousHash não for "Gênesis" ('0'.repeat(64)), ele deve ser um Hash Válido existente.
+        if (!previousHash.startsWith('0'.repeat(64))) {
+             const blockCheck = await db.collection('blocks').where('hash', '==', previousHash).limit(1).get();
+             if (blockCheck.empty) {
+                 // Esta é uma checagem de integridade forte. Remova-a se quiser blocos "órfãos".
+                 // return res.status(409).json({ error: 'Hash do Bloco Anterior não encontrado na cadeia. Tentativa de mineração fora da ordem.' });
+             }
+        }
+
+        // 4. GERAÇÃO E REGISTRO DO TOKEN (+Byt3S)
+        const tokenLength = 20; 
+        const byt3Token = hash.substring(levelInt, levelInt + tokenLength); 
+        
+        const newBlock = {
+            userId: userId,
+            ticket: ticket,
+            invite: invite,
+            level: levelInt,
+            nonce: nonce,
+            previousHash: previousHash,
+            hash: hash,
+            byt3Token: byt3Token,
+            timestamp: admin.firestore.FieldValue.serverTimestamp()
+        };
+
+        // Salvar no Firestore
+        await db.collection('blocks').add(newBlock);
+
+        // 5. RESPOSTA DE SUCESSO
+        return res.status(200).json({ 
+            success: true, 
+            message: 'Mineração validada e bloco registrado com sucesso!',
+            byt3Token: byt3Token,
+            hash: hash
+        });
+
+    } catch (error) {
+        console.error('Erro de Servidor:', error);
+        return res.status(500).json({ error: 'Erro interno do servidor.' });
+    }
+};

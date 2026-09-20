@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Byt3s 4273 | Economia Digital Consciente</title>
+
+  <!-- Tailwind + FontAwesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS custom -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <!-- 🔹 Navbar -->
+  <nav class="navbar">
+    <div class="logo">Byt3s</div>
+    <ul class="menu">
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#miner">Minerador</a></li>
+      <li><a href="#store">Loja</a></li>
+      <li><a href="#about">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <!-- 🔹 Hero -->
+  <section id="inicio" class="hero">
+    <h1>A Nova Dimensão da <span class="gradient-text">Economia Digital</span></h1>
+    <p>Ecossistema que une blockchain, educação financeira e impacto social.</p>
+    <a href="#miner" class="btn-primary">Começar Agora</a>
+  </section>
+
+  <!-- 🔹 Minerador -->
+  <section id="miner" class="miner-section">
+    <h2>Minerador B³$</h2>
+    <div id="minerApp"></div>
+    <button onclick="Miner.start()" class="btn-primary mt-6"><i class="fas fa-play"></i> Iniciar Mineração</button>
+    <button onclick="Miner.stop()" class="btn-danger mt-3"><i class="fas fa-stop"></i> Parar Mineração</button>
+  </section>
+
+  <!-- 🔹 Rodapé -->
+  <footer>
+    <p>© 2025 Byt3s 4273 - Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="assets/js/miner.js"></script>
+</body>
+</html>
