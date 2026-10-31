@@ -654,7 +654,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 logoutButton.disabled = false;
                 showError('Erro ao fazer logout. Tente novamente.');
             }
-        });
+        };
+        logoutButton.addEventListener('click', handleLogout);
         // Toggle dos botões de Protocolos
         function toggleProtocols() {
             const buttons = document.getElementById('protocolsButtons');
